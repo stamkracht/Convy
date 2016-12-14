@@ -1,0 +1,14 @@
+{
+  "name": "Convy, good conversations",
+  "short_name": "Convy",
+  "theme_color": "#88CEE8",
+  "background_color": "#88CEE8",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [{
+    "src": "/apple-touch-icon-precomposed.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
