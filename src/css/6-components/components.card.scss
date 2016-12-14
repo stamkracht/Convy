@@ -1,0 +1,17 @@
+// Card
+//
+// Markup: ../kss_styleguide/markup/components.card.html
+//
+// Styleguide Components.Card
+
+
+.c-card {
+  box-shadow: 0 0 2px rgba($black, 0.9);
+  display: block;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  color: $black;
+  background: $white;
+  font-size: 1rem;
+}

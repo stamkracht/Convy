@@ -1,0 +1,20 @@
+// Button
+//
+// Markup: ../kss_styleguide/markup/components.button.html
+//
+// Styleguide Components.Button
+
+
+.c-button {
+  display: inline-block;
+  border: 0;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: $white;
+  background: $black;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover { color: $white; }
+}

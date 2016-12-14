@@ -1,0 +1,32 @@
+// Text-level
+//
+// Base styling for the headings, the paragraph and the addres element.
+// Improve the readability on the selection pseudo-class.
+//
+// Markup: ../kss_styleguide/markup/base.text-level.html
+//
+// Styleguide Base.TextLevel
+
+
+$selection-background: $blue;
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $default-heading-font-family;
+  font-size: $default-heading-font-size;
+  font-weight: $default-heading-font-weight;
+  line-height: $default-heading-line-height;
+}
+
+address { font-style: normal; }
+
+// remove text-shadow in selection highlight for better readability.
+::selection {
+  background: $selection-background;
+  text-shadow: none;
+}

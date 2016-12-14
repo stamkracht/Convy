@@ -1,0 +1,26 @@
+// List inline
+//
+// Inlines the list items.
+//
+// Markup: ../kss_styleguide/markup/objects.list-inline.html
+//
+// Styleguide Objects.ListInline
+
+
+.o-list-inline {
+  list-style: none;
+  padding-left: 0;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  & > li {
+    float: left;
+    margin-right: 15px;
+
+    &:last-child { margin-right: 0; }
+  }
+}

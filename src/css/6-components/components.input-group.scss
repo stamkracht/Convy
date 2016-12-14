@@ -1,0 +1,61 @@
+// Input group
+//
+// Markup: ../kss_styleguide/markup/components.input-group.html
+//
+// Styleguide Components.InputGroup
+
+
+$c-input-group-border-color: $gray;
+$c-input-group-font-color: $black;
+$c-input-group-placeholder-color: $gray;
+
+
+.c-input-group {
+  display: table;
+  width: 100%;
+
+  & ::placeholder { color: $c-input-group-placeholder-color; }
+}
+
+.c-input-group .c-input-group__label {
+  display: table-cell;
+  width: 1%;
+  height: 100%;
+  padding: 0px 10px;
+  color: $c-input-group-font-color;
+  background: $gray;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  cursor: auto;
+}
+
+.c-input-group .c-input-group__field {
+  display: table-cell;
+  width: 100%;
+  border: 1px solid $c-input-group-border-color;
+  padding: 7px 10px;
+  color: $c-input-group-font-color;
+  vertical-align: middle;
+  line-height: inherit;
+}
+
+.c-input-group .c-input-group__button {
+  display: table-cell;
+  width: 1%;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+
+  & a,
+  & button,
+  & input[type="submit"] {
+    display: block;
+    border: 0;
+    padding: 8px 10px;
+    cursor: pointer;
+    color: $c-input-group-font-color;
+    background: $gray;
+  }
+}
