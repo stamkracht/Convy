@@ -5,47 +5,50 @@
 // Styleguide Settings.Colors
 
 
-// Primary Colors
+// Brand Colors
 //
-// The primary colors for branding.
-//
-// $leonardo      -  #2980b9, Leader blue
-// $donatello     -  #8e44ad, Purple tech
-// $raphael       -  #c0392b, Sai
-// $michelangelo  -  #E87E04, Cowabunga
-// $splinter      -  #FDE3A7,
+// $brand-color-1 -  #88CEE8, Viking
+// $brand-color-2 -  #4BAFD9, Shakespeare
+// $brand-color-3 -  #D0E37F, Manz
 //
 // Weight: 1
 //
-// Styleguide Settings.Colors.PrimaryColors
+// Styleguide Settings.Colors.BrandColors
+
+$brand-color-1: #88CEE8;
+$brand-color-2: #4BAFD9;
+$brand-color-3: #D0E37F;
 
 
-$leonardo: #2980b9;
-$donatello: #8e44ad;
-$raphael: #c0392b;
-$michelangelo: #E87E04;
-$splinter: #FDE3A7;
-
-
-// Secondary Colors
+// Primary Colors
 //
-// $black       - #222222, Black
-// $gray        - #CCCCCC, Gray
-// $white       - #FFFFFF, White
-// $red         - #c0392b, Red
-// $green       - #86B155, Green
-// $orange      - #FCB350, Orange
-// $blue        - #3FA7D6, Blue
+// $black   -  #333333, Mine Shaft
+// $white   -  #FFFFFF, White
+// $gray-30 -  #F4F4F4, Wild Sand
+// $gray-70 -  #7A7A7A, Boulder
 //
 // Weight: 2
 //
-// Styleguide Settings.Colors.SecondaryColors
+// Styleguide Settings.Colors.PrimaryColors
+
+$black:   #333333;
+$white:   #FFFFFF;
+$gray-30: #F4F4F4;
+$gray-70: #7A7A7A;
 
 
-$black: #222222;
-$gray: #CCCCCC;
-$white: #FFFFFF;
-$red: #c0392b;
-$green: #86B155;
-$orange: #FCB350;
-$blue: #3FA7D6;
+// Feedback Colors
+//
+// $fb-danger  -  #EB8585, Apricot
+// $fb-success -  #69CA88, De York
+// $fb-warning -  #F0CA85, Buff
+// $fb-info    -  #5FA9CA, Danube
+//
+// Weight: 3
+//
+// Styleguide Settings.Colors.FeedbackColors
+
+$fb-danger:   #EB8585;
+$fb-success:  #69CA88;
+$fb-warning:  #F0CA85;
+$fb-info:     #5FA9CA;
