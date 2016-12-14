@@ -7,7 +7,7 @@
 
 $c-form-border-color: $black;
 $c-form-font-color: $black;
-$c-form-placeholder-color: $gray;
+$c-form-placeholder-color: $gray-30;
 
 
 .c-form {
@@ -89,10 +89,10 @@ $c-form-placeholder-color: $gray;
     opacity: 0.75;
   }
 
-  &[data-feedback-activated]:valid { border: 1px solid $green; }
+  &[data-feedback-activated]:valid { border: 1px solid $fb-success; }
 
   &[data-feedback-activated]:invalid {
-    border: 1px solid $red;
+    border: 1px solid $fb-danger;
     transition-delay: 1s;
   }
 }
@@ -107,10 +107,10 @@ $c-form-placeholder-color: $gray;
     opacity: 0.75;
   }
 
-  &[data-feedback-activated]:valid { border: 1px solid $green; }
+  &[data-feedback-activated]:valid { border: 1px solid $fb-success; }
 
   &[data-feedback-activated]:invalid {
-    border: 1px solid $red;
+    border: 1px solid $fb-danger;
     transition-delay: 1s;
   }
 }
@@ -130,10 +130,10 @@ $c-form-placeholder-color: $gray;
     opacity: 0.75;
   }
 
-  &[data-feedback-activated]:valid { border: 1px solid $green; }
+  &[data-feedback-activated]:valid { border: 1px solid $fb-success; }
 
   &[data-feedback-activated]:invalid {
-    border: 1px solid $red;
+    border: 1px solid $fb-danger;
     transition-delay: 1s;
   }
 }

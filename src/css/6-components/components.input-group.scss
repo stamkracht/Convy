@@ -5,9 +5,9 @@
 // Styleguide Components.InputGroup
 
 
-$c-input-group-border-color: $gray;
+$c-input-group-border-color: $gray-30;
 $c-input-group-font-color: $black;
-$c-input-group-placeholder-color: $gray;
+$c-input-group-placeholder-color: $gray-30;
 
 
 .c-input-group {
@@ -23,7 +23,7 @@ $c-input-group-placeholder-color: $gray;
   height: 100%;
   padding: 0px 10px;
   color: $c-input-group-font-color;
-  background: $gray;
+  background: $gray-30;
   vertical-align: middle;
   text-align: center;
   white-space: nowrap;
@@ -56,6 +56,6 @@ $c-input-group-placeholder-color: $gray;
     padding: 8px 10px;
     cursor: pointer;
     color: $c-input-group-font-color;
-    background: $gray;
+    background: $gray-30;
   }
 }
