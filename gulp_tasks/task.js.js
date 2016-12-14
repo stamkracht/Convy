@@ -19,7 +19,7 @@ module.exports = function (gulp) {
       .pipe(config.plugins.sourcemaps.init({ loadMaps: true }))
         .pipe(config.plugins.rename({ suffix: '.min' }))
         .pipe(config.plugins.uglify())
-      .pipe(config.plugins.sourcemaps.write('../../' + config.source.tmp))
+      .pipe(config.plugins.sourcemaps.write('../' + config.source.tmp))
       .pipe(gulp.dest(config.source.dest));
 
   });

@@ -19,7 +19,7 @@ module.exports = function (gulp) {
         .pipe(gulp.dest(config.source.tmp))
         .pipe(config.plugins.cssnano({ zindex: false }))
         .pipe(config.plugins.rename({ suffix: '.min' }))
-      .pipe(config.plugins.sourcemaps.write('../../' + config.source.tmp))
+      .pipe(config.plugins.sourcemaps.write('../' + config.source.tmp))
       .pipe(gulp.dest(config.source.dest))
       .pipe(config.browsersync.reload({ stream: true }));
 
