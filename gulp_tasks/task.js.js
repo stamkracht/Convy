@@ -8,7 +8,7 @@ module.exports = function (gulp) {
   gulp.task('js', function () {
 
     config.browserify({
-      entries: 'src/js/index.js',
+      entries: 'src/js/index.convy.js',
       debug: true
     })
       .transform(config.babelify, { presets: ['es2015', 'es2016'] })

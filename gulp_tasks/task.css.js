@@ -10,7 +10,7 @@ module.exports = function (gulp) {
 
   gulp.task('css', function () {
 
-    gulp.src('src/css/index.scss')
+    gulp.src('src/css/index.convy.scss')
       .pipe(config.plugins.plumber())
       .pipe(config.plugins.sourcemaps.init())
         .pipe(config.plugins.sass())
