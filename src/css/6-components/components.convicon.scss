@@ -1,0 +1,123 @@
+// Convicon
+//
+// Markup: ../kss_styleguide/markup/components.convicon.html
+//
+// Styleguide Components.Convicon
+
+$convicon-path: '';
+
+$icon-bar-chart: '\e900';
+$icon-attachment: '\e901';
+$icon-attachment-2: '\e902';
+$icon-pencil: '\e903';
+$icon-sign-in: '\e904';
+$icon-sign-out: '\e91d';
+$icon-message-text: '\e906';
+$icon-message-outline: '\e907';
+$icon-add-circle-outline: '\e908';
+$icon-arrow-back: '\e909';
+$icon-arrow-forward: '\e90a';
+$icon-camera: '\e90b';
+$icon-camera-lens: '\e90c';
+$icon-chevron-left: '\e90d';
+$icon-chevron-right: '\e90e';
+$icon-close: '\e90f';
+$icon-favorite-outline: '\e910';
+$icon-favorite: '\e911';
+$icon-image: '\e912';
+$icon-smiley: '\e913';
+$icon-notifications-none: '\e914';
+$icon-notifications-off: '\e915';
+$icon-notifications-on: '\e916';
+$icon-notifications: '\e917';
+$icon-group: '\e918';
+$icon-group-add: '\e905';
+$icon-person-outline: '\e919';
+$icon-person: '\e91a';
+$icon-search: '\e91b';
+$icon-send: '\e91c';
+
+@font-face {
+  font-family: 'Convicon';
+  src: url('#{$convicon-path}convicon.ttf') format('truetype'),
+       url('#{$convicon-path}convicon.woff') format('woff'),
+       url('#{$convicon-path}convicon.svg#convicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts. */
+  font-family: 'Convicon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* better font rendering. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bar-chart:before { content: $icon-bar-chart; }
+
+.icon-attachment:before { content: $icon-attachment; }
+
+.icon-attachment-2:before { content: $icon-attachment-2; }
+
+.icon-pencil:before { content: $icon-pencil; }
+
+.icon-sign-in:before { content: $icon-sign-in; }
+
+.icon-sign-out:before { content: $icon-sign-out; }
+
+.icon-message-text:before { content: $icon-message-text; }
+
+.icon-message-outline:before { content: $icon-message-outline; }
+
+.icon-add-circle-outline:before { content: $icon-add-circle-outline; }
+
+.icon-arrow-back:before { content: $icon-arrow-back; }
+
+.icon-arrow-forward:before { content: $icon-arrow-forward; }
+
+.icon-camera:before { content: $icon-camera; }
+
+.icon-camera-lens:before { content: $icon-camera-lens; }
+
+.icon-chevron-left:before { content: $icon-chevron-left; }
+
+.icon-chevron-right:before { content: $icon-chevron-right; }
+
+.icon-close:before { content: $icon-close; }
+
+.icon-favorite-outline:before { content: $icon-favorite-outline; }
+
+.icon-favorite:before { content: $icon-favorite; }
+
+.icon-image:before { content: $icon-image; }
+
+.icon-smiley:before { content: $icon-smiley; }
+
+.icon-notifications-none:before { content: $icon-notifications-none; }
+
+.icon-notifications-off:before { content: $icon-notifications-off; }
+
+.icon-notifications-on:before { content: $icon-notifications-on; }
+
+.icon-notifications:before { content: $icon-notifications; }
+
+.icon-group:before { content: $icon-group; }
+
+.icon-group-add:before { content: $icon-group-add; }
+
+.icon-person-outline:before { content: $icon-person-outline; }
+
+.icon-person:before { content: $icon-person; }
+
+.icon-search:before { content: $icon-search; }
+
+.icon-send:before { content: $icon-send; }
