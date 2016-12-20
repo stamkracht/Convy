@@ -1,0 +1,14 @@
+// Font face
+//
+// Markup: ../kss_styleguide/markup/base.font-face.html
+//
+// Styleguide Base.FontFace
+
+
+@include font-face('Ubuntu', 'ubuntu-light', 300);
+
+@include font-face('Ubuntu', 'ubuntu');
+
+@include font-face('Ubuntu', 'ubuntu-medium', 500);
+
+@include font-face('Ubuntu', 'ubuntu-bold', bold);
