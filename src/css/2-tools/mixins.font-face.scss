@@ -8,7 +8,6 @@
 @mixin font-face($font-family, $src, $font-weight:unquote('normal'), $font-style:unquote('normal')) {
   @font-face {
     font-family: $font-family;
-    src: url('#{$src}.eot');                                 // ie9 compat.
     src: url('#{$src}.woff2') format('woff2'),               // new standard.
          url('#{$src}.woff') format('woff'),                 // standard.
          url('#{$src}.ttf') format('truetype'),              // safari, android, ios.
