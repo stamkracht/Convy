@@ -1,0 +1,33 @@
+// Application background
+//
+// Markup: ../kss_styleguide/markup/components.app-background.html
+//
+// Styleguide Components.ApplicationBackground
+
+
+.c-app-background {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url('bg-app.jpg');
+  background-repeat: none;
+  background-size: cover;
+  background-position: center;
+}
+
+.c-app-background:after {
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  content: '';
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  background: $brand-color-1;
+}
