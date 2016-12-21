@@ -1,0 +1,83 @@
+// Authentication: login/register
+//
+// Markup: ../kss_styleguide/markup/components.authentication.html
+//
+// Styleguide Components.Authentication
+
+
+.c-authentication {
+  position: relative;
+  perspective: 1000px; /* entire container, keeps perspective. */
+  display: block;
+  width: 320px;
+  height: 480px;
+  margin: 200px auto;
+
+  &:hover .c-authentication__inner { transform: rotateY(180deg); }
+}
+
+.c-authentication__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 6s;
+
+  .c-authentication--vertical & { transform-origin: 100% 213.5px; } /* half of height */
+
+  .c-authentication--vertical:hover & { transform: rotateX(180deg); }
+}
+
+/* hide back of pane during swap */
+.c-authentication__back,
+.c-authentication__front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* front pane, placed above back */
+.c-authentication__front { z-index: 10; }
+
+/* back, initially hidden pane */
+.c-authentication__back {
+  transform: rotateY(180deg);
+
+  .c-authentication--vertical & { transform: rotateX(180deg); }
+}
+
+
+/* test code */
+.test1,
+.test2 {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 300px;
+}
+
+.test1 {
+  z-index: 10;
+  background: white;
+}
+
+.test2 {
+  top: -250px;
+  left: 50px;
+  background: blue;
+}
+
+.c-authentication__back .test1 {
+  left: 50px;
+  background: blue
+}
+
+.c-authentication__back .test2 {
+  left: 0px;
+  background: white;
+}
