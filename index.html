@@ -24,21 +24,43 @@
 
     <div class="c-app-background"></div>
 
-    <section class="c-authentication c-authentication--vertical">
-      <section class="c-authentication__inner">
+    <main class="s-entry">
+      <div class="logo">
+        <img src="dest/text-logo.png" alt="Convy logo" width="284" height="73">
+      </div>
 
-        <article class="c-authentication__front">
-          <div class="test1"><p>f-lorem</p></div>
-          <div class="test2"><p>f-ipsum</p></div>
-        </article>
+      <section class="c-authentication c-authentication--vertical">
+        <section class="c-authentication__inner">
 
-        <article class="c-authentication__back">
-          <div class="test1"><p>b-lorem</p></div>
-          <div class="test2"><p>b-ipsum</p></div>
-        </article>
+          <article class="c-authentication__front">
+            <form action="">
+              <div class="c-authentication__fields">
+                <label>
+                  <!-- <span>Email</span> -->
+                  <input type="email" name="email" placeholder="email" tabindex="1" required>
+                </label>
 
+                <label>
+                  <!-- <span>Password</span> -->
+                  <input type="password" name="password" placeholder="password" tabindex="2" required>
+                </label>
+              </div>
+              <div class="c-authentication__submit">
+                <button tabindex="3">connect</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="c-authentication__back">
+            <div class="test1"><p>b-lorem</p></div>
+            <div class="test2"><p>b-ipsum</p></div>
+          </article>
+
+        </section>
       </section>
-    </section>
+
+      <button class="register-trigger js-register-trigger">Not registered? Create account.</button>
+    </main>
 
 
     <!-- scripts. -->
