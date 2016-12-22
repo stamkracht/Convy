@@ -4,6 +4,7 @@
 
 
   require('./components.form.js');
+  require('./scopes.entry.js');
 
 
 })();
