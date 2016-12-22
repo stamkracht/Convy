@@ -15,6 +15,17 @@ fieldset {
 
 label { cursor: pointer; }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  font-weight: $default-font-weight;
+  line-height: $default-line-height;
+}
+
 textarea { resize: vertical; }
 
 input,
