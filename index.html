@@ -33,7 +33,7 @@
         <section class="c-authentication__inner">
 
           <article class="c-authentication__front">
-            <form action="">
+            <form>
               <div class="c-authentication__fields">
                 <label>
                   <!-- <span>Email</span> -->
@@ -46,14 +46,33 @@
                 </label>
               </div>
               <div class="c-authentication__submit">
-                <button tabindex="3">connect</button>
+                <button tabindex="3">Connect</button>
               </div>
             </form>
           </article>
 
           <article class="c-authentication__back">
-            <div class="test1"><p>b-lorem</p></div>
-            <div class="test2"><p>b-ipsum</p></div>
+            <form>
+              <div class="c-authentication__fields">
+                <label>
+                  <!-- <span>Email</span> -->
+                  <input type="email" name="email" placeholder="email" tabindex="1" required>
+                </label>
+
+                <label>
+                  <!-- <span>Password</span> -->
+                  <input type="password" name="password" placeholder="password" tabindex="2" required>
+                </label>
+              </div>
+              <div class="c-authentication__submit">
+                <button tabindex="3">
+                  <span class="js-register-close">
+                    <i class="icon-arrow-back"></i>
+                  </span>
+                  Register
+                </button>
+              </div>
+            </form>
           </article>
 
         </section>

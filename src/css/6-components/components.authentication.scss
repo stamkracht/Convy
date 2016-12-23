@@ -74,7 +74,7 @@
   width: 100%;
   height: 50%;
 
-  &:first-child { border-bottom: 1px solid #e8e8e8; }
+  &:first-child { border-bottom: 1px solid rgba($black, 0.1); }
 }
 
 .c-authentication__fields input {
@@ -84,6 +84,7 @@
   height: 100%;
   border: 0;
   padding: 10px;
+  background: transparent;
   text-align: center;
   text-transform: uppercase;
 }
@@ -110,6 +111,8 @@
   text-transform: uppercase;
   cursor: pointer;
 
+  @include mq(min-w, 400px) { padding: 25px 10px; }
+
   &:before {
     position: absolute;
     bottom: 100%;
@@ -121,40 +124,35 @@
     background: #198DBD;
   }
 
-  @include mq(min-w, 400px) { padding: 25px 10px; }
+  & > span {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 65px;
+    height: 100%;
+    padding: 12px 0;
+    text-align: center;
+    font-size: rem(22px);
+
+    @include mq(min-w, 400px) { padding: 22px 0px; }
+  }
 }
 
-
-
-
-
-/* test code */
-.test1,
-.test2 {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 350px;
-  height: 250px;
+.c-authentication__back .c-authentication__fields {
+  left: 65px;
+  background: $brand-color-2;
 }
 
-.test1 {
-  z-index: 10;
-  background: white;
-}
-
-.test2 {
-  top: -150px;
-  left: 50px;
-  background: blue;
-}
-
-.c-authentication__back .test1 {
-  left: 50px;
-  background: blue
-}
-
-.c-authentication__back .test2 {
+.c-authentication__back .c-authentication__submit {
   left: 0px;
-  background: white;
+  background: $white;
+}
+
+.c-authentication__back .c-authentication__submit button {
+  color: #198DBD;
+  background: $white;
+
+  &:before { content: none; }
 }
