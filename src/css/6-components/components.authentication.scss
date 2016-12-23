@@ -142,6 +142,9 @@
     padding: 12px 0;
     text-align: center;
     font-size: rem(22px);
+    transition: transform 0.3s ease-out;
+
+    &:hover { transform: translateX(-3px); }
 
     @include mq(min-w, 400px) { padding: 22px 0px; }
   }
