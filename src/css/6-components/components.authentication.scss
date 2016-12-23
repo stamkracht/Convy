@@ -91,6 +91,7 @@
 }
 
 .c-authentication__submit {
+  overflow: hidden;
   z-index: 0;
   top: -120px;
   left: 65px;
@@ -112,17 +113,22 @@
   text-transform: uppercase;
   cursor: pointer;
 
+  &.state-loading:before { transform: none; }
+
   @include mq(min-w, 400px) { padding: 25px 10px; }
 
   &:before {
+    z-index: -1;
     position: absolute;
-    bottom: 100%;
+    top: -176px;
     left: 0;
     display: block;
     content: '';
     width: 100%;
-    height: 20px;
+    height: 250px;
     background: #198DBD;
+    transform: translateY(155px);
+    transition: transform 0.5s ease-out;
   }
 
   & > span {
