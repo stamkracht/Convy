@@ -10,9 +10,22 @@
       registerBtnOpen = document.querySelector('.js-register-open'),
       registerBtnClose = document.querySelector('.js-register-close');
 
-  registerButton.addEventListener('click', function (e) {
+  // activate the register pane.
+  registerBtnOpen.addEventListener('click', function (e) {
     e.preventDefault();
     authComponent.classList.add('state-register');
+  });
+
+  // deactivate the register pane and show login form again.
+  registerBtnClose.addEventListener('click', function (e) {
+    e.preventDefault();
+    authComponent.classList.remove('state-register');
+  });
+
+  // login the user to the app.
+  LoginBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    this.classList.add('state-loading');
   });
 
 
