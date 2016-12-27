@@ -1,0 +1,209 @@
+// Authentication: login/register
+//
+// Markup: ../kss_styleguide/markup/components.authentication.html
+//
+// Styleguide Components.Authentication
+
+
+.c-authentication {
+  position: relative;
+  perspective: 1000px; /* entire container, keeps perspective. */
+  display: block;
+  width: 100%;
+  max-width: 465px;
+  height: 345px;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: rem(16px);
+
+  &.state-feedback {
+    animation-name: shake-auth;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+  }
+
+  &.state-register .c-authentication__inner { transform: rotateY(180deg); }
+}
+
+@keyframes shake-auth {
+  from, to { transform: translate3d(0, 0, 0); }
+
+  15%, 45%, 75% { transform: translate3d(-5px, 0, 0); }
+
+  30%, 60%, 90% { transform: translate3d(5px, 0, 0); }
+}
+
+.c-authentication__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+
+  .c-authentication--vertical & { transform-origin: 100% 162.5px; } /* half height of component minus padding */
+
+  .c-authentication--vertical.state-register & { transform: rotateX(180deg); }
+}
+
+/* hide back of pane during swap */
+.c-authentication__back,
+.c-authentication__front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  display: block;
+  width: calc(100% - 65px);
+  height: 100%;
+}
+
+/* front pane, placed above back */
+.c-authentication__front { z-index: 10; }
+
+/* back, initially hidden pane */
+.c-authentication__back {
+  transform: rotateY(180deg);
+
+  .c-authentication--vertical & { transform: rotateX(180deg); }
+}
+
+.c-authentication__fields,
+.c-authentication__submit {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 175px;
+
+  @include mq(min-w, 400px) { height: 250px; }
+}
+
+.c-authentication__fields {
+  z-index: 10;
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.2);
+  background: $white;
+}
+
+.c-authentication__fields label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 50%;
+
+  &:first-child { border-bottom: 1px solid rgba($black, 0.1); }
+}
+
+.c-authentication__fields input {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 10px;
+  background: transparent;
+  text-align: center;
+  text-transform: uppercase;
+
+  &::placeholder {
+    color: $black;
+    transition: color 0.2s;
+  }
+
+  &:focus::placeholder { color: rgba($black, 0.3); }
+}
+
+.c-authentication__feedback {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  font-size: em(12px);
+
+  [class^="icon"] {
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    margin-right: 1px;
+    font-size: em(16px, 12px);
+  }
+}
+
+.c-authentication__submit {
+  overflow: hidden;
+  z-index: 0;
+  top: -120px;
+  left: 65px;
+  background: $brand-color-2;
+
+  @include mq(min-w, 400px) { top: -175px; }
+}
+
+.c-authentication__submit button {
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border: 0;
+  padding: 15px 10px;
+  color: $white;
+  background: #198DBD;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &.state-loading:before { transform: none; }
+
+  @include mq(min-w, 400px) { padding: 25px 10px; }
+
+  &:before {
+    z-index: -1;
+    position: absolute;
+    top: -176px;
+    left: 0;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 250px;
+    background: #198DBD;
+    transform: translateY(155px);
+    transition: transform 0.5s ease-out;
+  }
+
+  & > span {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 65px;
+    height: 100%;
+    padding: 12px 0;
+    text-align: center;
+    font-size: em(22px);
+    transition: transform 0.3s ease-out;
+
+    &:hover { transform: translateX(-3px); }
+
+    @include mq(min-w, 400px) { padding: 22px 0px; }
+  }
+}
+
+.c-authentication__back .c-authentication__fields {
+  left: 65px;
+  box-shadow: -5px 10px 100px 5px rgba($black-100, 0.1);
+  background: $brand-color-2;
+}
+
+.c-authentication__back .c-authentication__submit {
+  left: 0px;
+  background: $white;
+}
+
+.c-authentication__back .c-authentication__submit button {
+  color: #198DBD;
+  background: $white;
+
+  &:before { content: none; }
+}

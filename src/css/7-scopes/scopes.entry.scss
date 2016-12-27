@@ -1,0 +1,41 @@
+// Entry
+//
+// Styleguide Scopes.Entry
+
+.s-entry {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100vh;
+}
+
+.s-entry .logo {
+  display: block;
+  width: 100%;
+  padding: 15px 10px;
+  padding-top: 25px;
+
+  @include mq(min-w, 400px) {
+    padding-bottom: 25px;
+    padding-top: 35px;
+  }
+}
+
+.s-entry .logo img {
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.s-entry .register-trigger {
+  align-self: flex-end;
+  z-index: 10;
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  color: $white;
+  background: transparent;
+  font-weight: 300;
+  cursor: pointer;
+}

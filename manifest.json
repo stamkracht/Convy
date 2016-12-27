@@ -2,7 +2,7 @@
   "name": "Convy, good conversations",
   "short_name": "Convy",
   "theme_color": "#88CEE8",
-  "background_color": "#88CEE8",
+  "background_color": "#198DBD",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

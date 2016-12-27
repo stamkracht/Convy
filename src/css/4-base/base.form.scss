@@ -5,7 +5,7 @@
 // Styleguide Base.Form
 
 
-$placeholder-color: $gray-30;
+$placeholder-color: rgba($black, 0.3);
 
 
 fieldset {
@@ -14,6 +14,16 @@ fieldset {
 }
 
 label { cursor: pointer; }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $default-font-family;
+  font-weight: $default-font-weight;
+  line-height: $default-line-height;
+}
 
 textarea { resize: vertical; }
 
