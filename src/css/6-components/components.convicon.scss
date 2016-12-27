@@ -36,6 +36,8 @@ $icon-person-outline: '\e919';
 $icon-person: '\e91a';
 $icon-search: '\e91b';
 $icon-send: '\e91c';
+$icon-info-outline: '\f1f7';
+$icon-alert-outline: '\f1f0';
 
 @font-face {
   font-family: 'Convicon';
@@ -121,3 +123,7 @@ $icon-send: '\e91c';
 .icon-search:before { content: $icon-search; }
 
 .icon-send:before { content: $icon-send; }
+
+.icon-info-outline:before { content: $icon-info-outline; }
+
+.icon-alert-outline:before { content: $icon-alert-outline; }
