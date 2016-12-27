@@ -150,6 +150,15 @@
   }
 }
 
+.c-authentication__front .c-authentication__fields input {
+  &::placeholder {
+    color: $black;
+    transition: color 0.2s;
+  }
+
+  &:focus::placeholder { color: rgba($black, 0.3); }
+}
+
 .c-authentication__back .c-authentication__fields {
   left: 65px;
   box-shadow: -5px 10px 100px 5px rgba($black-100, 0.1);
