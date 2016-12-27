@@ -16,7 +16,21 @@
   padding: 10px;
   font-size: rem(16px);
 
+  &.state-feedback {
+    animation-name: shake-auth;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+  }
+
   &.state-register .c-authentication__inner { transform: rotateY(180deg); }
+}
+
+@keyframes shake-auth {
+  from, to { transform: translate3d(0, 0, 0); }
+
+  15%, 45%, 75% { transform: translate3d(-5px, 0, 0); }
+
+  30%, 60%, 90% { transform: translate3d(5px, 0, 0); }
 }
 
 .c-authentication__inner {
