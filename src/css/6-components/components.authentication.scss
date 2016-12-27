@@ -88,6 +88,13 @@
   background: transparent;
   text-align: center;
   text-transform: uppercase;
+
+  &::placeholder {
+    color: $black;
+    transition: color 0.2s;
+  }
+
+  &:focus::placeholder { color: rgba($black, 0.3); }
 }
 
 .c-authentication__submit {
@@ -148,15 +155,6 @@
 
     @include mq(min-w, 400px) { padding: 22px 0px; }
   }
-}
-
-.c-authentication__front .c-authentication__fields input {
-  &::placeholder {
-    color: $black;
-    transition: color 0.2s;
-  }
-
-  &:focus::placeholder { color: rgba($black, 0.3); }
 }
 
 .c-authentication__back .c-authentication__fields {
