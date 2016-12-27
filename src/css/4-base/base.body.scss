@@ -8,7 +8,7 @@
 body {
   color: $black;
   font-family: $default-font-family;
-  font-size: $default-font-size;
+  font-size: rem($default-font-size);
   font-weight: $default-font-weight;
   line-height: $default-line-height;
 }
