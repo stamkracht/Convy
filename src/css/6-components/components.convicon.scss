@@ -36,6 +36,7 @@ $icon-person-outline: '\e919';
 $icon-person: '\e91a';
 $icon-search: '\e91b';
 $icon-send: '\e91c';
+$icon-more: '\e91e';
 $icon-info-outline: '\f1f7';
 $icon-alert-outline: '\f1f0';
 
@@ -123,6 +124,8 @@ $icon-alert-outline: '\f1f0';
 .icon-search:before { content: $icon-search; }
 
 .icon-send:before { content: $icon-send; }
+
+.icon-more:before { content: $icon-more; }
 
 .icon-info-outline:before { content: $icon-info-outline; }
 
