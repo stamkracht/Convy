@@ -4,8 +4,10 @@
 
 
   require('./components.form.js');
-  require('./scopes.entry.js');
   require('./components.nav-more.js');
+
+  require('./scopes.header.js');
+  require('./scopes.entry.js');
 
 
 })();
