@@ -14,6 +14,7 @@ $icon-sign-in: '\e904';
 $icon-sign-out: '\e91d';
 $icon-message-text: '\e906';
 $icon-message-outline: '\e907';
+$icon-message: '\e920';
 $icon-add-circle-outline: '\e908';
 $icon-arrow-back: '\e909';
 $icon-arrow-forward: '\e90a';
@@ -81,6 +82,8 @@ $icon-alert-outline: '\f1f0';
 .icon-message-text:before { content: $icon-message-text; }
 
 .icon-message-outline:before { content: $icon-message-outline; }
+
+.icon-message:before { content: $icon-message; }
 
 .icon-add-circle-outline:before { content: $icon-add-circle-outline; }
 
