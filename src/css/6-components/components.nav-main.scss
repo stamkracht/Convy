@@ -13,14 +13,24 @@
   font-size: rem(16px);
 }
 
+.c-nav-main--chat {
+  z-index: 20;
+  margin-right: 0;
+  font-size: rem(18px);
+
+  .c-nav-main__button {
+    padding: 26px 15px 22px;
+
+    @include mq(min-w, 400px) { padding: 28px 20px 20px; }
+  }
+}
+
 .c-nav-main ul {
   padding-left: 0;
   list-style: none;
 }
 
-.c-nav-main ul li {
-  display: inline-block;
-}
+.c-nav-main ul li { display: inline-block; }
 
 .c-nav-main__button {
   display: block;
@@ -33,4 +43,18 @@
   }
 
   &:hover { color: $brand-color-3; }
+
+  [class^="icon"] { position: relative; }
+}
+
+.c-nav-main__button--chat {
+  [class^="icon"] { top: 4px; }
+}
+
+.c-nav-main__button--profile {
+  font-size: em(22px);
+
+  @include mq(min-w, 400px) { font-size: em(24px); }
+
+  [class^="icon"] { top: 4px; }
 }
