@@ -1,0 +1,36 @@
+// Main navigation
+//
+// Markup: ../kss_styleguide/markup/components.nav-main.html
+//
+// Styleguide Components.NavMain
+
+
+.c-nav-main {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  font-size: rem(16px);
+}
+
+.c-nav-main ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.c-nav-main ul li {
+  display: inline-block;
+}
+
+.c-nav-main__button {
+  display: block;
+  padding: 5px;
+  color: $white;
+
+  @include mq(min-w, 400px) {
+    padding: 5px 10px;
+    font-size: em(20px);
+  }
+
+  &:hover { color: $brand-color-3; }
+}
