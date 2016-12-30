@@ -14,6 +14,7 @@ $icon-sign-in: '\e904';
 $icon-sign-out: '\e91d';
 $icon-message-text: '\e906';
 $icon-message-outline: '\e907';
+$icon-message: '\e920';
 $icon-add-circle-outline: '\e908';
 $icon-arrow-back: '\e909';
 $icon-arrow-forward: '\e90a';
@@ -36,6 +37,8 @@ $icon-person-outline: '\e919';
 $icon-person: '\e91a';
 $icon-search: '\e91b';
 $icon-send: '\e91c';
+$icon-more: '\e91e';
+$icon-earth: '\e91f';
 $icon-info-outline: '\f1f7';
 $icon-alert-outline: '\f1f0';
 
@@ -80,6 +83,8 @@ $icon-alert-outline: '\f1f0';
 
 .icon-message-outline:before { content: $icon-message-outline; }
 
+.icon-message:before { content: $icon-message; }
+
 .icon-add-circle-outline:before { content: $icon-add-circle-outline; }
 
 .icon-arrow-back:before { content: $icon-arrow-back; }
@@ -123,6 +128,10 @@ $icon-alert-outline: '\f1f0';
 .icon-search:before { content: $icon-search; }
 
 .icon-send:before { content: $icon-send; }
+
+.icon-more:before { content: $icon-more; }
+
+.icon-earth:before { content: $icon-earth; }
 
 .icon-info-outline:before { content: $icon-info-outline; }
 

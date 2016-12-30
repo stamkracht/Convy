@@ -1,0 +1,69 @@
+// Main navigation
+//
+// Markup: ../kss_styleguide/markup/components.nav-main.html
+//
+// Styleguide Components.NavMain
+
+
+.c-nav-main {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  font-size: rem(16px);
+}
+
+.c-nav-main--chat {
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+  margin-right: 0;
+  font-size: rem(18px);
+  transition: visibility 0s linear 0.5s, opacity 0.5s;
+
+  &.state-active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+}
+
+.c-nav-main ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.c-nav-main ul li { display: inline-block; }
+
+.c-nav-main__button {
+  display: block;
+  padding: 5px;
+  color: $white;
+
+  @include mq(min-w, 400px) {
+    padding: 5px 10px;
+    font-size: em(20px);
+  }
+
+  &:hover { color: $brand-color-3; }
+
+  .c-nav-main--chat & {
+    padding: 26px 15px 22px;
+
+    @include mq(min-w, 400px) { padding: 28px 20px 20px; }
+  }
+
+  [class^="icon"] { position: relative; }
+}
+
+.c-nav-main__button--chat {
+  [class^="icon"] { top: 4px; }
+}
+
+.c-nav-main__button--profile {
+  font-size: em(22px);
+
+  @include mq(min-w, 400px) { font-size: em(24px); }
+
+  [class^="icon"] { top: 4px; }
+}
