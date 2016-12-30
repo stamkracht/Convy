@@ -24,62 +24,45 @@
 
     <div class="c-app-background"></div>
 
-    <main class="s-entry">
-      <div class="logo">
-        <img src="dest/text-logo.png" alt="Convy logo" width="284" height="73">
+    <header class="s-header">
+      <div class="icon">
+        <img class="logo state-active" src="dest/text-icon.png" alt="Convy icon" width="30" height="30">
+        <a class="back-button js-back-button" href="#"><i class="icon-arrow-back"></i></a>
       </div>
 
-      <section class="c-authentication c-authentication--vertical">
-        <section class="c-authentication__inner">
+      <span class="seperator"></span>
 
-          <article class="c-authentication__front">
-            <form>
-              <div class="c-authentication__fields">
-                <label>
-                  <!-- <span class="c-authentication__feedback"><i class="icon-alert-outline"></i>Woops! Your email address is invalid.</span> -->
-                  <input type="email" name="email" placeholder="email" tabindex="1" required>
-                </label>
+      <nav class="c-nav-main">
+        <ul>
+          <li><a class="c-nav-main__button" href="#">Chats</a></li>
+          <li><a class="c-nav-main__button" href="#">Contacts</a></li>
+        </ul>
+      </nav>
 
-                <label>
-                  <!-- <span class="c-authentication__feedback">Incorrect email or password. Let's try again.</span> -->
-                  <input type="password" name="password" placeholder="password" tabindex="2" required>
-                </label>
-              </div>
-              <div class="c-authentication__submit">
-                <button tabindex="3">Connect</button>
-              </div>
-            </form>
-          </article>
+      <nav class="c-nav-main c-nav-main--chat js-nav-main-chat">
+        <ul>
+          <li><a class="c-nav-main__button c-nav-main__button--chat" href="#"><i class="icon-message"></i></a></li>
+          <li><a class="c-nav-main__button c-nav-main__button--profile" href="#"><i class="icon-person"></i></a></li>
+          <li><a class="c-nav-main__button c-nav-main__button--charts" href="#"><i class="icon-bar-chart"></i></a></li>
+        </ul>
+      </nav>
 
-          <article class="c-authentication__back">
-            <form>
-              <div class="c-authentication__fields">
-                <label>
-                  <!-- <span class="c-authentication__feedback">Woops! Your email address is invalid.</span> -->
-                  <input type="email" name="email" placeholder="email" tabindex="1" required>
-                </label>
+      <nav class="c-nav-more">
+        <button class="c-nav-more__button js-nav-more-button">
+          <i class="icon-more"></i>
+        </button>
+        <ul class="c-nav-more__dropdown js-nav-more-dropdown">
+          <li><a href="#"><i class="icon-person-outline"></i>Profile</a></li>
+          <li><a href="#"><i class="icon-notifications-none"></i>Notification settings</a></li>
+          <li><a href="#"><i class="icon-earth"></i>Platforms</a></li>
+          <li><a class="sign-out" href="#"><i class="icon-sign-out"></i>Logout</a></li>
+        </ul>
+      </nav>
+    </header>
 
-                <label>
-                  <!-- <span class="c-authentication__feedback">Your password is too short. Let's not make it too easy.</span> -->
-                  <input type="password" name="password" placeholder="password" tabindex="2" required>
-                </label>
-              </div>
-              <div class="c-authentication__submit">
-                <button tabindex="3">
-                  <span class="js-register-close">
-                    <i class="icon-arrow-back"></i>
-                  </span>
-                  Register
-                </button>
-              </div>
-            </form>
-          </article>
-
-        </section>
-      </section>
-
-      <button class="register-trigger js-register-open">Not registered? Create account.</button>
-    </main>
+    <div style="margin: 200px 100px;">
+      <button class="js-trigger">trigger</button>
+    </div>
 
 
     <!-- scripts. -->
