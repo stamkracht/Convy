@@ -16,10 +16,12 @@
       navChat.classList.toggle('state-active');
       logo.classList.toggle('state-active');
       backButton.classList.toggle('state-active');
+      this.classList.toggle('state-active');
     });
 
     backButton.addEventListener('click', function (e) {
       e.preventDefault();
+      trigger.classList.toggle('state-active');
       header.classList.toggle('state-chat');
       navChat.classList.toggle('state-active');
       logo.classList.toggle('state-active');

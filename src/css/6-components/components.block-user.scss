@@ -15,6 +15,13 @@
   background: $white;
   font-size: rem(16px);
   cursor: pointer;
+
+  &.state-active .circle {
+    transform: scale(10);
+    transition-delay: 0s;
+
+    @include mq(min-w, 400px) { transform: scale(15); }
+  }
 }
 
 .c-block-user__data {
@@ -49,3 +56,18 @@
 .c-block-user__title { font-weight: 500; }
 
 .c-block-user__text { font-weight: 300; }
+
+.c-block-user .circle {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  display: block;
+  width: 90px;
+  height: 100%;
+  border-radius: 100%;
+  background: $white;
+  transition: transform 0.5s;
+  transition-delay: 0.3s;
+}
