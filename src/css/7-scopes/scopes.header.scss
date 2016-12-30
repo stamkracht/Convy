@@ -4,6 +4,7 @@
 
 
 .s-header {
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +17,7 @@
     transform: translateX(80%);
     transition-delay: 0s;
 
-    @include mq(min-w, 400px) { transform: translateX(75%) }
+    @include mq(min-w, 400px) { transform: translateX(75%); }
   }
 }
 
