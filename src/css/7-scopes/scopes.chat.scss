@@ -1,0 +1,104 @@
+// Chat
+//
+// Styleguide Scopes.Chat
+
+
+.s-chat {
+}
+
+.s-chat__messages {
+  overflow-y: auto;
+  max-height: calc(100vh - 70px);
+}
+
+.s-chat__messages-inner {
+  position: relative;
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.25);
+  margin: 0 10px;
+  margin-top: 75px;
+  background: $white;
+}
+
+.s-chat__messages-inner p:last-child {
+  position: relative;
+  left: -10px;
+}
+
+.s-chat__input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 20px);
+  height: 50px;
+  margin: 10px;
+  background: $white;
+}
+
+.s-chat__attachment {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  display: block;
+  border: 0;
+  padding: 9px 10px;
+  color: darken($brand-color-1, 30%);
+  background: transparent;
+  line-height: 1;
+  font-size: em(20px);
+  transition: transform 0.2s;
+
+  &.state-active { transform: rotate(45deg); }
+}
+
+.s-chat__input textarea {
+  position: absolute;
+  top: 13px;
+  left: 40px;
+  width: calc(100% - 81px);
+  height: 24px;
+  border: 0;
+  padding: 0;
+  resize: none;
+}
+
+.s-chat__submit {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  box-shadow: 0px 1px 1px 0px rgba($black-100, 0.20);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 0;
+  padding: 0 8px;
+  color: darken($brand-color-1, 30%);
+  background: $brand-color-1;
+  line-height: 1;
+  font-size: em(20px);
+
+  &:before {
+    position: absolute;
+    left: 100%;
+    top: -3px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-bottom: 3px solid darken($brand-color-1, 30%);
+    border-right: 4px solid transparent;
+  }
+
+  &:after {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    content: '';
+    height: 100%;
+    width: 4px;
+    background: $brand-color-1;
+  }
+
+  [class^="icon"] {
+    position: relative;
+    left: 2px;
+  }
+}
