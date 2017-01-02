@@ -39,16 +39,10 @@
   }
 }
 
-.c-message__data {
-  padding: 0;
-  color: $gray-70;
-  list-style: none;
-  font-size: em(12px);
-}
-
-.c-message--user {
+.c-message.c-message--user {
   margin-left: auto;
   background: lighten($brand-color-1, 20%);
+  text-align: right;
 
   &:before {
     left: 100%;
@@ -61,4 +55,17 @@
     left: 100%;
     background: lighten($brand-color-1, 20%);
   }
+}
+
+.c-message__contact-name {
+  font-size: em(14px, 14px);
+
+  @include mq(min-w, 400px) { font-size: em(16px, 16px); }
+}
+
+.c-message__data {
+  padding: 0;
+  color: $gray-70;
+  list-style: none;
+  font-size: em(12px);
 }
