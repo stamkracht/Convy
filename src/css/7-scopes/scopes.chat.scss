@@ -5,7 +5,8 @@
 
 .s-chat__messages {
   overflow-y: auto;
-  max-height: calc(100vh - 70px);
+  max-height: calc(100vh - 145px);
+  margin-top: 75px;
 }
 
 .s-chat__input {
