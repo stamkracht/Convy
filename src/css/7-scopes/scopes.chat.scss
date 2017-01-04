@@ -3,7 +3,7 @@
 // Styleguide Scopes.Chat
 
 
-.s-chat__messages {
+.s-chat__output {
   overflow-y: auto;
   max-height: calc(100vh - 145px);
   margin-top: 75px;
@@ -14,54 +14,5 @@
   bottom: 0;
   left: 0;
   width: calc(100% - 20px);
-  height: 50px;
   margin: 10px;
-  background: $white;
-}
-
-.s-chat__attachment {
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  display: block;
-  border: 0;
-  padding: 9px 10px;
-  color: $brand-color-2;
-  background: transparent;
-  line-height: 1;
-  font-size: em(20px);
-  transition: transform 0.2s;
-
-  &.state-active { transform: rotate(45deg); }
-}
-
-.s-chat__input textarea {
-  position: absolute;
-  top: 13px;
-  left: 40px;
-  width: calc(100% - 80px);
-  height: 24px;
-  border: 0;
-  padding: 0;
-  resize: none;
-}
-
-.s-chat__submit {
-  position: absolute;
-  bottom: 5px;
-  right: 0;
-  display: flex;
-  align-items: center;
-  height: 40px;
-  border: 0;
-  padding: 0 10px;
-  color: $brand-color-2;
-  background: transparent;
-  line-height: 1;
-  font-size: em(20px);
-
-  [class^="icon"] {
-    position: relative;
-    left: 2px;
-  }
 }
