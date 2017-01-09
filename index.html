@@ -24,10 +24,10 @@
 
     <div class="c-app-background"></div>
 
-    <header class="s-header">
+    <header class="s-header state-chat">
       <div class="icon">
-        <img class="logo state-active" src="dest/text-icon.png" alt="Convy icon" width="30" height="30">
-        <a class="back-button js-back-button" href="#"><i class="icon-arrow-back"></i></a>
+        <img class="logo" src="dest/text-icon.png" alt="Convy icon" width="30" height="30">
+        <a class="back-button js-back-button state-active" href="#"><i class="icon-arrow-back"></i></a>
       </div>
 
       <span class="seperator"></span>
@@ -39,7 +39,7 @@
         </ul>
       </nav>
 
-      <nav class="c-nav-main c-nav-main--chat js-nav-main-chat">
+      <nav class="c-nav-main c-nav-main--chat js-nav-main-chat state-active">
         <ul>
           <li><a class="c-nav-main__button c-nav-main__button--chat" href="#"><i class="icon-message"></i></a></li>
           <li><a class="c-nav-main__button c-nav-main__button--profile" href="#"><i class="icon-person"></i></a></li>
@@ -60,48 +60,77 @@
       </nav>
     </header>
 
-    <section class="s-user-list">
-      <article class="c-block-user"></article>
+    <section class="s-chat">
+      <div class="s-chat__output">
+        <section class="s-block-chat">
+          <div class="s-block-chat__main">
+            <article class="c-message">
+              <h1 class="c-message__contact-name">Vincent</h1>
+              <p>Lorem ipsum obcaecati accusantium nostrum.</p>
+              <ul class="c-message__data">
+                <li>2 jan 2017, 11:29</li>
+              </ul>
+            </article>
 
-      <article class="c-block-user js-trigger">
-        <span class="circle"></span>
+            <article class="c-message c-message--user">
+              <p>Vooluptatem, totam ut harum. Provident error non sapiente alias.</p>
+              <ul class="c-message__data">
+                <li>2 jan 2017, 14:37</li>
+              </ul>
+            </article>
+          </div>
+        </section>
 
-        <ul class="c-block-user__data">
-          <li class="message-count">9 new messages</li>
-          <li>17:31</li>
-        </ul>
-
-        <div class="o-flag">
-          <div class="c-block-user__image o-flag__img">
-            <img src="http://placehold.it/50x50" alt="User name" width="50" height="50">
+        <section class="s-block-chat">
+          <div class="s-block-chat__header">
+            <p>Unread messages</p>
+            <ul class="s-block-chat__data">
+              <li>31 augustus</li>
+            </ul>
           </div>
 
-          <div class="c-block-user__content o-flag__body">
-            <p class="c-block-user__title">Firstname Lastname</p>
-            <p class="c-block-user__text">Lorem ipsum dolor sit amet.</p>
+          <div class="s-block-chat__main">
+            <article class="c-message">
+              <h1 class="c-message__contact-name">Vincent</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ab minima aspernatur molestiae consectetur minus, deleniti laborum rem delectus pariatur, odio esse necessitatibus veniam commodi fuga optio temporibus a iste cupiditate quidem quo voluptates adipisci, illo ea! Veniam, debitis aspernatur, amet ullam et consequuntur aliquam quo magni, obcaecati accusantium nostrum.</p>
+              <ul class="c-message__data">
+                <li>17:40</li>
+              </ul>
+            </article>
+
+            <article class="c-message">
+              <h1 class="c-message__contact-name">Paul</h1>
+              <p>Lorem!</p>
+              <ul class="c-message__data">
+                <li>17:48</li>
+              </ul>
+            </article>
+
+            <article class="c-message c-message--user">
+              <p>Provident error ipsa non sapiente alias voluptatem earum, mollitia totam ut harum.</p>
+              <ul class="c-message__data">
+                <li>17:49</li>
+              </ul>
+            </article>
           </div>
-        </div>
-      </article>
+        </section>
+      </div>
 
-      <article class="c-block-user">
-        <span class="circle"></span>
+      <div class="s-chat__input">
+        <article class="c-messenger">
+          <button class="c-messenger__attachment js-messenger-attachment">
+            <i class="icon-add-circle-outline"></i>
+          </button>
 
-        <ul class="c-block-user__data">
-          <li>10 dec 2016</li>
-        </ul>
+          <textarea placeholder="Share knowledge"></textarea>
 
-        <div class="o-flag">
-          <div class="c-block-user__image o-flag__img">
-            <img src="http://placehold.it/50x50" alt="User name" width="50" height="50">
-          </div>
-
-          <div class="c-block-user__content o-flag__body">
-            <p class="c-block-user__title">Another name</p>
-            <p class="c-block-user__text">Consectetur adipisicing elit. No...</p>
-          </div>
-        </div>
-      </article>
+          <button class="c-messenger__submit">
+            <i class="icon-send"></i>
+          </button>
+        </article>
+      </div>
     </section>
+
 
 
     <!-- scripts. -->
