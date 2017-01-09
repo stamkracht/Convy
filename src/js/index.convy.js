@@ -3,7 +3,6 @@
   'use strict';
 
 
-  require('./components.form.js');
   require('./components.nav-more.js');
   require('./components.messenger.js');
 
