@@ -3,7 +3,7 @@
   'use strict';
 
 
-  if (document.querySelector('.s-header')) {
+  if (document.querySelector('.s-header') && document.querySelector('.js-trigger')) {
     let trigger = document.querySelector('.js-trigger'),
         header = document.querySelector('.s-header'),
         navChat = document.querySelector('.js-nav-main-chat'),

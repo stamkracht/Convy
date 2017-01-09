@@ -6,6 +6,6 @@
 .s-user-list {
   overflow: hidden;
   position: relative;
-  min-height: 100vh;
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.25);
   margin: 0 10px;
 }

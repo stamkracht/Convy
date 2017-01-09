@@ -1,0 +1,60 @@
+// Messenger
+//
+// Markup: ../kss_styleguide/markup/components.messenger.html
+//
+// Styleguide Components.Messenger
+
+
+.c-messenger {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background: $white;
+}
+
+.c-messenger__attachment {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  display: block;
+  border: 0;
+  padding: 9px 10px;
+  color: $brand-color-2;
+  background: transparent;
+  line-height: 1;
+  font-size: em(20px);
+  transition: transform 0.2s;
+
+  &.state-active { transform: rotate(45deg); }
+}
+
+.c-messenger textarea {
+  position: absolute;
+  top: 13px;
+  left: 40px;
+  width: calc(100% - 80px);
+  height: 24px;
+  border: 0;
+  padding: 0;
+  resize: none;
+}
+
+.c-messenger__submit {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 0;
+  padding: 0 10px;
+  color: $brand-color-2;
+  background: transparent;
+  line-height: 1;
+  font-size: em(20px);
+
+  [class^="icon"] {
+    position: relative;
+    left: 2px;
+  }
+}

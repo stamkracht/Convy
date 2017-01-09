@@ -1,0 +1,18 @@
+// Chat
+//
+// Styleguide Scopes.Chat
+
+
+.s-chat__output {
+  overflow-y: auto;
+  max-height: calc(100vh - 145px);
+  margin-top: 75px;
+}
+
+.s-chat__input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 20px);
+  margin: 10px;
+}

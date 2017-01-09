@@ -43,6 +43,8 @@
 @import '6-components/components.nav-main.scss';
 @import '6-components/components.authentication.scss';
 @import '6-components/components.block-user.scss';
+@import '6-components/components.message.scss';
+@import '6-components/components.messenger.scss';
 @import '6-components/components.form.scss';
 @import '6-components/components.input-group.scss';
 @import '6-components/components.button.scss';
@@ -53,6 +55,8 @@
 @import '7-scopes/scopes.header.scss';
 @import '7-scopes/scopes.entry.scss';
 @import '7-scopes/scopes.user-list.scss';
+@import '7-scopes/scopes.chat.scss';
+@import '7-scopes/scopes.block-chat.scss';
 
 
 @import '8-trumps/utilities.alignment.scss';
