@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Entry from './scopes.entry';
+import AppBackground from './components.app-background';
+import Conversation from './scopes.conversation';
 
 class Application extends React.Component {
   render() {
     return (
       <section>
-        <Entry/>
+        <AppBackground/>
+        <Conversation/>
       </section>
     );
   }
