@@ -1,11 +1,24 @@
-(function(){
+import React from 'react';
 
-  'use strict';
+import Messenger from './components.messenger';
+import BlockChat from './scopes.block-chat';
 
+class Chat extends React.Component {
+  render() {
+    return (
+      <section className="s-chat">
+        <div className="s-chat__output">
+          <BlockChat/>
+        </div>
 
-  if (document.querySelector('.s-chat')) {
-    // code.
+        <div className="s-chat__input">
+          <Messenger/>
+        </div>
+      </section>
+    );
   }
 
+  // functions.
+}
 
-})();
+export default Chat;
