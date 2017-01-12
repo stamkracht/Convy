@@ -1,14 +1,1 @@
-(function() {
-
-  'use strict';
-
-
-  require('./components.nav-more.js');
-  require('./components.messenger.js');
-
-  require('./scopes.header.js');
-  require('./scopes.entry.js');
-  require('./scopes.chat.js');
-
-
-})();
+import Application from './scopes.application';
