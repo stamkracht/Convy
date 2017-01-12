@@ -1,5 +1,7 @@
 import React from 'react';
 
+import NavMore from './components.nav-more';
+
 class Header extends React.Component {
   render() {
     return (
@@ -26,17 +28,7 @@ class Header extends React.Component {
           </ul>
         </nav>
 
-        <nav className="c-nav-more">
-          <button className="c-nav-more__button js-nav-more-button">
-            <i className="icon-more"></i>
-          </button>
-          <ul className="c-nav-more__dropdown js-nav-more-dropdown">
-            <li><a href="#"><i className="icon-person-outline"></i>Profile</a></li>
-            <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
-            <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>
-            <li><a className="sign-out" href="#"><i className="icon-sign-out"></i>Logout</a></li>
-          </ul>
-        </nav>
+        <NavMore/>
       </header>
     );
   }
