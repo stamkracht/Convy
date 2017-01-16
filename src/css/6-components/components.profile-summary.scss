@@ -6,5 +6,93 @@
 
 
 .c-profile-summary {
+  margin-top: 75px;
+  font-size: rem(16px);
+}
 
+.c-profile-summary__img {
+  z-index: 10;
+  position: relative;
+  margin: 0 10px;
+}
+
+.c-profile-summary__img img {
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.30);
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.c-profile-summary__info {
+  z-index: 30;
+  position: relative;
+  top: -30px;
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.25);
+  max-width: 300px;
+  margin: 0 auto;
+  background: $white;
+}
+
+.c-profile-summary__data {
+  padding: 5px 10px;
+  color: $gray-30;
+  text-align: right;
+  font-size: em(12px);
+
+   @include mq(min-w, 400px) { font-size: em(14px); }
+}
+
+.c-profile-summary__name {
+  padding: 0 10px;
+  font-size: em(24px);
+}
+
+.c-profile-summary__function {
+  margin-bottom: 20px;
+  padding: 0 10px;
+  font-size: em(18px);
+  font-weight: 300;
+}
+
+.c-profile-summary__contact {
+  margin-bottom: 20px;
+  padding: 0 10px;
+  list-style: none;
+  font-weight: 300;
+  font-size: em(14px);
+}
+
+.c-profile-summary__location {
+  padding: 0 10px;
+  padding-bottom: 20px;
+  list-style: none;
+  font-weight: 300;
+  font-size: em(14px);
+}
+
+.c-profile-summary__stats {
+  z-index: 20px;
+  position: relative;
+  top: -30px;
+  box-shadow: 5px 10px 100px 5px rgba($black-100, 0.25);
+  max-width: 270px;
+  margin: 0 auto;
+  background: #F4F4F4;
+}
+
+.c-profile-summary__stats ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.c-profile-summary__stats ul li {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.c-profile-summary__stats ul li span {
+  display: block;
+  text-align: center;
 }
