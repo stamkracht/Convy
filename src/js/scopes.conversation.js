@@ -6,7 +6,7 @@ import Header from './scopes.header';
 class Conversation extends React.Component {
   render() {
     return (
-      <main>
+      <main className="s-conversation">
         <Header/>
         <Chat/>
       </main>
