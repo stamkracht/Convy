@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import AppBackground from './components.app-background';
+import Header from './scopes.header';
 import Conversation from './scopes.conversation';
 
 class Application extends React.Component {
   render() {
     return (
-      <section>
+      <div>
         <AppBackground/>
+        <Header/>
         <Conversation/>
-      </section>
+      </div>
     );
   }
 

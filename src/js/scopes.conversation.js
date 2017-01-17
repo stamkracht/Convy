@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Chat from './scopes.chat';
-import Header from './scopes.header';
+import Profile from './scopes.profile';
 
 class Conversation extends React.Component {
   render() {
     return (
       <main className="s-conversation">
-        <Header/>
         <Chat/>
+        <Profile/>
       </main>
     );
   }
