@@ -3,16 +3,22 @@
 // Styleguide Scopes.Chat
 
 
+.s-chat {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
 .s-chat__output {
   overflow-y: auto;
-  max-height: calc(100vh - 145px);
-  margin-top: 75px;
+  max-height: calc(100vh - 70px);
+  padding-top: 75px;
 }
 
 .s-chat__input {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
-  width: calc(100% - 20px);
-  margin: 10px;
+  width: 100%;
+  padding: 10px;
 }
