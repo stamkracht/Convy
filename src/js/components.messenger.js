@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Messenger extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       showAttachment: false
@@ -14,7 +14,7 @@ class Messenger extends React.Component {
 
     return (
       <article className="c-messenger">
-        <button className={messengerAttachmentClass} onClick={this._toggleAttachment.bind(this)}>
+        <button className={messengerAttachmentClass} onClick={this.toggleAttachment.bind(this)}>
           <i className="icon-add-circle-outline"></i>
         </button>
 
@@ -27,7 +27,7 @@ class Messenger extends React.Component {
     );
   }
 
-  _toggleAttachment() {
+  toggleAttachment() {
     this.setState({
       showAttachment: !this.state.showAttachment
     });
