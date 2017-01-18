@@ -140,6 +140,25 @@
   @include mq(min-w, 400px) { top: -175px; }
 }
 
+.c-authentication__submit > span {
+  z-index: 20;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 65px;
+  padding: 15px 0;
+  text-align: center;
+  font-size: em(22px);
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+
+  &:hover { transform: translateX(-3px); }
+
+  @include mq(min-w, 400px) { padding: 25px 0px; }
+}
+
 .c-authentication__submit button {
   z-index: 10;
   position: absolute;
@@ -169,24 +188,6 @@
     transform: translateY(155px);
     transition: transform 0.5s ease-out;
   }
-
-  & > span {
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 65px;
-    height: 100%;
-    padding: 12px 0;
-    text-align: center;
-    font-size: em(22px);
-    transition: transform 0.3s ease-out;
-
-    &:hover { transform: translateX(-3px); }
-
-    @include mq(min-w, 400px) { padding: 22px 0px; }
-  }
 }
 
 .c-authentication__back .c-authentication__fields {
@@ -197,12 +198,13 @@
 
 .c-authentication__back .c-authentication__submit {
   left: 0px;
+  color: #198DBD;
   background: $white;
 }
 
 .c-authentication__back .c-authentication__submit button {
-  color: #198DBD;
-  background: $white;
+  color: inherit;
+  background: inherit;
 
   &:before { content: none; }
 }
