@@ -1,9 +1,28 @@
 import React from 'react';
 
 class Authentication extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      connecting: false
+    };
+  }
+
   render() {
+    let authenticationClass = 'c-authentication c-authentication--vertical';
+    let connectClass;
+
+    if (this.props.showRegister) {
+      authenticationClass += ' state-register';
+    }
+
+    if (this.state.connecting) {
+      connectClass = 'state-loading';
+    }
+
     return (
-      <section className="c-authentication c-authentication--vertical">
+      <section className={authenticationClass}>
         <section className="c-authentication__inner">
           <article className="c-authentication__front">
             <form>
@@ -19,7 +38,7 @@ class Authentication extends React.Component {
                 </label>
               </div>
               <div className="c-authentication__submit">
-                <button>Connect</button>
+                <button className={connectClass} onClick={this.connect.bind(this)}>Connect</button>
               </div>
             </form>
           </article>
@@ -38,12 +57,11 @@ class Authentication extends React.Component {
                 </label>
               </div>
               <div className="c-authentication__submit">
-                <button>
-                  <span className="js-register-close">
-                    <i className="icon-arrow-back"></i>
-                  </span>
-                  Register
-                </button>
+                <span onClick={this.props.hideRegister}>
+                  <i className="icon-arrow-back"></i>
+                </span>
+
+                <button>Register</button>
               </div>
             </form>
           </article>
@@ -52,7 +70,16 @@ class Authentication extends React.Component {
     );
   }
 
-  // functions.
+  connect() {
+    this.setState({
+      connecting: true
+    });
+  }
 }
+
+Authentication.propTypes = {
+  showRegister: React.PropTypes.bool,
+  hideRegister: React.PropTypes.func
+};
 
 export default Authentication;
