@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class BlockUser extends React.Component {
   render() {
     return (
-      <article className="c-block-user">
+      <Link to="/conversation" className="c-block-user">
         <span className="circle"></span>
 
         <ul className="c-block-user__data">
@@ -21,7 +22,7 @@ class BlockUser extends React.Component {
             <p className="c-block-user__text">Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
-      </article>
+      </Link>
     );
   }
 
