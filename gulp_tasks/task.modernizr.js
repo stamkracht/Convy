@@ -31,7 +31,7 @@ module.exports = function (gulp) {
         if (err) { return console.log(err); }
 
         gulp.src(config.source.tmp + 'modernizr.js')
-          .pipe(config.plugins.uglify())
+          .pipe(config.env.production ? config.plugins.uglify() : config.plugins.util.noop())
           .pipe(config.plugins.rename({suffix: '.min'}))
           .pipe(gulp.dest(config.source.dest));
       });
