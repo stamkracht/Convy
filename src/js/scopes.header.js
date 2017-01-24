@@ -7,7 +7,7 @@ class Header extends React.Component {
     super(props);
 
     this.state = {
-      chatActive: true
+      chatActive: false
     };
   }
 
@@ -57,8 +57,8 @@ class NavMain extends React.Component {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><a className="c-nav-main__button" href="#">Chats</a></li>
-          <li><a className="c-nav-main__button" href="#">Contacts</a></li>
+          <li><a className="c-nav-main__button" href="#chat-list">Chats</a></li>
+          <li><a className="c-nav-main__button" href="#contact-list">Contacts</a></li>
         </ul>
       </nav>
     );
