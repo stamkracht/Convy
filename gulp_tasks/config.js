@@ -3,29 +3,49 @@ module.exports = function (gulp) {
   'use strict';
 
 
-  return {
-    // packages.
-    browserify    : require('browserify'),
-    babelify      : require("babelify"),
-    buffer        : require('vinyl-buffer'),
-    vss           : require('vinyl-source-stream'),
-    cssnext       : require('postcss-cssnext'),
-    browsersync   : require('browser-sync'),
-    del           : require('del'),
-    modernizr     : require('modernizr'),
-    imagemin      : require('imagemin'),
-    mozjpeg       : require('imagemin-mozjpeg'),
-    pngquant      : require('imagemin-pngquant'),
-    plugins       : require('gulp-load-plugins')({
-      rename: {}
-    }),
+  // packages.
+  var browserify    = require('browserify');
+  var babelify      = require("babelify");
+  var buffer        = require('vinyl-buffer');
+  var vss           = require('vinyl-source-stream');
+  var cssnext       = require('postcss-cssnext');
+  var browsersync   = require('browser-sync');
+  var del           = require('del');
+  var modernizr     = require('modernizr');
+  var imagemin      = require('imagemin');
+  var mozjpeg       = require('imagemin-mozjpeg');
+  var pngquant      = require('imagemin-pngquant');
+  var plugins       = require('gulp-load-plugins')({
+    rename: {}
+  });
 
-    // locations.
-    source: {
-      tmp         : 'tmp/',
-      dest        : 'dest/',
-      styleguide  : 'kss_styleguide/styleguide/',
-    }
+  // environments.
+  var env = {
+    production: !!plugins.util.env.production
+  };
+
+  // locations.
+  var source = {
+    tmp         : 'tmp/',
+    dest        : 'dest/',
+    styleguide  : 'kss_styleguide/styleguide/',
+  };
+
+  return {
+    browserify: browserify,
+    babelify: babelify,
+    buffer: buffer,
+    vss: vss,
+    cssnext: cssnext,
+    browsersync: browsersync,
+    del: del,
+    modernizr: modernizr,
+    imagemin: imagemin,
+    mozjpeg: mozjpeg,
+    pngquant: pngquant,
+    plugins: plugins,
+    env: env,
+    source: source,
   };
 
 
