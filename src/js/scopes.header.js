@@ -1,29 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import * as actions from './actions';
 import NavMore from './components.nav-more';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      chatActive: false
-    };
-  }
-
   render() {
     let navigation;
     let headerClass;
     let logoClass;
     let backButtonClass;
 
-    if (this.state.chatActive) {
-      navigation = <NavChat/>;
+    if (this.props.chatActive) {
+      navigation = <NavChat {...this.props}/>;
       headerClass = 's-header state-chat';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
     } else {
-      navigation = <NavMain/>;
+      navigation = <NavMain {...this.props}/>;
       headerClass = 's-header';
       logoClass = 'logo state-active';
       backButtonClass = 'back-button';
@@ -33,7 +27,7 @@ class Header extends React.Component {
       <header className={headerClass}>
         <div className="icon">
           <img className={logoClass} src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <a className={backButtonClass} onClick={this.closeConversation.bind(this)}><i className="icon-arrow-back"></i></a>
+          <a className={backButtonClass} onClick={this.props.closeConversation}><i className="icon-arrow-back"></i></a>
         </div>
 
         <span className="seperator"></span>
@@ -43,12 +37,6 @@ class Header extends React.Component {
         <NavMore/>
       </header>
     );
-  }
-
-  closeConversation() {
-    this.setState({
-      chatActive: false
-    });
   }
 }
 
@@ -79,4 +67,18 @@ class NavChat extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state, ownProps) => {
+  return state.headerState;
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    closeConversation: () => {
+      dispatch(actions.closeChat());
+    }
+  };
+};
+
+const HeaderConnect = connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default HeaderConnect;

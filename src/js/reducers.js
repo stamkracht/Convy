@@ -1,26 +1,42 @@
 import { combineReducers } from 'redux';
 
 // reducer functions.
-const userReducer = function(state, action) {
+const headerState = function(state, action) {
   if (state === undefined) {
-    state = [];
+    state = {
+      chatActive: false,
+    };
   }
 
-  if (action.type === 'ADD_USER') {
-    var newState = state.concat([ action.user ]);
+  if (action.type === 'OPEN_CHAT') {
+    var newState = Object.assign({}, state, {
+      title: action.title,
+      id: action.id,
+      chatActive: true,
+    });
+
+    return newState;
+  }
+
+  if (action.type === 'CLOSE_CHAT') {
+    var newState = Object.assign({}, state, {
+      chatActive: false,
+    });
+
     return newState;
   }
 
   return state;
 }
 
+// example reducer.
 const widgetReducer = function(state = {}, action) {
   return state;
 }
 
 // combine the reducers
 const reducers = combineReducers({
-  userState: userReducer,
+  headerState: headerState,
   widgetState: widgetReducer,
 });
 
