@@ -1,14 +1,13 @@
 export function openChat(id) {
-  console.log('open chat action');
+  console.info('Open a conversation.');
   return {
-    type: 'OPEN_CHAT',
-    title: 'title name',
     id: id,
+    type: 'OPEN_CHAT',
   }
 }
 
 export function closeChat() {
-  console.log('close chat action');
+  console.info('Close a conversation.');
   return {
     type: 'CLOSE_CHAT',
   }
