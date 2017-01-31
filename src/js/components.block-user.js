@@ -29,13 +29,15 @@ class BlockUser extends React.Component {
     let data = [];
 
     if (this.props.unreadMessagesLength) {
-      data.push(<li className="message-count">{this.props.unreadMessagesLength} new messages</li>);
+      data.push(<li key="counter" className="message-count">{this.props.unreadMessagesLength} new messages</li>);
     }
 
     if (this.props.lastMessage) {
-      data.push(<li>{this.props.lastMessageDate}</li>);
-    } else if (this.props.lastSeenDate) {
-      data.push(<li>{ this.props.lastSeenDate }</li>);
+      data.push(<li key="last-message">{this.props.lastMessageDate}</li>);
+    }
+
+    else if (this.props.lastSeenDate) {
+      data.push(<li key="last-seen">{ this.props.lastSeenDate }</li>);
     }
 
     return data;
