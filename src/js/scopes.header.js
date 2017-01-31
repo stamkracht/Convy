@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import * as actions from './actions';
+import { closeChat } from './actions';
 import NavMore from './components.nav-more';
 
 class Header extends React.Component {
@@ -77,7 +77,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     closeConversation: () => {
-      dispatch(actions.closeChat());
+      dispatch(closeChat());
     }
   };
 };
