@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import * as actions from './actions';
@@ -27,7 +28,9 @@ class Header extends React.Component {
       <header className={headerClass}>
         <div className="icon">
           <img className={logoClass} src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <a className={backButtonClass} onClick={this.props.closeConversation}><i className="icon-arrow-back"></i></a>
+          <Link to="/" className={backButtonClass} onClick={this.props.closeConversation}>
+            <i className="icon-arrow-back"></i>
+          </Link>
         </div>
 
         <span className="seperator"></span>
