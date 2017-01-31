@@ -25,7 +25,7 @@ function renderUsers(props) {
   if (props.users.length > 0) {
     return props.users.map((user, index) => (
       <BlockUser
-        id={ user.id }
+        key={ index }
         name={ user.firstName }
         description={ user.description }
         lastMessage={ user.lastMessage }
