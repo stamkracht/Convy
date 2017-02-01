@@ -13,22 +13,22 @@ class Header extends React.Component {
     let backButtonClass;
 
     if (this.props.chatActive) {
-      navigation = <NavChat {...this.props}/>;
+      navigation = <NavChat { ...this.props }/>;
       headerClass = 's-header state-chat';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
     } else {
-      navigation = <NavMain {...this.props}/>;
+      navigation = <NavMain { ...this.props }/>;
       headerClass = 's-header';
       logoClass = 'logo state-active';
       backButtonClass = 'back-button';
     }
 
     return (
-      <header className={headerClass}>
+      <header className={ headerClass }>
         <div className="icon">
-          <img className={logoClass} src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={backButtonClass} onClick={this.props.closeConversation}>
+          <img className={ logoClass } src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <Link to="/" className={ backButtonClass } onClick={ this.props.closeConversation }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -61,9 +61,21 @@ class NavChat extends React.Component {
     return (
       <nav className="c-nav-main c-nav-main--chat js-nav-main-chat state-active">
         <ul>
-          <li><a className="c-nav-main__button c-nav-main__button--chat" href="#"><i className="icon-message"></i></a></li>
-          <li><a className="c-nav-main__button c-nav-main__button--profile" href="#"><i className="icon-person"></i></a></li>
-          <li><a className="c-nav-main__button c-nav-main__button--charts" href="#"><i className="icon-bar-chart"></i></a></li>
+          <li>
+            <a className="c-nav-main__button c-nav-main__button--chat" href="#">
+              <i className="icon-message"></i>
+            </a>
+          </li>
+          <li>
+            <a className="c-nav-main__button c-nav-main__button--profile" href="#">
+              <i className="icon-person"></i>
+            </a>
+          </li>
+          <li>
+            <a className="c-nav-main__button c-nav-main__button--charts" href="#">
+              <i className="icon-bar-chart"></i>
+            </a>
+          </li>
         </ul>
       </nav>
     );
@@ -78,7 +90,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     closeConversation: () => {
       dispatch(closeChat());
-    }
+    },
   };
 };
 
