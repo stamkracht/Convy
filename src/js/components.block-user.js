@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class BlockUser extends React.Component {
   render() {
     return (
-      <Link to="/conversation" className="c-block-user" key={ this.props.id }>
+      <Link to="/conversation" className="c-block-user" onClick={ this.props.openChat } key={ this.props.id }>
         <span className="circle"></span>
 
         <ul className="c-block-user__data">
@@ -29,13 +29,15 @@ class BlockUser extends React.Component {
     let data = [];
 
     if (this.props.unreadMessagesLength) {
-      data.push(<li className="message-count">{this.props.unreadMessagesLength} new messages</li>);
+      data.push(<li key="counter" className="message-count">{this.props.unreadMessagesLength} new messages</li>);
     }
 
     if (this.props.lastMessage) {
-      data.push(<li>{this.props.lastMessageDate}</li>);
-    } else if (this.props.lastSeenDate) {
-      data.push(<li>{ this.props.lastSeenDate }</li>);
+      data.push(<li key="last-message">{this.props.lastMessageDate}</li>);
+    }
+
+    else if (this.props.lastSeenDate) {
+      data.push(<li key="last-seen">{ this.props.lastSeenDate }</li>);
     }
 
     return data;

@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import { openChat } from './actions';
 import BlockUser from './components.block-user';
 
 class UserList extends React.Component {
   render() {
-    let users = renderUsers(this.props.users);
+    let users = renderUsers(this.props);
 
     return (
       <section className="s-user-list" id={ this.props.idName }>
@@ -19,11 +21,11 @@ UserList.propTypes = {
   users: React.PropTypes.array,
 };
 
-function renderUsers(users) {
-  if (users.length > 0) {
-    return users.map((user, index) => (
+function renderUsers(props) {
+  if (props.users.length > 0) {
+    return props.users.map((user, index) => (
       <BlockUser
-        id={ user.id }
+        key={ index }
         name={ user.firstName }
         description={ user.description }
         lastMessage={ user.lastMessage }
@@ -31,6 +33,7 @@ function renderUsers(users) {
         lastSeenDate={ user.lastSeenDate }
         lastMessageDate={ user.lastMessageDate }
         unreadMessagesLength={ user.unreadMessagesLength }
+        openChat={ () => props.openChat(user.id) }
       />
     ));
   }
@@ -38,4 +41,14 @@ function renderUsers(users) {
   else { return []; }
 }
 
-export default UserList;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    openChat: (id) => {
+      dispatch(openChat(id));
+    },
+  };
+};
+
+const UserListConnect = connect(null, mapDispatchToProps)(UserList);
+
+export default UserListConnect;
