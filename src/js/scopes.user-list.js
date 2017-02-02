@@ -32,6 +32,13 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
+  initialPosition: React.PropTypes.number,
+  position: React.PropTypes.number,
+  animEnabled: React.PropTypes.bool,
+  startSlide: React.PropTypes.func,
+  moveSlide: React.PropTypes.func,
+  endSlide: React.PropTypes.func,
+  openChat: React.PropTypes.func,
   users: React.PropTypes.array,
 };
 
