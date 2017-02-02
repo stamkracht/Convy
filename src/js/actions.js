@@ -23,3 +23,11 @@ export function openMyProfile(id) {
     type: 'OPEN_MY_PROFILE',
   }
 }
+
+export function toggleNavMore() {
+  console.info('Toggle the nav-more navigation.');
+
+  return {
+    type: 'TOGGLE_NAV_MORE',
+  }
+}

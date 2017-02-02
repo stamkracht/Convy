@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { closeChat, openMyProfile } from './actions';
+import { closeChat, openMyProfile, toggleNavMore } from './actions';
 import NavMore from './components.nav-more';
 
 class Header extends React.Component {
@@ -37,11 +37,7 @@ class Header extends React.Component {
 
         { navigation }
 
-        <NavMore
-          openMyProfile={ () => this.props.openMyProfile() }
-          myProfileActive={ this.props.myProfileActive }
-          chatActive={ this.props.chatActive }
-        />
+        <NavMore { ...this.props }/>
       </header>
     );
   }
@@ -95,8 +91,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     closeConversation: () => {
       dispatch(closeChat());
     },
+
     openMyProfile: () => {
       dispatch(openMyProfile());
+    },
+
+    toggleNavMore: () => {
+      dispatch(toggleNavMore());
     },
   };
 };

@@ -2,24 +2,12 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class NavMore extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      showNavMore: false
-    };
-  }
-
   render() {
-    let dropdownClass = 'c-nav-more__dropdown';
-
-    if (!this.props.chatActive && !this.props.myProfileActive) {
-      dropdownClass += `${this.state.showNavMore ? ' state-active' : ''}`;
-    }
+    let dropdownClass = `c-nav-more__dropdown ${this.props.navMoreActive ? 'state-active' : ''}`;
 
     return (
       <nav className="c-nav-more">
-        <button className="c-nav-more__button" onClick={ this.showNavMore.bind(this) }>
+        <button className="c-nav-more__button" onClick={ this.props.toggleNavMore }>
           <i className="icon-more"></i>
         </button>
 
@@ -35,12 +23,6 @@ class NavMore extends React.Component {
         </ul>
       </nav>
     );
-  }
-
-  showNavMore() {
-    this.setState({
-      showNavMore: !this.state.showNavMore
-    });
   }
 }
 
