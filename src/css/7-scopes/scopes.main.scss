@@ -4,6 +4,11 @@
 
 
 .s-main {
+  overflow: hidden;
+  width: 100vw;
+}
+
+.s-main__inner {
   display: flex;
   flex-wrap: nowrap;
   width: 200vw;

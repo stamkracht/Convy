@@ -7,9 +7,23 @@ import BlockUser from './components.block-user';
 class UserList extends React.Component {
   render() {
     let users = renderUsers(this.props);
+    let styles = {
+      left: `${ this.props.initialPosition }vw`,
+      transform: `translate(${ -this.props.position }vw, 0)`
+    };
+
+    if (this.props.animEnabled) {
+      styles.transition = 'transform 0.5s cubic-bezier(0.25, 0.5, 0.5, 1)';
+    }
 
     return (
-      <section className="s-user-list" id={ this.props.idName }>
+      <section
+        className="s-user-list"
+        onTouchStart={ this.props.startSlide }
+        onTouchMove={ this.props.moveSlide }
+        onTouchEnd={ this.props.endSlide }
+        style={ styles }
+      >
         <article className="c-block-user"></article>
         {users}
       </section>
