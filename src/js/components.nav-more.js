@@ -10,15 +10,19 @@ class NavMore extends React.Component {
   }
 
   render() {
-    let dropdownClass = `c-nav-more__dropdown ${this.state.showNavMore ? 'state-active' : ''}`;
+    let dropdownClass = 'c-nav-more__dropdown';
+
+    if (!this.props.chatActive) {
+      dropdownClass += `${this.state.showNavMore ? ' state-active' : ''}`;
+    }
 
     return (
       <nav className="c-nav-more">
-        <button className="c-nav-more__button" onClick={this.showNavMore.bind(this)}>
+        <button className="c-nav-more__button" onClick={ this.showNavMore.bind(this) }>
           <i className="icon-more"></i>
         </button>
 
-        <ul className={dropdownClass}>
+        <ul className={ dropdownClass }>
           <li><a href="#"><i className="icon-person-outline"></i>Profile</a></li>
           <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
           <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>

@@ -37,7 +37,7 @@ class Header extends React.Component {
 
         {navigation}
 
-        <NavMore/>
+        <NavMore chatActive={ this.props.chatActive }/>
       </header>
     );
   }
