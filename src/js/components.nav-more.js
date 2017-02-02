@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class NavMore extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class NavMore extends React.Component {
   render() {
     let dropdownClass = 'c-nav-more__dropdown';
 
-    if (!this.props.chatActive) {
+    if (!this.props.chatActive && !this.props.myProfileActive) {
       dropdownClass += `${this.state.showNavMore ? ' state-active' : ''}`;
     }
 
@@ -23,7 +24,11 @@ class NavMore extends React.Component {
         </button>
 
         <ul className={ dropdownClass }>
-          <li><a href="#"><i className="icon-person-outline"></i>Profile</a></li>
+          <li>
+            <Link to="/my-profile" onClick={ this.props.openMyProfile }>
+              <i className="icon-person-outline"></i>Profile
+            </Link>
+          </li>
           <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
           <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>
           <li><a className="sign-out" href="#"><i className="icon-sign-out"></i>Logout</a></li>
