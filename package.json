@@ -28,7 +28,6 @@
     "imagemin-pngquant": "^5.0.0",
     "kss": "^3.0.0-beta.16",
     "michelangelo": "^0.5.1",
-    "modernizr": "^3.2.0",
     "postcss-cssnext": "^2.7.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

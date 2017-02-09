@@ -11,7 +11,6 @@ module.exports = function (gulp) {
   var cssnext       = require('postcss-cssnext');
   var browsersync   = require('browser-sync');
   var del           = require('del');
-  var modernizr     = require('modernizr');
   var imagemin      = require('imagemin');
   var mozjpeg       = require('imagemin-mozjpeg');
   var pngquant      = require('imagemin-pngquant');
@@ -39,7 +38,6 @@ module.exports = function (gulp) {
     cssnext: cssnext,
     browsersync: browsersync,
     del: del,
-    modernizr: modernizr,
     imagemin: imagemin,
     mozjpeg: mozjpeg,
     pngquant: pngquant,
