@@ -1,4 +1,4 @@
-import registerServiceworker from './register-serviceworker.js';
+import registerServiceWorker from './register-service-worker.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
