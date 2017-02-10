@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { closeChat } from './actions';
+import { closeChat, openMyProfile, toggleNavMore } from './actions';
 import NavMore from './components.nav-more';
 
 class Header extends React.Component {
@@ -35,9 +35,9 @@ class Header extends React.Component {
 
         <span className="seperator"></span>
 
-        {navigation}
+        { navigation }
 
-        <NavMore/>
+        <NavMore { ...this.props }/>
       </header>
     );
   }
@@ -90,6 +90,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     closeConversation: () => {
       dispatch(closeChat());
+    },
+
+    openMyProfile: () => {
+      dispatch(openMyProfile());
+    },
+
+    toggleNavMore: () => {
+      dispatch(toggleNavMore());
     },
   };
 };

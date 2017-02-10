@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   height: 90px;
-  border-bottom: 1px solid #F5F5F5;
+  border-bottom: 1px solid rgba($black-100, 0.05);;
   padding: 0 10px;
   background: $white;
   font-size: rem(16px);
@@ -30,7 +30,7 @@
   right: 0;
   padding: 5px 10px;
   list-style: none;
-  color: $gray-30;
+  color: rgba($black-100, 0.30);
   font-size: em(12px);
 
   @include mq(min-w, 400px) { font-size: em(14px); }
