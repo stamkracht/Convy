@@ -24,8 +24,10 @@ class UserList extends React.Component {
         onTouchEnd={ this.props.endSlide }
         style={ styles }
       >
-        <article className="c-block-user"></article>
-        {users}
+        <div className="s-user-list__inner">
+          <article className="c-block-user"></article>
+          {users}
+        </div>
       </section>
     );
   }
