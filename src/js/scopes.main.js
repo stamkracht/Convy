@@ -64,26 +64,10 @@ class Main extends React.Component {
 
     return (
       <main className="s-main">
-        <div className="s-main__inner">
-          <UserList
-            users={ chats }
-            animEnabled={ this.state.animEnabled }
-            initialPosition={ 0 }
-            position={ this.state.offset }
-            startSlide={ this.startSlide.bind(this) }
-            moveSlide={ this.moveSlide.bind(this) }
-            endSlide={ this.endSlide.bind(this) }
-          />
-          <UserList
-            users={ contacts }
-            animEnabled={ this.state.animEnabled }
-            initialPosition={ -100 }
-            position={ this.state.offset - 100 }
-            startSlide={ this.startSlide.bind(this) }
-            moveSlide={ this.moveSlide.bind(this) }
-            endSlide={ this.endSlide.bind(this) }
-          />
-        </div>
+        <SwipeView>
+          <UserList users={ chats }/>
+          <UserList users={ contacts }/>
+        </SwipeView>
       </main>
     );
   }
