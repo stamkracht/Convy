@@ -12,14 +12,13 @@ module.exports = function (gulp) {
 
     gulp.src('src/css/index.convy.scss')
       .pipe(config.plugins.plumber())
-      .pipe(config.plugins.sourcemaps.init())
+      .pipe(config.env.production ? config.plugins.util.noop() : config.plugins.sourcemaps.init())
         .pipe(config.plugins.sass())
         .pipe(config.plugins.postcss(processors))
         .pipe(config.plugins.rename({ basename: 'main' }))
-        .pipe(gulp.dest(config.source.tmp))
         .pipe(config.env.production ? config.plugins.cssnano({ zindex: false }) : config.plugins.util.noop())
         .pipe(config.plugins.rename({ suffix: '.min' }))
-      .pipe(config.plugins.sourcemaps.write('../' + config.source.tmp))
+      .pipe(config.env.production ? config.plugins.util.noop() : config.plugins.sourcemaps.write())
       .pipe(gulp.dest(config.source.dest))
       .pipe(config.browsersync.reload({ stream: true }));
 

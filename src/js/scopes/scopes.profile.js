@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProfileSummary from './components.profile-summary';
+import ProfileSummary from '../components/components.profile-summary';
 
 class Profile extends React.Component {
   render() {

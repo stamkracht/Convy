@@ -4,7 +4,6 @@
 
 
 .s-conversation {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 300vw;
+  overflow: hidden;
+  width: 100vw;
 }

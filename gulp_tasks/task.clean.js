@@ -6,7 +6,6 @@ module.exports = function (gulp) {
   var config = require('./config')();
 
   var dirs = [
-    config.source.tmp,
     config.source.dest,
     config.source.styleguide,
   ];

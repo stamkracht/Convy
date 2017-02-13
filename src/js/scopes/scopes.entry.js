@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Authentication from './components.authentication';
+import Authentication from '../components/components.authentication';
 
 class Entry extends React.Component {
   constructor(props) {

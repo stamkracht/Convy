@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SwipeView from './scopes.swipe-view';
 import UserList from './scopes.user-list';
 
 class Main extends React.Component {
@@ -63,13 +64,13 @@ class Main extends React.Component {
 
     return (
       <main className="s-main">
-        <UserList users={chats} idName="chat-list"/>
-        <UserList users={contacts} idName="contact-list"/>
+        <SwipeView>
+          <UserList users={ chats }/>
+          <UserList users={ contacts }/>
+        </SwipeView>
       </main>
     );
   }
-
-  // functions.
 }
 
 export default Main;
