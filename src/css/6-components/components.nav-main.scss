@@ -15,16 +15,22 @@
 
 .c-nav-main--chat {
   z-index: 20;
-  visibility: hidden;
-  opacity: 0;
   margin-right: 0;
   font-size: rem(18px);
-  transition: visibility 0s linear 0.5s, opacity 0.5s;
 
-  &.state-active {
-    visibility: visible;
+  &.state-enter { opacity: 0; }
+
+  &.state-enter-active {
     opacity: 1;
+    transition: opacity 500ms ease-in;
     transition-delay: 0.3s;
+  }
+
+  &.state-leave { opacity: 1; }
+
+  &.state-leave-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
   }
 }
 
