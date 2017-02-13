@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { closeChat, openMyProfile, toggleNavMore } from './actions';
-import NavMore from './components.nav-more';
+import { closeChat, openMyProfile, toggleNavMore } from '../actions/actions';
+import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
   render() {

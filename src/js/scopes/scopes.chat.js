@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Messenger from './components.messenger';
+import Messenger from '../components/components.messenger';
 import BlockChat from './scopes.block-chat';
 
 class Chat extends React.Component {
