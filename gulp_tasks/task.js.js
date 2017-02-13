@@ -15,12 +15,11 @@ module.exports = function (gulp) {
       .transform(config.babelify, { presets: ['es2015', 'es2016', 'es2017', 'react'] })
       .bundle()
       .pipe(config.vss('main.js'))
-      .pipe(gulp.dest(config.source.tmp))
       .pipe(config.buffer())
-      .pipe(config.plugins.sourcemaps.init({ loadMaps: true }))
+      .pipe(config.env.production ? config.plugins.util.noop() : config.plugins.sourcemaps.init({ loadMaps: true }))
         .pipe(config.plugins.rename({ suffix: '.min' }))
         .pipe(config.env.production ? config.plugins.uglify(compress) : config.plugins.util.noop())
-      .pipe(config.plugins.sourcemaps.write('../' + config.source.tmp))
+      .pipe(config.env.production ? config.plugins.util.noop() : config.plugins.sourcemaps.write())
       .pipe(gulp.dest(config.source.dest));
 
   });

@@ -25,7 +25,6 @@ module.exports = function (gulp) {
 
   // locations.
   var source = {
-    tmp         : 'tmp/',
     dest        : 'dest/',
     styleguide  : 'kss_styleguide/styleguide/',
   };
