@@ -1,5 +1,5 @@
 {
-  "name": "Convy, good conversations",
+  "name": "Convy",
   "short_name": "Convy",
   "theme_color": "#88CEE8",
   "background_color": "#198DBD",
@@ -8,17 +8,17 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/homescreen-192.png",
+      "src": "dest/homescreen-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/homescreen-168.png",
+      "src": "dest/homescreen-168.png",
       "sizes": "168x168",
       "type": "image/png"
     },
     {
-      "src": "/homescreen-144.png",
+      "src": "dest/homescreen-144.png",
       "sizes": "144x144",
       "type": "image/png"
     }
