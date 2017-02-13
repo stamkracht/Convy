@@ -22,21 +22,19 @@
 │   │   ├── 6-components
 │   │   ├── 7-scopes
 │   │   ├── 8-trumps
-│   │   └── index.scss
+│   │   └── index.convy.scss
 │   ├── js
+│   │   ├── scopes [smart components]
+│   │   ├── components [dumb components]
+│   │   ├── actions
+│   │   ├── reducers
+│   │   ├── register-service-worker.js
+│   │   ├── index.convy.js
+│   │   ├── store.js
+│   │   └── router.js
 │   ├── font
-│   ├── img
-│   └── sound
-├── tmp
-├── dest
-├── node_modules
-├── package.json
-├── bower_components
-├── bower.json
-├── kss_styleguide
-├── kss-config.json
-├── gulp_tasks
-└── gulpfile.js
+│   └── img
+└── dest
 
 ```
 
