@@ -84,7 +84,7 @@ class SwipeView extends React.Component {
 }
 
 SwipeView.propTypes = {
-  children: React.PropTypes.object,
+  children: React.PropTypes.array,
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
