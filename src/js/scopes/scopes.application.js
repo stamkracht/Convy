@@ -9,7 +9,7 @@ class Application extends React.Component {
   render() {
     return (
       <div>
-        <AppBackground/>
+        <AppBackground backgroundImage="dest/bg-app.jpg"/>
         <Header/>
         { this.props.children }
       </div>
