@@ -1,0 +1,27 @@
+// Chat settings
+//
+// Styleguide Scopes.ChatSettings
+
+
+.s-chat-settings {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 10px;
+  flex-shrink: 0;
+  font-size: rem(16px);
+}
+
+.s-chat-settings__inner {
+  background: $white;
+  min-height: 100vh;
+}
+
+.s-chat-settings__heading {
+  padding: 10px;
+  padding-top: 20px;
+  font-size: em(18px);
+  font-weight: 300;
+
+  @include mq(min-w, 400px) { font-size: em(20px); }
+}
