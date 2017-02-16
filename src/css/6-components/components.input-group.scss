@@ -1,0 +1,36 @@
+// Input group
+//
+// Markup: ../kss_styleguide/markup/components.input-group.html
+//
+// Styleguide Components.InputGroup
+
+
+.c-input-group {
+  display: flex;
+  width: 100%;
+  border: 1px solid $black;
+  font-size: rem(16px);
+  line-height: 1;
+
+  & ::placeholder { color: rgba($black, 0.3); }
+}
+
+.c-input-group__addon {
+  border: 0;
+  padding: 10px;
+  background: $white;
+  flex: 0;
+  text-align: center;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.c-input-group__field {
+  overflow: hidden;
+  border: 0;
+  padding: 10px 0;
+  flex: 1;
+  font-size: em(14px);
+  line-height: inherit;
+  text-overflow: ellipsis;
+}
