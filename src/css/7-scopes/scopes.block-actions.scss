@@ -1,0 +1,69 @@
+// Block actions
+//
+// Markup: ../kss_styleguide/markup/scopes.block-actions.html
+//
+// Styleguide Scopes.BlockActions
+
+
+.s-block-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 90px;
+  border-bottom: 1px solid rgba($black-100, 0.05);
+  padding: 0 10px;
+  background: $white;
+  font-size: rem(16px);
+}
+
+.s-block-actions__nav {
+  position: relative;
+  width: 100%;
+  font-size: em(20px);
+}
+
+.s-block-actions__nav > ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+.s-block-actions__nav > ul > li {
+  flex: 0;
+
+  &:first-child { flex: 1; }
+}
+
+.s-block-actions__nav > ul > li > button {
+  display: flex;
+  border: 0;
+  padding: 10px 15px;
+  background: transparent;
+}
+
+.s-block-actions__nav .sign-out {
+  color: $fb-danger;
+  padding-left: 5px;
+
+  & span {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    font-size: em(12px, 20px);
+  }
+}
+
+.s-block-actions__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+}
+
+.s-block-actions__input .submit {
+  font-size: em(20px);
+  padding: 8px 15px;
+}
