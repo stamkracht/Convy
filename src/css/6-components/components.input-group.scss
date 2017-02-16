@@ -9,6 +9,7 @@
   display: flex;
   width: 100%;
   border: 1px solid $black;
+  background: $white;
   font-size: rem(16px);
   line-height: 1;
 
@@ -18,7 +19,7 @@
 .c-input-group__addon {
   border: 0;
   padding: 10px;
-  background: $white;
+  background: inherit;
   flex: 0;
   text-align: center;
   line-height: inherit;
@@ -30,6 +31,7 @@
   border: 0;
   padding: 10px 0;
   flex: 1;
+  background: inherit;
   font-size: em(14px);
   line-height: inherit;
   text-overflow: ellipsis;
