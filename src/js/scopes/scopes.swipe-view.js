@@ -38,6 +38,7 @@ class SwipeView extends React.Component {
     this.setState({
       animEnabled: false,
       clientX: event.nativeEvent.touches[0].clientX,
+      initialOffset: this.state.offset,
     });
   }
 
@@ -48,14 +49,24 @@ class SwipeView extends React.Component {
     const acceleration = 0.3;
     const speed = 0.1;
 
-    const maxOffset = (this.numberOfSlides - 1) * 100;
+    let minOffset, maxOffset;
+    if (this.props.oneSlidePerSwipe) {
+      maxOffset = Math.min((this.numberOfSlides - 1) * 100, this.state.initialOffset + 100);
+    } else {
+      maxOffset = (this.numberOfSlides - 1) * 100;
+    }
+    if (this.props.oneSlidePerSwipe) {
+      minOffset = Math.max(0, this.state.initialOffset - 100);
+    } else {
+      minOffset = 0;
+    }
 
     // acceleration, is the rate of change of the speed of something in a given direction (velocity).
     // speed is the rate of motion, or the rate of change of position, it is a scalar quantity.
     let offset = this.state.offset - (Math.pow(Math.abs(difference), acceleration) * (difference * speed));
 
     // Do not cross boundaries of the slider
-    if (offset < 0) { offset = 0; }
+    if (offset < minOffset) { offset = minOffset; }
     else if (offset > maxOffset) { offset = maxOffset; }
 
     this.setState({
@@ -90,6 +101,7 @@ class SwipeView extends React.Component {
 
 SwipeView.propTypes = {
   children: React.PropTypes.array,
+  oneSlidePerSwipe: React.PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
