@@ -5,6 +5,8 @@ class SwipeView extends React.Component {
   constructor(props) {
     super(props);
 
+    this.numberOfSlides = props.children.length;
+
     this.state = {
       offset: 0,
       animEnabled: true,
@@ -31,7 +33,7 @@ class SwipeView extends React.Component {
   }
 
   startSlide(event) {
-    console.info('Start swiping.');
+    console.debug('Start swiping.');
 
     this.setState({
       animEnabled: false,
@@ -46,13 +48,15 @@ class SwipeView extends React.Component {
     const acceleration = 0.3;
     const speed = 0.1;
 
+    const maxOffset = (this.numberOfSlides - 1) * 100;
+
     // acceleration, is the rate of change of the speed of something in a given direction (velocity).
     // speed is the rate of motion, or the rate of change of position, it is a scalar quantity.
     let offset = this.state.offset - (Math.pow(Math.abs(difference), acceleration) * (difference * speed));
 
+    // Do not cross boundaries of the slider
     if (offset < 0) { offset = 0; }
-
-    else if (offset > 100) { offset = 100; }
+    else if (offset > maxOffset) { offset = maxOffset; }
 
     this.setState({
       offset: offset,
@@ -65,19 +69,20 @@ class SwipeView extends React.Component {
       animEnabled: true,
     });
 
-    if (this.state.offset > 50) {
-      console.info('Offset is greater than 50.');
+    const offsetCurrentSlide = this.state.offset % 100;
 
+    // Slide to the begin of the next slide
+    if (offsetCurrentSlide > 50) {
+      console.debug('Offset is greater than 50.');
       this.setState({
-        offset: 100,
+        offset: this.state.offset - offsetCurrentSlide + 100,
       });
     }
-
+    // Slide to the begin of the current slide
     else {
-      console.info('Offset is less than 50');
-
+      console.debug('Offset is less than 50');
       this.setState({
-        offset: 0,
+        offset: this.state.offset - offsetCurrentSlide,
       });
     }
   }
