@@ -31,3 +31,19 @@
 
   @include mq(min-w, 400px) { font-size: em(18px); }
 }
+
+.c-banner__icon {
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: $white;
+  font-size: em(50px);
+
+  @include mq(min-w, 400px) { font-size: em(60px); }
+}
