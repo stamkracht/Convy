@@ -10,6 +10,18 @@
   font-size: rem(16px);
 
   &:last-child { margin-bottom: 0; }
+
+  &--empty { margin-top: 20px; }
+
+  &--empty .s-block-chat__header p { margin: 0 auto; }
+
+  &--empty .s-block-chat__main .empty-message {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+
+    @include mq(min-w, 400px) { padding: 60px 20px; }
+  }
 }
 
 .s-block-chat__header {
