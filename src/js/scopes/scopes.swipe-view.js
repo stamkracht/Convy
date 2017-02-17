@@ -5,8 +5,7 @@ class SwipeView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.numberOfSlides = props.children.length;
-
+    this.viewLength = props.children.length;
     this.state = {
       offset: 0,
       animEnabled: true,
@@ -23,17 +22,17 @@ class SwipeView extends React.Component {
     return (
       <div className="s-swipe-view"
            style={ styles }
-           onTouchStart={ this.startSlide.bind(this) }
-           onTouchMove={ this.moveSlide.bind(this) }
-           onTouchEnd={ this.endSlide.bind(this) }
+           onTouchStart={ this.startSwipe.bind(this) }
+           onTouchMove={ this.moveSwipe.bind(this) }
+           onTouchEnd={ this.endSwipe.bind(this) }
       >
         { this.props.children }
       </div>
     );
   }
 
-  startSlide(event) {
-    console.debug('Start swiping.');
+  startSwipe(event) {
+    console.info('Start swiping.');
 
     this.setState({
       animEnabled: false,
@@ -42,30 +41,29 @@ class SwipeView extends React.Component {
     });
   }
 
-  moveSlide(event) {
-    const oldClientX = this.state.clientX;
-    const newClientX = event.nativeEvent.touches[0].clientX;
-    const difference = newClientX - oldClientX;
-    const acceleration = 0.3;
-    const speed = 0.1;
-
-    let minOffset, maxOffset;
-    if (this.props.oneSlidePerSwipe) {
-      maxOffset = Math.min((this.numberOfSlides - 1) * 100, this.state.initialOffset + 100);
-    } else {
-      maxOffset = (this.numberOfSlides - 1) * 100;
-    }
-    if (this.props.oneSlidePerSwipe) {
-      minOffset = Math.max(0, this.state.initialOffset - 100);
-    } else {
-      minOffset = 0;
-    }
+  moveSwipe(event) {
+    const oldClientX = this.state.clientX,
+          newClientX = event.nativeEvent.touches[0].clientX,
+          difference = newClientX - oldClientX,
+          acceleration = 0.3,
+          speed = 0.1;
 
     // acceleration, is the rate of change of the speed of something in a given direction (velocity).
     // speed is the rate of motion, or the rate of change of position, it is a scalar quantity.
     let offset = this.state.offset - (Math.pow(Math.abs(difference), acceleration) * (difference * speed));
 
-    // Do not cross boundaries of the slider
+    let minOffset,
+        maxOffset;
+
+    if (this.props.multipleViewsPerSwipe) {
+      minOffset = 0;
+      maxOffset = (this.viewLength - 1) * 100;
+    }
+    else {
+      minOffset = Math.max(0, this.state.initialOffset - 100);
+      maxOffset = Math.min((this.viewLength - 1) * 100, this.state.initialOffset + 100);
+    }
+
     if (offset < minOffset) { offset = minOffset; }
     else if (offset > maxOffset) { offset = maxOffset; }
 
@@ -75,25 +73,28 @@ class SwipeView extends React.Component {
     });
   }
 
-  endSlide(event) {
+  endSwipe(event) {
+    const offsetCurrentView = this.state.offset % 100;
+
     this.setState({
       animEnabled: true,
     });
 
-    const offsetCurrentSlide = this.state.offset % 100;
+    // if offset current view is greater than 50, then swipe to next view.
+    // else swipe back to the beginning of the current view.
+    if (offsetCurrentView > 50) {
+      console.info('Offset current view is greater than 50.');
 
-    // Slide to the begin of the next slide
-    if (offsetCurrentSlide > 50) {
-      console.debug('Offset is greater than 50.');
       this.setState({
-        offset: this.state.offset - offsetCurrentSlide + 100,
+        offset: this.state.offset - offsetCurrentView + 100,
       });
     }
-    // Slide to the begin of the current slide
+
     else {
-      console.debug('Offset is less than 50');
+      console.info('Offset current view is less than 50.');
+
       this.setState({
-        offset: this.state.offset - offsetCurrentSlide,
+        offset: this.state.offset - offsetCurrentView,
       });
     }
   }
@@ -101,7 +102,7 @@ class SwipeView extends React.Component {
 
 SwipeView.propTypes = {
   children: React.PropTypes.array,
-  oneSlidePerSwipe: React.PropTypes.bool,
+  multipleViewsPerSwipe: React.PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
