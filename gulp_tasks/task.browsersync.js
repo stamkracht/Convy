@@ -7,10 +7,8 @@ module.exports = function (gulp) {
 
   gulp.task('browsersync', function () {
 
-    config.browsersync({
-      proxy: 'http://localhost:8000',
-      logPrefix: 'Convy',
-      logConnections: true,
+    config.browsersync.init({
+      server: './', // Serve files from same folder as gulpfile.js
     });
 
   });
