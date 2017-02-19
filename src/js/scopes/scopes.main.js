@@ -2,6 +2,8 @@ import React from 'react';
 
 import SwipeView from './scopes.swipe-view';
 import UserList from './scopes.user-list';
+import { connect } from 'react-redux';
+import { setSwipeViewIndex } from '../actions/actions';
 
 class Main extends React.Component {
   render() {
@@ -64,13 +66,54 @@ class Main extends React.Component {
 
     return (
       <main className="s-main">
-        <SwipeView swipeViewIndex={0} swipeViewId="mainSwipeView">
+        <SwipeView swipeViewId={swipeViewId}
+                   swipeViewUrls={swipeViewUrls}
+                   swipeViewBaseUrl={swipeViewBaseUrl}
+        >
           <UserList users={ chats }/>
           <UserList users={ contacts }/>
         </SwipeView>
       </main>
     );
   }
+
+  _handleUrl(swipeView) {
+    // Move to specific view based on the url
+    const currentPath = swipeView || '/';
+    this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
+  }
+
+  componentWillMount() {
+    // Only handle urls that are not root page
+    if (this.props.params.swipeView) {
+      this._handleUrl(this.props.params.swipeView)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Check for changing url
+    if(nextProps.params.swipeView != this.props.params.swipeView) {
+      this._handleUrl(nextProps.params.swipeView)
+    }
+  }
 }
 
-export default Main;
+const swipeViewId = 'mainSwipeView';
+const swipeViewBaseUrl = '';
+const swipeViewUrls = [
+  '/',            // First child of SwipeView
+  'contact-list'  // Second child of SwipeView
+];
+
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setSwipeViewIndex: (index) => {
+      dispatch(setSwipeViewIndex(swipeViewId, index));
+    },
+  };
+};
+
+const MainConnect = connect(null, mapDispatchToProps)(Main);
+
+export default MainConnect;

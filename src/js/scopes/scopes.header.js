@@ -55,8 +55,8 @@ class NavMain extends React.Component {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><a onClick={() => this.props.setMainSwipeViewIndex(0)} className="c-nav-main__button" href="#chat-list">Chats</a></li>
-          <li><a onClick={() => this.props.setMainSwipeViewIndex(1)} className="c-nav-main__button" href="#contact-list">Contacts</a></li>
+          <li><Link className="c-nav-main__button" to="/">Chats</Link></li>
+          <li><Link className="c-nav-main__button" to="/contact-list">Contacts</Link></li>
         </ul>
       </nav>
     );
@@ -69,19 +69,19 @@ class NavChat extends React.Component {
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--chat" href="#">
+            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" href="#">
               <i className="icon-message"></i>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--profile" href="#">
+            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" href="#">
               <i className="icon-person"></i>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--charts" href="#">
+            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" href="#">
               <i className="icon-bar-chart"></i>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
