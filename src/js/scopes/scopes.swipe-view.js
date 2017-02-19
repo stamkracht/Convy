@@ -98,6 +98,7 @@ class SwipeView extends React.Component {
     const currentIndex = offset / 100;
 
     this.setState({
+      animEnabled: true,
       offset,
       currentIndex
     }, () => this.props.setSwipeViewIndex(currentIndex));
