@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setSwipeViewIndex } from '../actions/actions';
 
 class SwipeView extends React.Component {
   constructor(props) {
@@ -88,27 +89,18 @@ class SwipeView extends React.Component {
   endSwipe(event) {
     const offsetCurrentView = this.state.offset % 100;
 
-    this.setState({
-      animEnabled: true,
-    });
-
     // if offset current view is greater than 50, then swipe to next view.
     // else swipe back to the beginning of the current view.
-    if (offsetCurrentView > 50) {
-      console.info('Offset current view is greater than 50.');
+    const offset = (offsetCurrentView > 50) ?
+      this.state.offset - offsetCurrentView + 100 :
+      this.state.offset - offsetCurrentView;
 
-      this.setState({
-        offset: this.state.offset - offsetCurrentView + 100,
-      });
-    }
+    const currentIndex = offset / 100;
 
-    else {
-      console.info('Offset current view is less than 50.');
-
-      this.setState({
-        offset: this.state.offset - offsetCurrentView,
-      });
-    }
+    this.setState({
+      offset,
+      currentIndex
+    }, () => this.props.setSwipeViewIndex(currentIndex));
   }
 }
 
@@ -116,12 +108,21 @@ SwipeView.propTypes = {
   children: React.PropTypes.array,
   multipleViewsPerSwipe: React.PropTypes.bool,
 };
+
 const mapStateToProps = (state, ownProps) => {
   return {
     swipeViewIndex: state.swipeViewState[ownProps.swipeViewId] || 0
   };
 };
 
-const SwipeViewConnect = connect(mapStateToProps)(SwipeView);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setSwipeViewIndex: (index) => {
+      dispatch(setSwipeViewIndex(ownProps.swipeViewId, index));
+    },
+  };
+};
+
+const SwipeViewConnect = connect(mapStateToProps, mapDispatchToProps)(SwipeView);
 
 export default SwipeViewConnect;
