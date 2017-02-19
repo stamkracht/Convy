@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { closeChat, openMyProfile, toggleNavMore } from '../actions/actions';
+import { closeChat, openMyProfile, toggleNavMore, setSwipeViewIndex } from '../actions/actions';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -55,8 +55,8 @@ class NavMain extends React.Component {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><a className="c-nav-main__button" href="#chat-list">Chats</a></li>
-          <li><a className="c-nav-main__button" href="#contact-list">Contacts</a></li>
+          <li><a onClick={() => this.props.setMainSwipeViewIndex(0)} className="c-nav-main__button" href="#chat-list">Chats</a></li>
+          <li><a onClick={() => this.props.setMainSwipeViewIndex(1)} className="c-nav-main__button" href="#contact-list">Contacts</a></li>
         </ul>
       </nav>
     );
@@ -105,6 +105,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     toggleNavMore: () => {
       dispatch(toggleNavMore());
+    },
+
+    setMainSwipeViewIndex: (index) => {
+      dispatch(setSwipeViewIndex('mainSwipeView', index));
     },
   };
 };

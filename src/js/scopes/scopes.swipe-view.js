@@ -9,7 +9,19 @@ class SwipeView extends React.Component {
     this.state = {
       offset: 0,
       animEnabled: true,
+      currentIndex: props.swipeViewIndex
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Will be triggered when the redux state is changed
+    if(this.state.currentIndex != nextProps.swipeViewIndex) {
+      this.setState({
+        animEnabled: true,
+        currentIndex: nextProps.swipeViewIndex,
+        offset: 100 * nextProps.swipeViewIndex
+      });
+    }
   }
 
   render() {
@@ -104,11 +116,12 @@ SwipeView.propTypes = {
   children: React.PropTypes.array,
   multipleViewsPerSwipe: React.PropTypes.bool,
 };
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
+const mapStateToProps = (state, ownProps) => {
+  return {
+    swipeViewIndex: state.swipeViewState[ownProps.swipeViewId] || 0
+  };
 };
 
-const SwipeViewConnect = connect(null, mapDispatchToProps)(SwipeView);
+const SwipeViewConnect = connect(mapStateToProps)(SwipeView);
 
 export default SwipeViewConnect;
