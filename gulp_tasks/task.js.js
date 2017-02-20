@@ -20,7 +20,8 @@ module.exports = function (gulp) {
         .pipe(config.plugins.rename({ suffix: '.min' }))
         .pipe(config.env.production ? config.plugins.uglify(compress) : config.plugins.util.noop())
       .pipe(config.env.production ? config.plugins.util.noop() : config.plugins.sourcemaps.write())
-      .pipe(gulp.dest(config.source.dest));
+      .pipe(gulp.dest(config.source.dest))
+      .pipe(config.browsersync.reload({ stream: true }));
 
   });
 
