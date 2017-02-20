@@ -13,7 +13,6 @@
   background-size: cover;
   background-position: center;
   background-color: $gray-30;
-  background-image: url('http://placehold.it/500x200');
   font-size: rem(16px);
 
   @include mq(min-w, 400px) { height: 180px; }
