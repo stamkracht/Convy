@@ -12,7 +12,10 @@
   flex-shrink: 0;
   font-size: rem(16px);
 
-  &.state-new { margin-top: 75px; }
+  &.state-new .s-chat-settings__inner {
+    height: calc(100vh - 75px);
+    margin-top: 75px;
+  }
 }
 
 .s-chat-settings__inner {
