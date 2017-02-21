@@ -3,12 +3,29 @@ import React from 'react';
 import SwipeView from './scopes.swipe-view';
 import Chat from './scopes.chat';
 import Profile from './scopes.profile';
+import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
 import { connect } from 'react-redux';
 import { setSwipeViewIndex } from '../actions/actions';
 
 class Conversation extends React.Component {
   render() {
+    let view;
+    let group = false;
+    let groupName = 'We are TMNT';
+    let groupImage = 'http://placehold.it/500x200';
+    let participants = [];
+
+    if (group) {
+      view = <ChatSettings
+        groupName={ groupName }
+        groupImage={ groupImage }
+        participants={ participants }
+      />
+    } else {
+      view = <Profile/>
+    }
+
     return (
       <main className="s-conversation">
         <SwipeView
@@ -17,7 +34,7 @@ class Conversation extends React.Component {
           swipeViewBaseUrl={ swipeViewBaseUrl }
         >
           <Chat/>
-          <Profile/>
+          { view }
           <Stats/>
         </SwipeView>
       </main>
