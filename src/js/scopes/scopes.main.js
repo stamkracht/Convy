@@ -66,9 +66,10 @@ class Main extends React.Component {
 
     return (
       <main className="s-main">
-        <SwipeView swipeViewId={swipeViewId}
-                   swipeViewUrls={swipeViewUrls}
-                   swipeViewBaseUrl={swipeViewBaseUrl}
+        <SwipeView
+          swipeViewId={ swipeViewId }
+          swipeViewUrls={ swipeViewUrls }
+          swipeViewBaseUrl={ swipeViewBaseUrl }
         >
           <UserList users={ chats }/>
           <UserList users={ contacts }/>
