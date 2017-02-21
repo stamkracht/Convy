@@ -13,7 +13,7 @@
   height: 75px;
   background: $brand-color-2;
 
-  &.state-chat .seperator {
+  &.state-active .seperator {
     transform: translateX(80%);
     transition-delay: 0s;
 
