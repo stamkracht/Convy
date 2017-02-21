@@ -65,8 +65,8 @@ class Main extends React.Component {
     return (
       <main className="s-main">
         <SwipeView>
-          <UserList users={ chats }/>
-          <UserList users={ contacts }/>
+          <UserList users={ chats } listType={ 'chats' }/>
+          <UserList users={ contacts } listType={ 'contacts' }/>
         </SwipeView>
       </main>
     );

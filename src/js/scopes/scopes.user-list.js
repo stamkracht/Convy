@@ -5,23 +5,99 @@ import { openChat } from '../actions/actions';
 import BlockUser from '../components/components.block-user';
 
 class UserList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      search: false,
+    };
+  }
+
   render() {
-    let users = renderUsers(this.props);
+    let users,
+        input,
+        listType,
+        groupAction,
+        placeholder;
+
+    listType = this.props.listType;
+
+    users = renderUsers(this.props);
+
+    if (listType === 'chats') {
+      groupAction = <li>
+                      <button onClick={ this.newGroupConversation.bind(this) }>
+                        <i className="icon-group-add"></i>
+                      </button>
+                    </li>;
+
+      placeholder = 'Search conversations';
+    }
+    else if (listType === 'contacts') {
+      placeholder = 'Search contacts';
+    }
+
+    if (this.state.search) {
+      input = <div className="s-block-actions__input">
+                <article className="c-input-group">
+                  <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
+                    <i className="icon-close"></i>
+                  </button>
+                  <input className="c-input-group__field" type="text" placeholder={ placeholder }/>
+                  <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
+                </article>
+              </div>;
+    }
 
     return (
       <section className="s-user-list">
         <div className="s-user-list__inner">
-          <article className="c-block-user"></article>
-          {users}
+          <section className="s-block-actions">
+            <nav className="s-block-actions__nav">
+              <ul>
+                { groupAction }
+                <li>
+                  <button onClick={ this.showSearch.bind(this) }>
+                    <i className="icon-search"></i>
+                  </button>
+                </li>
+              </ul>
+
+              { input }
+            </nav>
+          </section>
+
+          { users }
         </div>
       </section>
     );
+  }
+
+  showSearch() {
+    console.info('Show search bar.');
+
+    this.setState({
+      search: true,
+    });
+  }
+
+  hideSearch() {
+    console.info('Hide search bar.');
+
+    this.setState({
+      search: false,
+    });
+  }
+
+  newGroupConversation() {
+    console.info('Start new group conversation.');
   }
 }
 
 UserList.propTypes = {
   openChat: React.PropTypes.func,
   users: React.PropTypes.array,
+  listType: React.PropTypes.string,
 };
 
 function renderUsers(props) {
