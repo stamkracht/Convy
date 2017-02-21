@@ -17,7 +17,10 @@ class ChatSettings extends React.Component {
         heading,
         icon,
         styles,
-        input;
+        input,
+        ChatSettingsClass;
+
+    ChatSettingsClass = this.props.groupNew ? 's-chat-settings state-new' : 's-chat-settings';
 
     if (this.props.participants.length === 0) {
       heading = 'Tap on the right icon above to start add participants.';
@@ -44,7 +47,7 @@ class ChatSettings extends React.Component {
     }
 
     return (
-      <section className="s-chat-settings">
+      <section className={ ChatSettingsClass }>
         <div className="s-chat-settings__inner">
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
@@ -118,6 +121,7 @@ class ChatSettings extends React.Component {
 }
 
 ChatSettings.propTypes = {
+  groupNew: React.PropTypes.bool,
   groupName: React.PropTypes.string,
   groupImage: React.PropTypes.string,
   participants: React.PropTypes.array,

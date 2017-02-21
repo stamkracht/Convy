@@ -11,6 +11,8 @@
   padding: 0 10px;
   flex-shrink: 0;
   font-size: rem(16px);
+
+  &.state-new { margin-top: 75px; }
 }
 
 .s-chat-settings__inner {
