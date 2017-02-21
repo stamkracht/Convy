@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { closeChat, openMyProfile, toggleNavMore, setSwipeViewIndex } from '../actions/actions';
+import { closeChat, openMyProfile, closeMyProfile, toggleNavMore, setSwipeViewIndex } from '../actions/actions';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -15,7 +15,11 @@ class Header extends React.Component {
 
     if (this.props.chatActive) {
       navigation = <NavChat { ...this.props } key="nav-chat"/>;
-      headerClass = 's-header state-chat';
+      headerClass = 's-header state-active';
+      logoClass = 'logo';
+      backButtonClass = 'back-button state-active';
+    } else if (this.props.myProfileActive) {
+      headerClass = 's-header state-active';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
     } else {
@@ -29,7 +33,7 @@ class Header extends React.Component {
       <header className={ headerClass }>
         <div className="icon">
           <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ backButtonClass } onClick={ this.props.closeConversation }>
+          <Link to="/" className={ backButtonClass } onClick={ this.props.closeOverlayNav }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -95,8 +99,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    closeConversation: () => {
+    closeOverlayNav: () => {
       dispatch(closeChat());
+      dispatch(closeMyProfile());
     },
 
     openMyProfile: () => {

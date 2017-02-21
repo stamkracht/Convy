@@ -3,12 +3,28 @@ import React from 'react';
 import BlockUser from '../components/components.block-user';
 
 class ChatSettings extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      search: false,
+    };
+  }
+
   render() {
-    let groupName = this.props.groupName ? this.props.groupName : 'Group name';
-    let participants = renderParticipants(this.props);
-    let heading;
-    let icon;
-    let styles;
+    let groupName,
+        participants,
+        heading,
+        icon,
+        styles,
+        input,
+        chatSettingsClass;
+
+    groupName = this.props.groupName ? this.props.groupName : 'Group name';
+
+    participants = renderParticipants(this.props);
+
+    chatSettingsClass = this.props.groupNew ? 's-chat-settings state-new' : 's-chat-settings';
 
     if (this.props.participants.length === 0) {
       heading = 'Tap on the right icon above to start add participants.';
@@ -22,10 +38,50 @@ class ChatSettings extends React.Component {
       icon = <span className="c-banner__icon"><i className="icon-image"></i></span>;
     }
 
+    if (this.state.search) {
+      input = <div className="s-block-actions__input">
+                <article className="c-input-group">
+                  <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
+                    <i className="icon-close"></i>
+                  </button>
+                  <input className="c-input-group__field" type="text" placeholder="Add participants"/>
+                  <button className="c-input-group__addon submit"><i className="icon-group-add"></i></button>
+                </article>
+              </div>;
+    }
+
     return (
-      <section className="s-chat-settings">
+      <section className={ chatSettingsClass }>
         <div className="s-chat-settings__inner">
-          <article className="c-block-user"></article>
+          <section className="s-block-actions">
+            <nav className="s-block-actions__nav">
+              <ul>
+                <li>
+                  <button className="sign-out" onClick={ this.leaveGroup.bind(this) }>
+                    <i className="icon-sign-out"></i>
+                    <span>Leave group</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={ this.editGroupName.bind(this) }>
+                    <i className="icon-pencil"></i>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={ this.addGroupImage.bind(this) }>
+                    <i className="icon-image"></i>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={ this.showSearch.bind(this) }>
+                    <i className="icon-group-add"></i>
+                  </button>
+                </li>
+              </ul>
+
+              { input }
+            </nav>
+          </section>
 
           <article className="c-banner" style={ styles }>
             <h1 className="c-banner__title">{ groupName }</h1>
@@ -38,9 +94,38 @@ class ChatSettings extends React.Component {
       </section>
     );
   }
+
+  leaveGroup() {
+    console.info('Leave group chat.');
+  }
+
+  editGroupName() {
+    console.info('Edit group name.');
+  }
+
+  addGroupImage() {
+    console.info('Add group image.');
+  }
+
+  showSearch() {
+    console.info('Show search bar.');
+
+    this.setState({
+      search: true,
+    });
+  }
+
+  hideSearch() {
+    console.info('Hide search bar.');
+
+    this.setState({
+      search: false,
+    });
+  }
 }
 
 ChatSettings.propTypes = {
+  groupNew: React.PropTypes.bool,
   groupName: React.PropTypes.string,
   groupImage: React.PropTypes.string,
   participants: React.PropTypes.array,

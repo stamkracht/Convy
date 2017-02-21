@@ -71,8 +71,8 @@ class Main extends React.Component {
           swipeViewUrls={ swipeViewUrls }
           swipeViewBaseUrl={ swipeViewBaseUrl }
         >
-          <UserList users={ chats }/>
-          <UserList users={ contacts }/>
+          <UserList users={ chats } listType={ 'chats' }/>
+          <UserList users={ contacts } listType={ 'contacts' }/>
         </SwipeView>
       </main>
     );

@@ -27,3 +27,9 @@
 
   @include mq(min-w, 400px) { padding: 60px 20px; }
 }
+
+.s-user-list .s-block-actions__nav > ul {
+  justify-content: flex-end;
+
+  & > li:first-child { flex: 0; }
+}

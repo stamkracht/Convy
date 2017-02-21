@@ -34,6 +34,14 @@ function headerReducer(state, action) {
     return newState;
   }
 
+  if (action.type === 'CLOSE_MY_PROFILE') {
+    let newState = Object.assign({}, state, {
+      myProfileActive: false,
+    });
+
+    return newState;
+  }
+
   if (action.type === 'TOGGLE_NAV_MORE') {
     let newState = Object.assign({}, state, {
       navMoreActive: !state.navMoreActive,
