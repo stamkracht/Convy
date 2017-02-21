@@ -28,7 +28,7 @@ class Header extends React.Component {
     return (
       <header className={ headerClass }>
         <div className="icon">
-          <img className={ logoClass } src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
           <Link to="/" className={ backButtonClass } onClick={ this.props.closeConversation }>
             <i className="icon-arrow-back"></i>
           </Link>
