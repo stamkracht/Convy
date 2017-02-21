@@ -24,6 +24,14 @@ export function openMyProfile(id) {
   }
 }
 
+export function closeMyProfile() {
+  console.info('Close my profile.');
+
+  return {
+    type: 'CLOSE_MY_PROFILE',
+  }
+}
+
 export function toggleNavMore() {
   console.info('Toggle the nav-more navigation.');
 
