@@ -37,7 +37,7 @@ export function toggleNavMore() {
 export function setSwipeViewIndex(swipeViewId, swipeViewIndex, url_path) {
   console.info('Set swipe view index.');
 
-  if (url_path) {
+  if (url_path !== undefined) {
     console.log('Replace url in browser history.', url_path);
     browserHistory.replace(url_path);
 
