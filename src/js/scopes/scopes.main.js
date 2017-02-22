@@ -71,8 +71,18 @@ class Main extends React.Component {
           swipeViewUrls={ swipeViewUrls }
           swipeViewBaseUrl={ swipeViewBaseUrl }
         >
-          <UserList users={ chats } listType={ 'chats' }/>
-          <UserList users={ contacts } listType={ 'contacts' }/>
+          <UserList
+            listType={ 'chats' }
+            users={ chats }
+            searchPlaceholder={ 'Search conversations' }
+            emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
+          />
+          <UserList
+            listType={ 'contacts' }
+            users={ contacts }
+            searchPlaceholder={ 'Search contacts' }
+            emptyMessage={ 'Please wait for participants to join the platform.' }
+          />
         </SwipeView>
       </main>
     );

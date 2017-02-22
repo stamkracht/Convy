@@ -14,15 +14,14 @@ class UserList extends React.Component {
   }
 
   render() {
-    let users,
-        input,
-        listType,
+    let listType,
         groupAction,
-        placeholder;
+        users,
+        userListInnerClass,
+        emptyMessageContainer,
+        input;
 
     listType = this.props.listType;
-
-    users = renderUsers(this.props);
 
     if (listType === 'chats') {
       groupAction = <li>
@@ -30,11 +29,15 @@ class UserList extends React.Component {
                         <i className="icon-group-add"></i>
                       </button>
                     </li>;
-
-      placeholder = 'Search conversations';
     }
-    else if (listType === 'contacts') {
-      placeholder = 'Search contacts';
+
+    users = renderUsers(this.props);
+
+    userListInnerClass = 's-user-list__inner';
+
+    if (this.props.users.length < 1) {
+      userListInnerClass = 's-user-list__inner state-empty';
+      emptyMessageContainer = <p className="empty-message">{ this.props.emptyMessage }</p>;
     }
 
     if (this.state.search) {
@@ -43,7 +46,7 @@ class UserList extends React.Component {
                   <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
                     <i className="icon-close"></i>
                   </button>
-                  <input className="c-input-group__field" type="text" placeholder={ placeholder }/>
+                  <input className="c-input-group__field" type="text" placeholder={ this.props.searchPlaceholder }/>
                   <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
                 </article>
               </div>;
@@ -51,7 +54,7 @@ class UserList extends React.Component {
 
     return (
       <section className="s-user-list">
-        <div className="s-user-list__inner">
+        <div className={ userListInnerClass }>
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
               <ul>
@@ -66,6 +69,8 @@ class UserList extends React.Component {
               { input }
             </nav>
           </section>
+
+          { emptyMessageContainer }
 
           { users }
         </div>
