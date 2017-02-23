@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { closeChat, openMyProfile, closeMyProfile, toggleNavMore, setSwipeViewIndex } from '../actions/actions';
+import { closeChat, openMyProfile, closeMyProfile, toggleNavMore } from '../actions/actions';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -110,10 +110,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     toggleNavMore: () => {
       dispatch(toggleNavMore());
-    },
-
-    setMainSwipeViewIndex: (index) => {
-      dispatch(setSwipeViewIndex('mainSwipeView', index));
     },
   };
 };
