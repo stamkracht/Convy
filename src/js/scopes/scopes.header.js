@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -59,8 +59,8 @@ class NavMain extends React.Component {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><Link className="c-nav-main__button" to="/">Chats</Link></li>
-          <li><Link className="c-nav-main__button" to="/contact-list">Contacts</Link></li>
+          <li><IndexLink className="c-nav-main__button" to="/" activeClassName="state-active">Chats</IndexLink></li>
+          <li><Link className="c-nav-main__button" to="contact-list" activeClassName="state-active">Contacts</Link></li>
         </ul>
       </nav>
     );
@@ -73,17 +73,17 @@ class NavChat extends React.Component {
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" href="#">
+            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" activeClassName="state-active">
               <i className="icon-message"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" href="#">
+            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" activeClassName="state-active">
               <i className="icon-person"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" href="#">
+            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" activeClassName="state-active">
               <i className="icon-bar-chart"></i>
             </Link>
           </li>
