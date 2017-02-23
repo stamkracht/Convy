@@ -43,7 +43,7 @@ class Conversation extends React.Component {
     );
   }
 
-  _handleUrl(swipeView) {
+  handleUrl(swipeView) {
     // move to specific view based on the url.
     const currentPath = swipeView || '/';
     this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
@@ -52,14 +52,14 @@ class Conversation extends React.Component {
   componentWillMount() {
     // only handle urls that are not root page.
     if (this.props.params.swipeView) {
-      this._handleUrl(this.props.params.swipeView)
+      this.handleUrl(this.props.params.swipeView)
     }
   }
 
   componentWillReceiveProps(nextProps) {
     // check for changing url.
     if (nextProps.params.swipeView != this.props.params.swipeView) {
-      this._handleUrl(nextProps.params.swipeView)
+      this.handleUrl(nextProps.params.swipeView)
     }
   }
 }

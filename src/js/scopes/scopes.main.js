@@ -88,23 +88,23 @@ class Main extends React.Component {
     );
   }
 
-  _handleUrl(swipeView) {
-    // Move to specific view based on the url
+  handleUrl(swipeView) {
+    // move to specific view based on the url.
     const currentPath = swipeView || '/';
     this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
   }
 
   componentWillMount() {
-    // Only handle urls that are not root page
+    // only handle urls that are not root page.
     if (this.props.params.swipeView) {
-      this._handleUrl(this.props.params.swipeView)
+      this.handleUrl(this.props.params.swipeView)
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    // Check for changing url
+    // check for changing url.
     if(nextProps.params.swipeView != this.props.params.swipeView) {
-      this._handleUrl(nextProps.params.swipeView)
+      this.handleUrl(nextProps.params.swipeView)
     }
   }
 }
@@ -112,10 +112,9 @@ class Main extends React.Component {
 const swipeViewId = 'mainSwipeView';
 const swipeViewBaseUrl = '';
 const swipeViewUrls = [
-  '/',            // First child of SwipeView
-  'contact-list'  // Second child of SwipeView
+  '/',            // first child of SwipeView.
+  'contact-list'  // second child of SwipeView.
 ];
-
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
