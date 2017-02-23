@@ -52,7 +52,9 @@
   }
 
   &:focus,
-  &:hover { color: $brand-color-3; }
+  &:hover { color: $white; }
+
+  &.state-active { color: $brand-color-3; }
 
   .c-nav-main--chat & {
     padding: 26px 15px 22px;
