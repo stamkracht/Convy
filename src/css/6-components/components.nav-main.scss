@@ -51,6 +51,7 @@
     font-size: em(20px);
   }
 
+  &:focus,
   &:hover { color: $brand-color-3; }
 
   .c-nav-main--chat & {
