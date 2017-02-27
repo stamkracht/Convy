@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -32,7 +32,7 @@ class Header extends React.Component {
     return (
       <header className={ headerClass }>
         <div className="icon">
-          <img className={ logoClass } src="dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
           <Link to="/" className={ backButtonClass } onClick={ this.props.closeOverlayNav }>
             <i className="icon-arrow-back"></i>
           </Link>
@@ -59,8 +59,8 @@ class NavMain extends React.Component {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><a className="c-nav-main__button" href="#chat-list">Chats</a></li>
-          <li><a className="c-nav-main__button" href="#contact-list">Contacts</a></li>
+          <li><IndexLink className="c-nav-main__button" to="/" activeClassName="state-active">Chats</IndexLink></li>
+          <li><Link className="c-nav-main__button" to="contact-list" activeClassName="state-active">Contacts</Link></li>
         </ul>
       </nav>
     );
@@ -73,19 +73,19 @@ class NavChat extends React.Component {
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--chat" href="#">
+            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" activeClassName="state-active">
               <i className="icon-message"></i>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--profile" href="#">
+            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" activeClassName="state-active">
               <i className="icon-person"></i>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="c-nav-main__button c-nav-main__button--charts" href="#">
+            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" activeClassName="state-active">
               <i className="icon-bar-chart"></i>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

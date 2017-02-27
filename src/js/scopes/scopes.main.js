@@ -2,6 +2,8 @@ import React from 'react';
 
 import SwipeView from './scopes.swipe-view';
 import UserList from './scopes.user-list';
+import { connect } from 'react-redux';
+import { setSwipeViewIndex } from '../actions/actions';
 
 class Main extends React.Component {
   render() {
@@ -64,13 +66,64 @@ class Main extends React.Component {
 
     return (
       <main className="s-main">
-        <SwipeView>
-          <UserList users={ chats } listType={ 'chats' }/>
-          <UserList users={ contacts } listType={ 'contacts' }/>
+        <SwipeView
+          swipeViewId={ swipeViewId }
+          swipeViewUrls={ swipeViewUrls }
+          swipeViewBaseUrl={ swipeViewBaseUrl }
+        >
+          <UserList
+            listType={ 'chats' }
+            users={ chats }
+            searchPlaceholder={ 'Search conversations' }
+            emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
+          />
+          <UserList
+            listType={ 'contacts' }
+            users={ contacts }
+            searchPlaceholder={ 'Search contacts' }
+            emptyMessage={ 'Please wait for participants to join the platform.' }
+          />
         </SwipeView>
       </main>
     );
   }
+
+  handleUrl(swipeView) {
+    // move to specific view based on the url.
+    const currentPath = swipeView || '/';
+    this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
+  }
+
+  componentWillMount() {
+    // only handle urls that are not root page.
+    if (this.props.params.swipeView) {
+      this.handleUrl(this.props.params.swipeView)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // check for changing url.
+    if(nextProps.params.swipeView != this.props.params.swipeView) {
+      this.handleUrl(nextProps.params.swipeView)
+    }
+  }
 }
 
-export default Main;
+const swipeViewId = 'mainSwipeView';
+const swipeViewBaseUrl = '';
+const swipeViewUrls = [
+  '/',            // first child of SwipeView.
+  'contact-list'  // second child of SwipeView.
+];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setSwipeViewIndex: (index) => {
+      dispatch(setSwipeViewIndex(swipeViewId, index));
+    },
+  };
+};
+
+const MainConnect = connect(null, mapDispatchToProps)(Main);
+
+export default MainConnect;

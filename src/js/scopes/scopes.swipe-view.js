@@ -1,15 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setSwipeViewIndex } from '../actions/actions';
 
 class SwipeView extends React.Component {
   constructor(props) {
     super(props);
 
     this.viewLength = props.children.length;
+
     this.state = {
-      offset: 0,
+      offset: props.swipeViewIndex * 100,
       animEnabled: true,
+      currentIndex: props.swipeViewIndex
     };
+  }
+
+  componentWillMount() {
+    this.props.setSwipeViewIndex(this.props.swipeViewIndex, true)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Will be triggered when the redux state is changed
+    if(this.state.currentIndex != nextProps.swipeViewIndex) {
+      this.setState({
+        animEnabled: true,
+        currentIndex: nextProps.swipeViewIndex,
+        offset: 100 * nextProps.swipeViewIndex
+      });
+    }
   }
 
   render() {
@@ -76,39 +94,49 @@ class SwipeView extends React.Component {
   endSwipe(event) {
     const offsetCurrentView = this.state.offset % 100;
 
-    this.setState({
-      animEnabled: true,
-    });
-
     // if offset current view is greater than 50, then swipe to next view.
     // else swipe back to the beginning of the current view.
-    if (offsetCurrentView > 50) {
-      console.info('Offset current view is greater than 50.');
+    const offset = (offsetCurrentView > 50) ?
+      this.state.offset - offsetCurrentView + 100 :
+      this.state.offset - offsetCurrentView;
 
-      this.setState({
-        offset: this.state.offset - offsetCurrentView + 100,
-      });
-    }
+    const oldIndex = this.state.currentIndex;
+    const currentIndex = offset / 100;
 
-    else {
-      console.info('Offset current view is less than 50.');
-
-      this.setState({
-        offset: this.state.offset - offsetCurrentView,
-      });
-    }
+    this.setState({
+      animEnabled: true,
+      offset,
+      currentIndex
+    }, () => {
+      // Set the redux state and change the url programatically
+      this.props.setSwipeViewIndex(currentIndex, oldIndex != currentIndex)
+    })
   }
 }
 
 SwipeView.propTypes = {
   children: React.PropTypes.array,
+  swipeViewUrls: React.PropTypes.array,
+  swipeViewBaseUrl: React.PropTypes.string,
   multipleViewsPerSwipe: React.PropTypes.bool,
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
+const mapStateToProps = (state, ownProps) => {
+  return {
+    swipeViewIndex: state.swipeViewState[ownProps.swipeViewId] || 0
+  };
 };
 
-const SwipeViewConnect = connect(null, mapDispatchToProps)(SwipeView);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setSwipeViewIndex: (index, pushUrl) => {
+      const path = (ownProps.swipeViewUrls[index] != '/' ? '/' + ownProps.swipeViewUrls[index] : '');
+      const swipeViewUrl = ownProps.swipeViewBaseUrl + path;
+      dispatch(setSwipeViewIndex(ownProps.swipeViewId, index, pushUrl && swipeViewUrl));
+    },
+  };
+};
+
+const SwipeViewConnect = connect(mapStateToProps, mapDispatchToProps)(SwipeView);
 
 export default SwipeViewConnect;

@@ -51,7 +51,10 @@
     font-size: em(20px);
   }
 
-  &:hover { color: $brand-color-3; }
+  &:focus,
+  &:hover { color: $white; }
+
+  &.state-active { color: $brand-color-3; }
 
   .c-nav-main--chat & {
     padding: 26px 15px 22px;

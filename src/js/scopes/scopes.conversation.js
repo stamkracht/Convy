@@ -5,6 +5,8 @@ import Chat from './scopes.chat';
 import Profile from './scopes.profile';
 import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
+import { connect } from 'react-redux';
+import { setSwipeViewIndex } from '../actions/actions';
 
 class Conversation extends React.Component {
   render() {
@@ -28,7 +30,11 @@ class Conversation extends React.Component {
 
     return (
       <main className="s-conversation">
-        <SwipeView>
+        <SwipeView
+          swipeViewId={ swipeViewId }
+          swipeViewUrls={ swipeViewUrls }
+          swipeViewBaseUrl={ swipeViewBaseUrl }
+        >
           <Chat/>
           { view }
           <Stats/>
@@ -37,7 +43,43 @@ class Conversation extends React.Component {
     );
   }
 
-  // functions.
+  handleUrl(swipeView) {
+    // move to specific view based on the url.
+    const currentPath = swipeView || '/';
+    this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
+  }
+
+  componentWillMount() {
+    // only handle urls that are not root page.
+    if (this.props.params.swipeView) {
+      this.handleUrl(this.props.params.swipeView)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // check for changing url.
+    if (nextProps.params.swipeView != this.props.params.swipeView) {
+      this.handleUrl(nextProps.params.swipeView)
+    }
+  }
 }
 
-export default Conversation;
+const swipeViewId = 'conversationSwipeView';
+const swipeViewBaseUrl = '/conversation';
+const swipeViewUrls = [
+  '/',        // first child of SwipeView.
+  'profile',  // second child of SwipeView.
+  'stats'     // third child of SwipeView.
+];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setSwipeViewIndex: (index) => {
+      dispatch(setSwipeViewIndex(swipeViewId, index));
+    },
+  };
+};
+
+const ConversationConnect = connect(null, mapDispatchToProps)(Conversation);
+
+export default ConversationConnect;
