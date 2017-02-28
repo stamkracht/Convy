@@ -87,26 +87,51 @@ export function fetchContacts() {
 }
 
 function requestChats() {
-    return {
-      type: 'FETCH_CHATS',
-    }
+  return {
+    type: 'FETCH_CHATS',
+  }
 }
 
 function receiveChats(chats, status='success') {
-    return {
-        type: 'FETCH_CHATS',
-        receivedAt: Date.now(),
-        chats,
-        status,
-    }
+  return {
+    type: 'FETCH_CHATS',
+    receivedAt: Date.now(),
+    chats,
+    status,
+  }
 }
 
 export function fetchChats() {
-    return async function(dispatch, getState) {
-        dispatch(requestChats());
-        console.log('Started fetching chats');
-        const result = await Adapter.getChats();
-        dispatch(receiveChats(result.chats))
-        console.log('Finished fetching chats');
-    }
+  return async function(dispatch, getState) {
+    dispatch(requestChats());
+    console.log('Started fetching chats');
+    const result = await Adapter.getChats();
+    dispatch(receiveChats(result.chats))
+    console.log('Finished fetching chats');
+  }
+}
+
+function requestMe() {
+  return {
+    type: 'FETCH_ME',
+  }
+}
+
+function receiveMe(me, status='success') {
+  return {
+    type: 'FETCH_ME',
+    receivedAt: Date.now(),
+    me,
+    status,
+  }
+}
+
+export function fetchMe() {
+  return async function(dispatch, getState) {
+    dispatch(requestMe());
+    console.log('Started fetching me');
+    const result = await Adapter.getMe();
+    dispatch(receiveMe(result.user))
+    console.log('Finished fetching me');
+  }
 }

@@ -65,9 +65,7 @@ const swipeViewUrls = [
   'contact-list'  // second child of SwipeView.
 ];
 
-const mapStateToProps = (state, ownProps) => {
-  return state;
-};
+const mapStateToProps = (state, ownProps) => state;
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
