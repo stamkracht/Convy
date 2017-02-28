@@ -10,7 +10,7 @@ export default (
   <Router history={ browserHistory }>
     <Route path="/" component={ Application }>
       <IndexRoute component={ Main }/>
-      <Route path="conversation(/:swipeView)" component={ Conversation }/>
+      <Route path="conversation/:chatId(/:swipeView)" component={ Conversation }/>
       <Route path="my-profile" component={ Profile }/>
       <Route path="(:swipeView)" component={ Main }/>
     </Route>

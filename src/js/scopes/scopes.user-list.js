@@ -110,6 +110,7 @@ function renderUsers(props) {
     return props.users.map((user, index) => (
       <BlockUser
         key={ index }
+        id={user.id}
         name={ user.firstName }
         description={ user.description }
         lastMessage={ user.lastMessage }

@@ -6,7 +6,7 @@ import 'moment/locale/nl';
 class BlockUser extends React.Component {
   render() {
     return (
-      <Link to="/conversation" className="c-block-user" onClick={ this.props.openChat } key={ this.props.id }>
+      <Link to={`/conversation/${this.props.id}`} className="c-block-user" onClick={ this.props.openChat } key={ this.props.id }>
         <span className="circle"></span>
 
         <ul className="c-block-user__data">

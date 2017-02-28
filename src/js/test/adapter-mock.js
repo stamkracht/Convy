@@ -26,6 +26,16 @@ class Adapter {
 
   }
 
+  getChat(id) {
+    return new Promise((resolve, reject) => {
+      resolve({
+        status: 'success',
+        chat: chats.chats.filter((chat) => chat.id == id)[0]
+      })
+    })
+
+  }
+
   getContacts() {
     return new Promise((resolve, reject) => {
       resolve(contacts);

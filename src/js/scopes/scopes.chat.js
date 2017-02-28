@@ -8,7 +8,7 @@ class Chat extends React.Component {
     return (
       <section className="s-chat">
         <div className="s-chat__output">
-          <BlockChat/>
+          <BlockChat chat={this.props.chat}/>
         </div>
 
         <div className="s-chat__input">
