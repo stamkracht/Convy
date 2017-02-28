@@ -2,28 +2,42 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ProfileSummary from '../components/components.profile-summary';
+import actions from '../actions'
 
 class Profile extends React.Component {
   render() {
+    const user = this.props.isRoot ? this.props.meState.me: this.props.user;
     return (
       <section className="s-profile">
         {
           this.props.meState.isFetching ?
             <div>Loader thingy</div> :
-            <ProfileSummary user={this.props.meState.me}/>
+            <ProfileSummary user={user}/>
         }
 
       </section>
     );
   }
 
-  // functions.
+  componentWillMount() {
+    if(this.props.isRoot) {
+      this.props.setProfileHeader();
+    }
+  }
+
 }
+
+Profile.defaultProps = {
+  isRoot: true
+};
 
 const mapStateToProps = (state, ownProps) => state;
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    setProfileHeader: () => {
+      dispatch(actions.header.setMode('PROFILE'))
+    }
   };
 };
 

@@ -8,6 +8,18 @@ import actions  from '../actions';
 
 class Main extends React.Component {
 
+  _getChatList() {
+    return this.props.chatsState.chatList.map((id) =>
+      this.props.chatsState.chats[id]
+    )
+  }
+
+  _getContactList() {
+    return this.props.contactsState.contactList.map((id) =>
+      this.props.contactsState.contacts[id]
+    )
+  }
+
   render() {
 
     return (
@@ -17,13 +29,13 @@ class Main extends React.Component {
         >
           <UserList
             listType={ 'chats' }
-            users={ this.props.chatsState.chats }
+            users={ this._getChatList() }
             searchPlaceholder={ 'Search conversations' }
             emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
           />
           <UserList
             listType={ 'contacts' }
-            users={ this.props.contactsState.contacts }
+            users={ this._getContactList() }
             searchPlaceholder={ 'Search contacts' }
             emptyMessage={ 'Please wait for participants to join the platform.' }
           />
@@ -33,8 +45,13 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchContacts();
-    this.props.fetchChats();
+    this.props.setMainHeader();
+    if (!this.props.contactsState.receivedAt) {
+      this.props.fetchContacts();
+    }
+    if (!this.props.chatsState.receivedAt) {
+      this.props.fetchChats();
+    }
   }
 
 }
@@ -53,6 +70,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     fetchChats: () => {
       dispatch(actions.chats.fetchChats())
+    },
+    setMainHeader: () => {
+      dispatch(actions.header.setMode('MAIN'))
     }
   };
 };

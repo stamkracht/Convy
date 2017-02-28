@@ -15,11 +15,11 @@ class Adapter {
       this.chatSubscribers.forEach((callback) => {
         const chatId = getRandom(chats.chats.map((chat) => chat.id));
         const chat = getById(chats.chats, chatId);
-        chat.unreadMessagesLength++;
+        chat.unreadMessagesCount++;
         callback(chatId, {
-          lastMessageDate: new Date().toISOString(),
-          unreadMessagesLength: chat.unreadMessagesLength,
-          lastMessage: `${chat.unreadMessagesLength}: ${chat.lastMessage}`,
+          lastMessageAt: new Date().toISOString(),
+          unreadMessagesCount: chat.unreadMessagesCount,
+          lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
         });
       })
     }, 5000)
@@ -62,6 +62,17 @@ class Adapter {
 
   }
 
+  getContact(id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          status: 'success',
+          contact: contacts.contacts.filter((contact) => contact.id == id)[0]
+        })
+      }, 1000);
+    })
+
+  }
   subscribeToChats(callback) {
     this.chatSubscribers.push(callback);
     return {
@@ -73,22 +84,16 @@ class Adapter {
       }
     }
   }
-  unsubscribeToChats(callback) {
-    const index = this.chatSubscribers.indexOf(callback)
-    if(index != -1) {
-      this.chatSubscribers.splice(index,1)
-    }
-  }
 }
 
 export default Adapter;
 
 const me = { status: 'success', user: {
-  id: 30,
-  firstname: 'Martha',
-  lastname: 'Diaz',
+  id: 3,
+  firstname: 'Peter',
+  lastname: 'Fox',
   headline: 'Lead Developer @ Stamkracht',
-  profileImage: 'https://profilepicture.jpg',
+  image: 'https://profilepicture.jpg',
   email: 'example@example.org',
   phone: '0987654321',
   twitterHandle: 'everybodylovesmartha',
@@ -103,57 +108,105 @@ const me = { status: 'success', user: {
 const chats = { status: 'success', chats: [
   {
     id: 1,
-    firstName: 'Joshua',
-    lastName: 'Torres',
-    lastMessage: 'Nam porttitor blandit accu...',
-    imageSource: 'http://placehold.it/50x50',
-    lastMessageDate: '2017-02-28T17:37:53.227Z',
-    unreadMessagesLength: 7,
+    title: 'A love story',
+    image: null,
+    members: [
+      {
+        id: 2,
+        name: 'John Graham',
+        image: 'http://placehold.it/50x50',
+      },
+      {
+        id: 3,
+        name: 'Peter Fox',
+        image: 'http://placehold.it/50x50',
+      }
+    ],
+    lastMessage: 'Ik kan er maar niet aan wennen',
+    lastMessageAt: '2017-02-28T17:37:53.227Z',
+    unreadMessagesCount: 7,
   },
   {
     id: 2,
-    firstName: 'Vincent',
-    lastName: 'Gray',
-    lastMessage: 'Accusamus, ducimus hic qui...',
-    imageSource: 'http://placehold.it/50x50',
-    lastMessageDate: '2017-02-28T17:37:53.227Z',
-    unreadMessagesLength: 4,
+    title: 'A horror story',
+    image: 'http://placehold.it/50x50',
+    members: [
+      {
+        id: 1,
+        name: 'George Best',
+        image: 'http://placehold.it/50x50',
+      },
+      {
+        id: 3,
+        name: 'Peter Fox',
+        image: 'http://placehold.it/50x50',
+      }
+    ],
+    lastMessage: 'Ik kan er maar niet aan vastzitten',
+    lastMessageAt: '2017-02-27T17:37:53.227Z',
+    unreadMessagesCount: 7,
   },
   {
     id: 3,
-    firstName: 'Marthia',
-    lastName: 'Diaz',
-    lastMessage: 'Cupiditate sit laudantium ...',
-    imageSource: 'http://placehold.it/50x50',
-    lastMessageDate: '2017-02-28T17:37:53.227Z',
-    unreadMessagesLength: 2,
+    title: 'A triangular story',
+    image: 'http://placehold.it/50x50',
+    members: [
+      {
+        id: 1,
+        name: 'George Best',
+        image: 'http://placehold.it/50x50',
+      },
+      {
+        id: 2,
+        name: 'John Graham',
+        image: 'http://placehold.it/50x50',
+      },
+      {
+        id: 3,
+        name: 'Peter Fox',
+        image: 'http://placehold.it/50x50',
+      }
+    ],
+    lastMessage: 'Samen',
+    lastMessageAt: '2017-02-27T17:37:53.227Z',
+    unreadMessagesCount: 7,
   },
 ]};
 
 const contacts = { status: 'success', contacts: [
   {
-    id: 4,
-    firstName: 'John',
-    lastName: 'Doe',
-    description: 'Frontend Developer',
-    imageSource: 'http://placehold.it/50x50',
-    lastSeenDate: '2017-02-28T17:37:53.227Z',
+    id: 2,
+    firstname: 'John',
+    lastname: 'Graham',
+    headline: 'Lead Developer @ Stamkracht',
+    image: 'https://profilepicture.jpg',
+    email: 'example@example.org',
+    phone: '0987654321',
+    twitterHandle: 'everybodylovesmartha',
+    location: {
+      address: 'Oostenburgervoorstraat 72',
+      zipcode: '1018 MR',
+      city: 'Amsterdam',
+      country: 'Nederland',
+    },
+    lastSeenAt: '2017-02-25T17:37:53.227Z',
   },
   {
-    id: 5,
-    firstName: 'Paul',
-    lastName: 'Graham',
-    description: 'Interaction Designer',
-    imageSource: 'http://placehold.it/50x50',
-    lastSeenDate: '2017-02-28T17:37:53.227Z',
-  },
-  {
-    id: 6,
-    firstName: 'Shirley',
-    lastName: 'Reid',
-    description: 'Backend Developer',
-    imageSource: 'http://placehold.it/50x50',
-    lastSeenDate: '2017-02-28T17:37:53.227Z',
+    id: 1,
+    firstname: 'George',
+    lastname: 'Best',
+    headline: 'Lead Developer @ Stamkracht',
+    image: 'https://profilepicture.jpg',
+    email: 'example@example.org',
+    phone: '0987654321',
+    twitterHandle: 'everybodylovesmartha',
+    location: {
+      address: 'Oostenburgervoorstraat 72',
+      zipcode: '1018 MR',
+      city: 'Amsterdam',
+      country: 'Nederland',
+    },
+    lastSeenAt: '2017-02-22T17:37:53.227Z',
   },
 ]};
 

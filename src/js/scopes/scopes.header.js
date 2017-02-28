@@ -3,6 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import { dynamicClassNames } from '../utillities';
 import actions from '../actions';
 import NavMore from '../components/components.nav-more';
 
@@ -13,12 +14,12 @@ class Header extends React.Component {
     let logoClass;
     let backButtonClass;
 
-    if (this.props.headerState.chatActive) {
+    if (this.props.headerState.mode == 'CHAT') {
       navigation = <NavChat { ...this.props } key="nav-chat"/>;
       headerClass = 's-header state-active';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
-    } else if (this.props.headerState.myProfileActive) {
+    } else if (this.props.headerState.mode == 'PROFILE') {
       headerClass = 's-header state-active';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
@@ -33,7 +34,7 @@ class Header extends React.Component {
       <header className={ headerClass }>
         <div className="icon">
           <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ backButtonClass } onClick={ this.props.closeOverlayNav }>
+          <Link to="/" className={ backButtonClass }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -48,19 +49,10 @@ class Header extends React.Component {
           { navigation }
         </ReactCSSTransitionGroup>
 
-        <NavMore { ...this.props }/>
+        <NavMore active={this.props.headerState.navMoreActive} toggle={this.props.toggleNavMore}/>
       </header>
     );
   }
-}
-
-function dynamicClassNames(initial, dynamic) {
-  return Object.keys(dynamic).reduce((a, b) => {
-    if(dynamic[b]) {
-      return `${a} ${b}`
-    }
-    return a
-  }, initial)
 }
 
 class NavMain extends React.Component {
@@ -125,15 +117,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    closeOverlayNav: () => {
-      dispatch(actions.header.closeChat());
-      dispatch(actions.header.closeMyProfile());
-    },
-
-    openMyProfile: () => {
-      dispatch(actions.header.openMyProfile());
-    },
-
     toggleNavMore: () => {
       dispatch(actions.header.toggleNavMore());
     },

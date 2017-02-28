@@ -7,25 +7,43 @@ import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
 import { connect } from 'react-redux';
 import actions from '../actions';
+import Adapter from '../adapter'
 
 class Conversation extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+
+    }
+  }
+
+  _getContactId(chat) {
+    return chat.members.filter((member) =>
+      member.id != this.props.meState.id
+    )[0].id;
+  }
+
   render() {
     let view;
-    let group = false;
-    let groupNew = true;
-    let groupName = 'We are TMNT';
-    let groupImage = 'http://placehold.it/500x200';
-    let participants = [];
+    const loaded = this.state.chat;
 
-    if (group) {
-      view = <ChatSettings
-        groupNew={ groupNew }
-        groupName={ groupName }
-        groupImage={ groupImage }
-        participants={ participants }
-      />
-    } else {
-      view = <Profile/>
+    if(loaded) {
+      let group = this.state.chat.members.length > 2;
+      let groupNew = true;
+      let groupName = 'We are TMNT';
+      let groupImage = 'http://placehold.it/500x200';
+      let participants = [];
+      if (group) {
+        view = <ChatSettings
+          groupNew={ groupNew }
+          groupName={ groupName }
+          groupImage={ groupImage }
+          participants={ participants }
+        />
+      } else if(this.state.contact) {
+          view = <Profile isRoot={false} user={this.state.contact} />
+      }
     }
 
     return (
@@ -33,7 +51,7 @@ class Conversation extends React.Component {
         <SwipeView
           swipeViewId={ swipeViewId }
         >
-          <Chat chat={this.props.chatState.chat}/>
+          <Chat chat={this.state.chat}/>
           { view }
           <Stats/>
         </SwipeView>
@@ -41,9 +59,34 @@ class Conversation extends React.Component {
     );
   }
 
+  async _loadInitialData() {
+    if(!this.props.chatsState.chats[this.props.params.chatId]) {
+      // Fetch the chat
+      await this.props.fetchChat(this.props.params.chatId);
+      const chat = this.props.chatsState.chats[this.props.params.chatId];
+      this.setState({chat});
+      const contactId = this._getContactId(chat);
+      if(!this.props.contactsState.contacts[contactId]) {
+        // Fetch the contact
+        await this.props.fetchContact(contactId);
+      }
+      this.setState({contact: this.props.contactsState.contacts[contactId]})
+    } else {
+      const chat = this.props.chatsState.chats[this.props.params.chatId];
+      this.setState({chat});
+      const contactId = this._getContactId(chat);
+      if(!this.props.contactsState.contacts[contactId]) {
+        // Fetch the contact
+        await this.props.fetchContact(contactId);
+      }
+      this.setState({contact: this.props.contactsState.contacts[contactId]})
+    }
+  }
+
   componentWillMount() {
+    this.props.setChatHeader();
     if (this.props.params.chatId) {
-      this.props.fetchChat(this.props.params.chatId);
+      this._loadInitialData();
     }
   }
 
@@ -54,12 +97,10 @@ const mapStateToProps = (state, ownProps) => state;
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchChat: (id) => {
-      dispatch(actions.chat.fetchChat(id));
-    },
-    setSwipeViewIndex: (index) => {
-      dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index));
-    },
+    fetchChat: (id) => dispatch(actions.chats.fetchChat(id)),
+    fetchContact: (id) => dispatch(actions.contacts.fetchContact(id)),
+    setSwipeViewIndex: (index) => dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index)),
+    setChatHeader: () => dispatch(actions.header.setMode('CHAT'))
   };
 };
 

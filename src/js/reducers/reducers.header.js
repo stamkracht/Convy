@@ -6,37 +6,10 @@ function headerReducer(state, action) {
       navMoreActive: false,
     };
   }
-
-  if (action.type === 'OPEN_CHAT') {
+  if (action.type === 'SET_MODE') {
     let newState = Object.assign({}, state, {
-      id: action.id,
-      chatActive: true,
+      mode: action.mode,
       navMoreActive: false,
-    });
-
-    return newState;
-  }
-
-  if (action.type === 'CLOSE_CHAT') {
-    let newState = Object.assign({}, state, {
-      chatActive: false,
-    });
-
-    return newState;
-  }
-
-  if (action.type === 'OPEN_MY_PROFILE') {
-    let newState = Object.assign({}, state, {
-      myProfileActive: true,
-      navMoreActive: false,
-    });
-
-    return newState;
-  }
-
-  if (action.type === 'CLOSE_MY_PROFILE') {
-    let newState = Object.assign({}, state, {
-      myProfileActive: false,
     });
 
     return newState;

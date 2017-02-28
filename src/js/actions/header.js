@@ -1,17 +1,9 @@
-export function openMyProfile(id) {
-  console.info('Open my profile.');
+export function setMode(mode) {
+  console.info('Set header mode', mode);
 
   return {
-    id: id,
-    type: 'OPEN_MY_PROFILE',
-  }
-}
-
-export function closeMyProfile() {
-  console.info('Close my profile.');
-
-  return {
-    type: 'CLOSE_MY_PROFILE',
+    mode: mode,
+    type: 'SET_MODE',
   }
 }
 
@@ -22,21 +14,3 @@ export function toggleNavMore() {
     type: 'TOGGLE_NAV_MORE',
   }
 }
-
-export function openChat(id) {
-  console.info('Open a conversation.');
-
-  return {
-    id: id,
-    type: 'OPEN_CHAT',
-  }
-}
-
-export function closeChat() {
-  console.info('Close a conversation.');
-
-  return {
-    type: 'CLOSE_CHAT',
-  }
-}
-

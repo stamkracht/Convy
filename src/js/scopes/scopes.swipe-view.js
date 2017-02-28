@@ -100,6 +100,7 @@ class SwipeView extends React.Component {
       this.state.offset - offsetCurrentView + 100 :
       this.state.offset - offsetCurrentView;
 
+    const oldIndex = this.state.currentIndex;
     const currentIndex = offset / 100;
 
     this.setState({
@@ -107,8 +108,10 @@ class SwipeView extends React.Component {
       offset,
       currentIndex
     }, () => {
-      // Set the redux state and change the url programatically
-      this.props.setSwipeViewIndex(currentIndex)
+      if(oldIndex != currentIndex) {
+        // Set the redux state
+        this.props.setSwipeViewIndex(currentIndex)
+      }
     })
   }
 }

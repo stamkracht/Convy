@@ -110,15 +110,14 @@ function renderUsers(props) {
     return props.users.map((user, index) => (
       <BlockUser
         key={ index }
-        id={user.id}
+        id={ user.id}
         name={ user.firstName }
         description={ user.description }
         lastMessage={ user.lastMessage }
-        imageSource={ user.imageSource }
-        lastSeenDate={ user.lastSeenDate }
-        lastMessageDate={ user.lastMessageDate }
-        unreadMessagesLength={ user.unreadMessagesLength }
-        openChat={ () => props.openChat(user.id) }
+        image={ user.image }
+        lastSeenAt={ user.lastSeenAt }
+        lastMessageAt={ user.lastMessageAt }
+        unreadMessagesCount={ user.unreadMessagesCount }
       />
     ));
   }

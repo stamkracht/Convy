@@ -12,18 +12,18 @@ class Application extends React.Component {
       <div>
         <AppBackground backgroundImage="dest/bg-app.jpg"/>
         <Header/>
-        { this.props.children }
+        { this.props.meState.me && this.props.children }
       </div>
     );
   }
 
   componentWillMount() {
     this.props.fetchMe();
-    actions.chats.subscribeToChats();
+    this.chatSubscribtion = actions.chats.subscribeToChats();
   }
 
   componentWillUnmount() {
-    actions.chats.unsubscribeToChats();
+    this.chatSubscribtion.cancel();
   }
 
 }
