@@ -4,7 +4,7 @@ import SwipeView from './scopes.swipe-view';
 import Adapter from '../adapter'
 import UserList from './scopes.user-list';
 import { connect } from 'react-redux';
-import { setSwipeViewIndex, fetchContacts, fetchChats } from '../actions/actions';
+import actions  from '../actions';
 
 class Main extends React.Component {
 
@@ -70,13 +70,13 @@ const mapStateToProps = (state, ownProps) => state;
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setSwipeViewIndex: (index) => {
-      dispatch(setSwipeViewIndex(swipeViewId, index));
+      dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index));
     },
     fetchContacts: () => {
-      dispatch(fetchContacts())
+      dispatch(actions.contacts.fetchContacts())
     },
     fetchChats: () => {
-      dispatch(fetchChats())
+      dispatch(actions.chats.fetchChats())
     }
   };
 };

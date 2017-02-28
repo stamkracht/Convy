@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setSwipeViewIndex } from '../actions/actions';
+import actions from '../actions';
 
 class SwipeView extends React.Component {
   constructor(props) {
@@ -132,7 +132,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setSwipeViewIndex: (index, pushUrl) => {
       const path = (ownProps.swipeViewUrls[index] != '/' ? '/' + ownProps.swipeViewUrls[index] : '');
       const swipeViewUrl = ownProps.swipeViewBaseUrl + path;
-      dispatch(setSwipeViewIndex(ownProps.swipeViewId, index, pushUrl && swipeViewUrl));
+      dispatch(actions.swiper.setSwipeViewIndex(ownProps.swipeViewId, index, pushUrl && swipeViewUrl));
     },
   };
 };

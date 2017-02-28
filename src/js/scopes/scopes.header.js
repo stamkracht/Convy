@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { closeChat, openMyProfile, closeMyProfile, toggleNavMore } from '../actions/actions';
+import actions from '../actions';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -100,16 +100,16 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     closeOverlayNav: () => {
-      dispatch(closeChat());
-      dispatch(closeMyProfile());
+      dispatch(actions.header.closeChat());
+      dispatch(actions.header.closeMyProfile());
     },
 
     openMyProfile: () => {
-      dispatch(openMyProfile());
+      dispatch(actions.header.openMyProfile());
     },
 
     toggleNavMore: () => {
-      dispatch(toggleNavMore());
+      dispatch(actions.header.toggleNavMore());
     },
   };
 };

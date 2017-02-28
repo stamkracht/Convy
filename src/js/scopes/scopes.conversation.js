@@ -6,7 +6,7 @@ import Profile from './scopes.profile';
 import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
 import { connect } from 'react-redux';
-import { setSwipeViewIndex } from '../actions/actions';
+import actions from '../actions';
 
 class Conversation extends React.Component {
   render() {
@@ -75,7 +75,7 @@ const swipeViewUrls = [
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setSwipeViewIndex: (index) => {
-      dispatch(setSwipeViewIndex(swipeViewId, index));
+      dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index));
     },
   };
 };

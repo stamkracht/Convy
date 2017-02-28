@@ -21,6 +21,16 @@ function chatsReducer(state, action) {
 
     }
   }
+  if (action.type === 'UPDATE_CHAT') {
+    return Object.assign({}, state, {
+      chats: state.chats.map((chat) => {
+        if(action.id == chat.id) {
+          return Object.assign({}, chat, action.update)
+        }
+        return chat
+      }),
+    });
+  }
 
   return state;
 }

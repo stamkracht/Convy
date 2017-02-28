@@ -3,7 +3,7 @@ import React from 'react';
 import AppBackground from '../components/components.app-background';
 import { connect } from 'react-redux';
 import Header from '../scopes/scopes.header';
-import { fetchMe } from '../actions/actions'
+import actions from '../actions'
 import Adapter from '../adapter'
 
 class Application extends React.Component {
@@ -19,6 +19,11 @@ class Application extends React.Component {
 
   componentWillMount() {
     this.props.fetchMe();
+    actions.chats.subscribeToChats();
+  }
+
+  componentWillUnmount() {
+    actions.chats.unsubscribeToChats();
   }
 
 }
@@ -26,7 +31,7 @@ class Application extends React.Component {
 const mapStateToProps = (state, ownProps) => state;
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchMe: () => dispatch(fetchMe())
+    fetchMe: () => dispatch(actions.me.fetchMe())
   };
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
+import 'moment/locale/nl';
 
 class BlockUser extends React.Component {
   render() {
@@ -33,7 +35,7 @@ class BlockUser extends React.Component {
     }
 
     if (this.props.lastMessage) {
-      data.push(<li key="last-message">{this.props.lastMessageDate}</li>);
+      data.push(<li key="last-message">{moment(this.props.lastMessageDate).fromNow()}</li>);
     }
 
     else if (this.props.lastSeenDate) {

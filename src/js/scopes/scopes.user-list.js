@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { openChat } from '../actions/actions';
+import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
 class UserList extends React.Component {
@@ -128,7 +128,7 @@ function renderUsers(props) {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     openChat: (id) => {
-      dispatch(openChat(id));
+      dispatch(actions.header.openChat(id));
     },
   };
 };
