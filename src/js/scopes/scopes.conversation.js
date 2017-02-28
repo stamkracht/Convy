@@ -32,8 +32,6 @@ class Conversation extends React.Component {
       <main className="s-conversation">
         <SwipeView
           swipeViewId={ swipeViewId }
-          swipeViewUrls={ swipeViewUrls }
-          swipeViewBaseUrl={ swipeViewBaseUrl }
         >
           <Chat chat={this.props.chatState.chat}/>
           { view }
@@ -43,38 +41,15 @@ class Conversation extends React.Component {
     );
   }
 
-  handleUrl(swipeView) {
-    // move to specific view based on the url.
-    const currentPath = swipeView || '/';
-    this.props.setSwipeViewIndex(swipeViewUrls.indexOf(currentPath));
-  }
-
   componentWillMount() {
-    // only handle urls that are not root page.
-    if (this.props.params.swipeView) {
-      this.handleUrl(this.props.params.swipeView);
-    }
     if (this.props.params.chatId) {
       this.props.fetchChat(this.props.params.chatId);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    // check for changing url.
-    if (nextProps.params.swipeView != this.props.params.swipeView) {
-      this.handleUrl(nextProps.params.swipeView);
-    }
-  }
 }
 
 const swipeViewId = 'conversationSwipeView';
-const swipeViewBaseUrl = '/conversation';
-const swipeViewUrls = [
-  '/',        // first child of SwipeView.
-  'profile',  // second child of SwipeView.
-  'stats'     // third child of SwipeView.
-];
-
 const mapStateToProps = (state, ownProps) => state;
 
 const mapDispatchToProps = (dispatch, ownProps) => {

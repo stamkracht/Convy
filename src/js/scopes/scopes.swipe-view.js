@@ -16,7 +16,7 @@ class SwipeView extends React.Component {
   }
 
   componentWillMount() {
-    this.props.setSwipeViewIndex(this.props.swipeViewIndex, true)
+    this.props.setSwipeViewIndex(this.props.swipeViewIndex)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -100,7 +100,6 @@ class SwipeView extends React.Component {
       this.state.offset - offsetCurrentView + 100 :
       this.state.offset - offsetCurrentView;
 
-    const oldIndex = this.state.currentIndex;
     const currentIndex = offset / 100;
 
     this.setState({
@@ -109,15 +108,13 @@ class SwipeView extends React.Component {
       currentIndex
     }, () => {
       // Set the redux state and change the url programatically
-      this.props.setSwipeViewIndex(currentIndex, oldIndex != currentIndex)
+      this.props.setSwipeViewIndex(currentIndex)
     })
   }
 }
 
 SwipeView.propTypes = {
   children: React.PropTypes.array,
-  swipeViewUrls: React.PropTypes.array,
-  swipeViewBaseUrl: React.PropTypes.string,
   multipleViewsPerSwipe: React.PropTypes.bool,
 };
 
@@ -129,10 +126,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    setSwipeViewIndex: (index, pushUrl) => {
-      const path = (ownProps.swipeViewUrls[index] != '/' ? '/' + ownProps.swipeViewUrls[index] : '');
-      const swipeViewUrl = ownProps.swipeViewBaseUrl + path;
-      dispatch(actions.swiper.setSwipeViewIndex(ownProps.swipeViewId, index, pushUrl && swipeViewUrl));
+    setSwipeViewIndex: (index) => {
+      dispatch(actions.swiper.setSwipeViewIndex(ownProps.swipeViewId, index));
     },
   };
 };
