@@ -1,12 +1,26 @@
+function getRandom(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function getById(list, id) {
+  return list.filter((item) => item.id == id)[0]
+}
+
 class Adapter {
   constructor() {
-    console.log('Adapter mock constructed');
     this.chatSubscribers = [];
+
+    // Generate dummy updates
     setInterval(() => {
       this.chatSubscribers.forEach((callback) => {
-        callback(2, {
+        const chatId = getRandom(chats.chats.map((chat) => chat.id));
+        const chat = getById(chats.chats, chatId);
+        chat.unreadMessagesLength++;
+        callback(chatId, {
           lastMessageDate: new Date().toISOString(),
-        })
+          unreadMessagesLength: chat.unreadMessagesLength,
+          lastMessage: `${chat.unreadMessagesLength}: ${chat.lastMessage}`,
+        });
       })
     }, 5000)
   }
@@ -15,30 +29,35 @@ class Adapter {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(me);
-      }, 2000)
-    })
+      }, 1000)
+    });
   }
 
   getChats() {
     return new Promise((resolve, reject) => {
-      resolve(chats);
-    })
-
+      setTimeout(() => {
+        resolve(chats);
+      }, 1000)
+    });
   }
 
   getChat(id) {
     return new Promise((resolve, reject) => {
-      resolve({
-        status: 'success',
-        chat: chats.chats.filter((chat) => chat.id == id)[0]
-      })
+      setTimeout(() => {
+        resolve({
+          status: 'success',
+          chat: chats.chats.filter((chat) => chat.id == id)[0]
+        })
+      }, 1000);
     })
 
   }
 
   getContacts() {
     return new Promise((resolve, reject) => {
-      resolve(contacts);
+      setTimeout(() => {
+        resolve(contacts);
+      }, 1000);
     })
 
   }

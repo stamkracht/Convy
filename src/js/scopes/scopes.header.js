@@ -13,12 +13,12 @@ class Header extends React.Component {
     let logoClass;
     let backButtonClass;
 
-    if (this.props.chatActive) {
+    if (this.props.headerState.chatActive) {
       navigation = <NavChat { ...this.props } key="nav-chat"/>;
       headerClass = 's-header state-active';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
-    } else if (this.props.myProfileActive) {
+    } else if (this.props.headerState.myProfileActive) {
       headerClass = 's-header state-active';
       logoClass = 'logo';
       backButtonClass = 'back-button state-active';
@@ -54,13 +54,30 @@ class Header extends React.Component {
   }
 }
 
+function dynamicClassNames(initial, dynamic) {
+  return Object.keys(dynamic).reduce((a, b) => {
+    if(dynamic[b]) {
+      return `${a} ${b}`
+    }
+    return a
+  }, initial)
+}
+
 class NavMain extends React.Component {
   render() {
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><IndexLink className="c-nav-main__button" to="/" activeClassName="state-active">Chats</IndexLink></li>
-          <li><Link className="c-nav-main__button" to="contact-list" activeClassName="state-active">Contacts</Link></li>
+          <li><IndexLink
+            className={dynamicClassNames("c-nav-main__button", { 'state-active': this.props.swipeViewState['mainSwipeView'] == 0})}
+            onClick={() => this.props.setMainSwipeViewIndex(0)}
+          >
+            Chats
+          </IndexLink></li>
+          <li><Link
+            className={dynamicClassNames("c-nav-main__button", { 'state-active': this.props.swipeViewState['mainSwipeView'] == 1})}
+            onClick={() => this.props.setMainSwipeViewIndex(1)}
+          >Contacts</Link></li>
         </ul>
       </nav>
     );
@@ -73,17 +90,26 @@ class NavChat extends React.Component {
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" activeClassName="state-active">
+            <Link
+              className={dynamicClassNames("c-nav-main__button c-nav-main__button--chat", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 0})}
+              onClick={() => this.props.setConversationSwipeViewIndex(0)}
+            >
               <i className="icon-message"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" activeClassName="state-active">
+            <Link
+              className={dynamicClassNames("c-nav-main__button c-nav-main__button--profile", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 1})}
+              onClick={() => this.props.setConversationSwipeViewIndex(1)}
+              >
               <i className="icon-person"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" activeClassName="state-active">
+            <Link
+              className={dynamicClassNames("c-nav-main__button c-nav-main__button--charts", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 2})}
+              onClick={() => this.props.setConversationSwipeViewIndex(2)}
+              >
               <i className="icon-bar-chart"></i>
             </Link>
           </li>
@@ -94,7 +120,7 @@ class NavChat extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return state.headerState;
+  return state;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -110,6 +136,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     toggleNavMore: () => {
       dispatch(actions.header.toggleNavMore());
+    },
+
+    setMainSwipeViewIndex: (index) => {
+      dispatch(actions.swiper.setSwipeViewIndex('mainSwipeView', index));
+    },
+
+    setConversationSwipeViewIndex: (index) => {
+      dispatch(actions.swiper.setSwipeViewIndex('conversationSwipeView', index));
     },
   };
 };
