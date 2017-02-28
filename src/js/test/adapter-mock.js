@@ -5,7 +5,9 @@ class Adapter {
 
   getMe() {
     return new Promise((resolve, reject) => {
-      resolve(me);
+      setTimeout(() => {
+        resolve(me);
+      }, 2000)
     })
   }
 
