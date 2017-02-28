@@ -12,7 +12,7 @@ module.exports = function (gulp) {
       entries: 'src/js/index.convy.js',
       debug: true
     })
-      .transform(config.babelify, { presets: ['es2015', 'es2016', 'es2017', 'react'] })
+      .transform(config.babelify, { plugins: ['transform-runtime'], presets: ['es2015', 'es2016', 'es2017', 'react'] })
       .bundle()
       .pipe(config.vss('main.js'))
       .pipe(config.buffer())

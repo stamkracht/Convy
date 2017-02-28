@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import Adapter from '../adapter'
 
 export function openChat(id) {
   console.info('Open a conversation.');
@@ -58,4 +59,54 @@ export function setSwipeViewIndex(swipeViewId, swipeViewIndex, url_path) {
     swipeViewId,
     swipeViewIndex
   }
+}
+
+function requestContacts() {
+  return {
+    type: 'FETCH_CONTACTS',
+  }
+}
+
+function receiveContacts(contacts, status='success') {
+  return {
+    type: 'FETCH_CONTACTS',
+    receivedAt: Date.now(),
+    contacts,
+    status,
+  }
+}
+
+export function fetchContacts() {
+  return async function(dispatch, getState) {
+    dispatch(requestContacts());
+    console.log('Started fetching contacts');
+    const result = await Adapter.getContacts();
+    dispatch(receiveContacts(result.contacts))
+    console.log('Finished fetching contacts');
+  }
+}
+
+function requestChats() {
+    return {
+      type: 'FETCH_CHATS',
+    }
+}
+
+function receiveChats(chats, status='success') {
+    return {
+        type: 'FETCH_CHATS',
+        receivedAt: Date.now(),
+        chats,
+        status,
+    }
+}
+
+export function fetchChats() {
+    return async function(dispatch, getState) {
+        dispatch(requestChats());
+        console.log('Started fetching chats');
+        const result = await Adapter.getChats();
+        dispatch(receiveChats(result.chats))
+        console.log('Finished fetching chats');
+    }
 }

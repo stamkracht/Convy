@@ -1,68 +1,14 @@
 import React from 'react';
 
 import SwipeView from './scopes.swipe-view';
+import Adapter from '../adapter'
 import UserList from './scopes.user-list';
 import { connect } from 'react-redux';
-import { setSwipeViewIndex } from '../actions/actions';
+import { setSwipeViewIndex, fetchContacts, fetchChats } from '../actions/actions';
 
 class Main extends React.Component {
-  render() {
-    let chats = [
-      {
-        id: 1,
-        firstName: 'Joshua',
-        lastName: 'Torres',
-        lastMessage: 'Nam porttitor blandit accu...',
-        imageSource: 'http://placehold.it/50x50',
-        lastMessageDate: '17:03',
-        unreadMessagesLength: 7,
-      },
-      {
-        id: 2,
-        firstName: 'Vincent',
-        lastName: 'Gray',
-        lastMessage: 'Accusamus, ducimus hic qui...',
-        imageSource: 'http://placehold.it/50x50',
-        lastMessageDate: '17:03',
-        unreadMessagesLength: 4,
-      },
-      {
-        id: 3,
-        firstName: 'Marthia',
-        lastName: 'Diaz',
-        lastMessage: 'Cupiditate sit laudantium ...',
-        imageSource: 'http://placehold.it/50x50',
-        lastMessageDate: '17:03',
-        unreadMessagesLength: 2,
-      },
-    ];
 
-    let contacts = [
-      {
-        id: 4,
-        firstName: 'John',
-        lastName: 'Doe',
-        description: 'Frontend Developer',
-        imageSource: 'http://placehold.it/50x50',
-        lastSeenDate: '17:03',
-      },
-      {
-        id: 5,
-        firstName: 'Paul',
-        lastName: 'Graham',
-        description: 'Interaction Designer',
-        imageSource: 'http://placehold.it/50x50',
-        lastSeenDate: '17:03',
-      },
-      {
-        id: 6,
-        firstName: 'Shirley',
-        lastName: 'Reid',
-        description: 'Backend Developer',
-        imageSource: 'http://placehold.it/50x50',
-        lastSeenDate: '17:03',
-      },
-    ];
+  render() {
 
     return (
       <main className="s-main">
@@ -73,13 +19,13 @@ class Main extends React.Component {
         >
           <UserList
             listType={ 'chats' }
-            users={ chats }
+            users={ this.props.chatsState.chats }
             searchPlaceholder={ 'Search conversations' }
             emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
           />
           <UserList
             listType={ 'contacts' }
-            users={ contacts }
+            users={ this.props.contactsState.contacts }
             searchPlaceholder={ 'Search contacts' }
             emptyMessage={ 'Please wait for participants to join the platform.' }
           />
@@ -95,6 +41,9 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
+    this.props.fetchContacts();
+    this.props.fetchChats();
+
     // only handle urls that are not root page.
     if (this.props.params.swipeView) {
       this.handleUrl(this.props.params.swipeView)
@@ -116,14 +65,24 @@ const swipeViewUrls = [
   'contact-list'  // second child of SwipeView.
 ];
 
+const mapStateToProps = (state, ownProps) => {
+  return state;
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setSwipeViewIndex: (index) => {
       dispatch(setSwipeViewIndex(swipeViewId, index));
     },
+    fetchContacts: () => {
+      dispatch(fetchContacts())
+    },
+    fetchChats: () => {
+      dispatch(fetchChats())
+    }
   };
 };
 
-const MainConnect = connect(null, mapDispatchToProps)(Main);
+const MainConnect = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 export default MainConnect;

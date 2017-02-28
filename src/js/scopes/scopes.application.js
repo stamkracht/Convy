@@ -1,7 +1,9 @@
 import React from 'react';
 
 import AppBackground from '../components/components.app-background';
+import { connect } from 'react-redux';
 import Header from '../scopes/scopes.header';
+import Adapter from '../adapter'
 
 class Application extends React.Component {
   render() {
@@ -17,4 +19,15 @@ class Application extends React.Component {
   // functions.
 }
 
-export default Application;
+const mapStateToProps = (state, ownProps) => {
+  return {
+  };
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+  };
+};
+
+const ApplicationConnect = connect(mapStateToProps, mapDispatchToProps)(Application);
+
+export default ApplicationConnect;
