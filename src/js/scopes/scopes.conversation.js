@@ -26,10 +26,10 @@ class Conversation extends React.Component {
 
   render() {
     let view;
-    const loaded = this.state.chat;
+    const chat = this.props.chatsState.chats[this.state.chatId];
 
-    if(loaded) {
-      let group = this.state.chat.members.length > 2;
+    if(chat) {
+      let group = chat.members.length > 2;
       let groupNew = true;
       let groupName = 'We are TMNT';
       let groupImage = 'http://placehold.it/500x200';
@@ -41,8 +41,8 @@ class Conversation extends React.Component {
           groupImage={ groupImage }
           participants={ participants }
         />
-      } else if(this.state.contact) {
-          view = <Profile isRoot={false} user={this.state.contact} />
+      } else if(this.state.contactId && this.props.contactsState.contacts[this.state.contactId]) {
+          view = <Profile isRoot={false} user={this.props.contactsState.contacts[this.state.contactId]} />
       }
     }
 
@@ -51,7 +51,7 @@ class Conversation extends React.Component {
         <SwipeView
           swipeViewId={ swipeViewId }
         >
-          <Chat chat={this.state.chat}/>
+          <Chat chat={chat}/>
           { view }
           <Stats/>
         </SwipeView>
@@ -64,22 +64,22 @@ class Conversation extends React.Component {
       // Fetch the chat
       await this.props.fetchChat(this.props.params.chatId);
       const chat = this.props.chatsState.chats[this.props.params.chatId];
-      this.setState({chat});
+      this.setState({chatId: this.props.params.chatId});
       const contactId = this._getContactId(chat);
       if(!this.props.contactsState.contacts[contactId]) {
         // Fetch the contact
         await this.props.fetchContact(contactId);
       }
-      this.setState({contact: this.props.contactsState.contacts[contactId]})
+      this.setState({contactId})
     } else {
       const chat = this.props.chatsState.chats[this.props.params.chatId];
-      this.setState({chat});
+      this.setState({chatId: this.props.params.chatId});
       const contactId = this._getContactId(chat);
       if(!this.props.contactsState.contacts[contactId]) {
         // Fetch the contact
         await this.props.fetchContact(contactId);
       }
-      this.setState({contact: this.props.contactsState.contacts[contactId]})
+      this.setState({contactId})
     }
   }
 
