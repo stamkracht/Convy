@@ -31,7 +31,7 @@
 │   │   ├── register-service-worker.js
 │   │   ├── index.convy.js
 │   │   ├── store.js
-│   │   └── router.js
+│   │   └── route.js
 │   ├── font
 │   └── img
 └── dest

@@ -1,11 +1,3 @@
-function getRandom(list) {
-  return list[Math.floor(Math.random() * list.length)];
-}
-
-function getById(list, id) {
-  return list.filter((item) => item.id == id)[0]
-}
-
 class Adapter {
   constructor() {
     this.chatSubscribers = [];
@@ -88,9 +80,19 @@ class Adapter {
 
 export default Adapter;
 
+
+function getRandom(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function getById(list, id) {
+  return list.filter((item) => item.id == id)[0]
+}
+
+
 const me = { status: 'success', user: {
   id: 3,
-  firstname: 'Peter',
+  firstname: 'Peter II',
   lastname: 'Fox',
   headline: 'Lead Developer @ Stamkracht',
   image: 'https://profilepicture.jpg',

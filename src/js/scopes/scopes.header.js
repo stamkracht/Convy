@@ -3,8 +3,9 @@ import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { dynamicClassNames } from '../utillities';
+import { conditionalClasses as cc } from '../utillities';
 import actions from '../actions';
+import config from '../config'
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -61,13 +62,13 @@ class NavMain extends React.Component {
       <nav className="c-nav-main">
         <ul>
           <li><IndexLink
-            className={dynamicClassNames("c-nav-main__button", { 'state-active': this.props.swipeViewState['mainSwipeView'] == 0})}
+            className={cc({'c-nav-main__button': true, 'state-active': this.props.swipeViewState['mainSwipeView'] == 0})}
             onClick={() => this.props.setMainSwipeViewIndex(0)}
           >
             Chats
           </IndexLink></li>
           <li><Link
-            className={dynamicClassNames("c-nav-main__button", { 'state-active': this.props.swipeViewState['mainSwipeView'] == 1})}
+            className={cc({ 'c-nav-main__button': true, 'state-active': this.props.swipeViewState['mainSwipeView'] == 1})}
             onClick={() => this.props.setMainSwipeViewIndex(1)}
           >Contacts</Link></li>
         </ul>
@@ -83,7 +84,7 @@ class NavChat extends React.Component {
         <ul>
           <li>
             <Link
-              className={dynamicClassNames("c-nav-main__button c-nav-main__button--chat", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 0})}
+              className={cc({ 'c-nav-main__button c-nav-main__button--chat': true, 'state-active': this.props.swipeViewState['conversationSwipeView'] == 0})}
               onClick={() => this.props.setConversationSwipeViewIndex(0)}
             >
               <i className="icon-message"></i>
@@ -91,7 +92,7 @@ class NavChat extends React.Component {
           </li>
           <li>
             <Link
-              className={dynamicClassNames("c-nav-main__button c-nav-main__button--profile", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 1})}
+              className={cc({ 'c-nav-main__button c-nav-main__button--profile': true, 'state-active': this.props.swipeViewState['conversationSwipeView'] == 1})}
               onClick={() => this.props.setConversationSwipeViewIndex(1)}
               >
               <i className="icon-person"></i>
@@ -99,7 +100,7 @@ class NavChat extends React.Component {
           </li>
           <li>
             <Link
-              className={dynamicClassNames("c-nav-main__button c-nav-main__button--charts", { 'state-active': this.props.swipeViewState['conversationSwipeView'] == 2})}
+              className={cc({ 'c-nav-main__button c-nav-main__button--charts': true, 'state-active': this.props.swipeViewState['conversationSwipeView'] == 2})}
               onClick={() => this.props.setConversationSwipeViewIndex(2)}
               >
               <i className="icon-bar-chart"></i>
@@ -111,9 +112,7 @@ class NavChat extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return state;
-};
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions';
+import config from '../config'
 
 class SwipeView extends React.Component {
   constructor(props) {
@@ -123,7 +124,7 @@ SwipeView.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    swipeViewIndex: state.swipeViewState[ownProps.swipeViewId] || 0
+    swipeViewIndex: state[config.stateName].swipeViewState[ownProps.swipeViewId] || 0
   };
 };
 

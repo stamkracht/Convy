@@ -1,10 +1,10 @@
 import React from 'react';
 
 import SwipeView from './scopes.swipe-view';
-import Adapter from '../adapter'
 import UserList from './scopes.user-list';
 import { connect } from 'react-redux';
 import actions  from '../actions';
+import config from '../config';
 
 class Main extends React.Component {
 
@@ -58,7 +58,7 @@ class Main extends React.Component {
 
 const swipeViewId = 'mainSwipeView';
 
-const mapStateToProps = (state, ownProps) => state;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

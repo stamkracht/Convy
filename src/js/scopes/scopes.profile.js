@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ProfileSummary from '../components/components.profile-summary';
 import actions from '../actions'
+import config from '../config';
 
 class Profile extends React.Component {
   render() {
@@ -31,7 +32,7 @@ Profile.defaultProps = {
   isRoot: true
 };
 
-const mapStateToProps = (state, ownProps) => state;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

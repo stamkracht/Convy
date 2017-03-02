@@ -1,9 +1,8 @@
-export function dynamicClassNames(initial, dynamic) {
-  return Object.keys(dynamic).reduce((a, b) => {
-    if(dynamic[b]) {
-      return `${a} ${b}`
-    }
-    return a
-  }, initial)
+export function conditionalClasses(conditionalClasses) {
+  const classString = Object.keys(conditionalClasses).filter((key) =>
+    conditionalClasses[key]
+  ).join(" ");
+  return classString
 }
+
 

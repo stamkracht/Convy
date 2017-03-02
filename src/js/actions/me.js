@@ -1,4 +1,4 @@
-import Adapter from '../adapter'
+import config from '../config'
 
 
 function requestMe() {
@@ -20,7 +20,7 @@ export function fetchMe() {
   return async function(dispatch, getState) {
     dispatch(requestMe());
     console.log('Started fetching me');
-    const result = await Adapter.getMe();
+    const result = await config.adapter.getMe();
     dispatch(receiveMe(result.user))
     console.log('Finished fetching me');
   }

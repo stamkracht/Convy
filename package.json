@@ -1,6 +1,11 @@
 {
   "name": "convy",
   "version": "0.1.0",
+  "main": "lib/convy.js",
+  "scripts": {
+    "compile": "gulp build && babel -d lib/ src/js/",
+    "prepublish": "npm run compile"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2016": "^6.11.3",

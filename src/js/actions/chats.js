@@ -1,5 +1,4 @@
-import Adapter from '../adapter'
-import store from '../store'
+import config from '../config'
 
 function requestChats() {
   return {
@@ -32,8 +31,8 @@ function receiveChat(chat, status='success') {
 export function fetchChats() {
   return async function(dispatch, getState) {
     dispatch(requestChats());
-    const result = await Adapter.getChats();
-    const state = getState();
+    const result = await config.adapter.getChats();
+    const state = getState()[config.stateName];
     dispatch(receiveChats(result.chats.map((chat) => {
       return Object.assign({}, chat, { image: getChatImage(chat, state.meState.me.id )})
     })));
@@ -42,23 +41,19 @@ export function fetchChats() {
 
 export function fetchChat(id) {
   return async function(dispatch, getState) {
-    const result = await Adapter.getChat(id);
+    const result = await config.adapter.getChat(id);
     dispatch(receiveChat(result.chat))
   }
 }
 
-function chatCallback(id, update) {
-  store.dispatch({
+export function updateChat(id, update) {
+  return {
     type: 'UPDATE_CHAT',
     id,
     update,
-  })
+  }
 }
 
-export function subscribeToChats() {
-  Adapter.subscribeToChats(chatCallback);
-}
-
-export function unsubscribeToChats() {
-  Adapter.unsubscribeToChats(chatCallback);
+export function subscribeToChats(chatCallback) {
+  config.adapter.subscribeToChats(chatCallback);
 }

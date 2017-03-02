@@ -7,16 +7,9 @@ import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
 import { connect } from 'react-redux';
 import actions from '../actions';
-import Adapter from '../adapter'
+import config from '../config';
 
 class Conversation extends React.Component {
-
-  constructor() {
-    super()
-    this.state = {
-
-    }
-  }
 
   _getContactId(chat) {
     return chat.members.filter((member) =>
@@ -26,7 +19,8 @@ class Conversation extends React.Component {
 
   render() {
     let view;
-    const chat = this.props.chatsState.chats[this.state.chatId];
+
+    const chat = this.state && this.props.chatsState.chats[this.state.chatId];
 
     if(chat) {
       let group = chat.members.length > 2;
@@ -93,7 +87,7 @@ class Conversation extends React.Component {
 }
 
 const swipeViewId = 'conversationSwipeView';
-const mapStateToProps = (state, ownProps) => state;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

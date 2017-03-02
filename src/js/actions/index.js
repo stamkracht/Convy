@@ -1,6 +1,3 @@
-import { browserHistory } from 'react-router';
-import Adapter from '../adapter'
-import store from '../store'
 import * as chats from './chats'
 import * as contacts from './contacts'
 import * as me from './me'

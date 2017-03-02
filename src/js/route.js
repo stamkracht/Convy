@@ -5,14 +5,14 @@ import Application from './scopes/scopes.application';
 import Main from './scopes/scopes.main';
 import Conversation from './scopes/scopes.conversation';
 import Profile from './scopes/scopes.profile';
+import config from './config'
 
-export default (
-  <Router history={ browserHistory }>
-    <Route path="/" component={ Application }>
+export default () => {
+  return (
+    <Route path={ config.urlPrefix } component={ Application }>
       <IndexRoute component={ Main }/>
-      <Route path="conversation/:chatId(/:swipeView)" component={ Conversation }/>
+      <Route path="conversation/:chatId" component={ Conversation }/>
       <Route path="my-profile" component={ Profile }/>
-      <Route path="(:swipeView)" component={ Main }/>
     </Route>
-  </Router>
-);
+  );
+}
