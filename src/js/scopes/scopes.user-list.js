@@ -46,7 +46,14 @@ class UserList extends React.Component {
                   <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
                     <i className="icon-close"></i>
                   </button>
-                  <input className="c-input-group__field" type="text" autoFocus onKeyDown={ this.keyDownSearchInteraction.bind(this) } placeholder={ this.props.searchPlaceholder }/>
+                  <input
+                    className="c-input-group__field"
+                    type="text"
+                    placeholder={ this.props.searchPlaceholder }
+                    autoFocus
+                    onKeyDown={ this.keyDownSearchInteraction.bind(this) }
+                    onKeyUp={ this.keyUpSearchInteraction.bind(this) }
+                  />
                   <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
                 </article>
               </div>;
@@ -98,17 +105,14 @@ class UserList extends React.Component {
     let value = e.target.value,
         keyCode = e.keyCode;
 
-    // if input is empty, hide search on backspace or esc.
-    if (value === '') {
-      if (keyCode === 8 || keyCode === 27) {
-        this.hideSearch()
-      }
+    // if input is empty and user presses backspace or esc, hide search.
+    if (value === '' && keyCode === 8 || keyCode === 27) {
+      this.hideSearch()
     }
+  }
 
-    // on enter, submit search.
-    if (keyCode === 13) {
-      // @TODO: SUBMIT SEARCH FUNCTION HERE.
-    }
+  keyUpSearchInteraction() {
+    this.props.searchResults();
   }
 
   newGroupConversation() {
@@ -120,6 +124,7 @@ UserList.propTypes = {
   openChat: React.PropTypes.func,
   users: React.PropTypes.array,
   listType: React.PropTypes.string,
+  searchResults: React.PropTypes.func,
 };
 
 function renderUsers(props) {

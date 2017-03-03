@@ -76,12 +76,14 @@ class Main extends React.Component {
             users={ chats }
             searchPlaceholder={ 'Search conversations' }
             emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
+            searchResults={ () => { console.info('Show search results of the chats.'); } }
           />
           <UserList
             listType={ 'contacts' }
             users={ contacts }
             searchPlaceholder={ 'Search contacts' }
             emptyMessage={ 'Please wait for participants to join the platform.' }
+            searchResults={ () => { console.info('Show search results of the contacts.'); } }
           />
         </SwipeView>
       </main>
