@@ -46,7 +46,7 @@ class UserList extends React.Component {
                   <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
                     <i className="icon-close"></i>
                   </button>
-                  <input className="c-input-group__field" type="text" placeholder={ this.props.searchPlaceholder }/>
+                  <input className="c-input-group__field" type="text" autoFocus onKeyDown={ this.keyDownSearchInteraction.bind(this) } placeholder={ this.props.searchPlaceholder }/>
                   <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
                 </article>
               </div>;
@@ -92,6 +92,23 @@ class UserList extends React.Component {
     this.setState({
       search: false,
     });
+  }
+
+  keyDownSearchInteraction(e) {
+    let value = e.target.value,
+        keyCode = e.keyCode;
+
+    // if input is empty, hide search on backspace or esc.
+    if (value === '') {
+      if (keyCode === 8 || keyCode === 27) {
+        this.hideSearch()
+      }
+    }
+
+    // on enter, submit search.
+    if (keyCode === 13) {
+      // @TODO: SUBMIT SEARCH FUNCTION HERE.
+    }
   }
 
   newGroupConversation() {
