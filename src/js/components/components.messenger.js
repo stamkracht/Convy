@@ -1,30 +1,21 @@
 import React from 'react';
 
 class Messenger extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showAttachment: false,
-      inputHeight: 50,
-    };
-  }
-
   render() {
-    let messengerAttachmentClass = `c-messenger__attachment ${this.state.showAttachment ? 'state-active' : ''}`;
+    let messengerAttachmentClass = `c-messenger__attachment ${ this.props.showAttachment ? 'state-active' : '' }`;
 
-    let inputHeight = { height: `${ this.state.inputHeight }px` };
+    let inputHeight = { height: `${ this.props.messengerHeight }px` };
 
     return (
       <article className="c-messenger" style={ inputHeight }>
-        <button className={ messengerAttachmentClass } onClick={ this.toggleAttachment.bind(this) }>
+        <button className={ messengerAttachmentClass } onClick={ this.props.toggleAttachment }>
           <i className="icon-add-circle-outline"></i>
         </button>
 
         <textarea
           style={ inputHeight }
           placeholder="Share knowledge"
-          onKeyUp={ this.keyUpInteraction.bind(this) }
+          onKeyUp={ this.props.keyUpInteraction }
         ></textarea>
 
         <button className="c-messenger__submit">
@@ -32,30 +23,6 @@ class Messenger extends React.Component {
         </button>
       </article>
     );
-  }
-
-  toggleAttachment() {
-    this.setState({
-      showAttachment: !this.state.showAttachment
-    });
-  }
-
-  keyUpInteraction(e) {
-    let self = this;
-    e.persist();
-
-    setTimeout(function(){
-      self.setState({
-        inputHeight: 50,
-      });
-
-      console.info('input scroll-height: ', e.target.scrollHeight);
-      let scrollHeight = e.target.scrollHeight;
-
-      self.setState({
-        inputHeight: scrollHeight,
-      });
-    }, 0);
   }
 }
 
