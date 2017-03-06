@@ -14,9 +14,11 @@ class Chat extends React.Component {
   }
 
   render() {
+    let chatOutputStyles = { height: `calc(100vh - ${ this.state.messengerHeight + 20 }px` };
+
     return (
       <section className="s-chat">
-        <div className="s-chat__output">
+        <div className="s-chat__output" style={ chatOutputStyles }>
           <BlockChat/>
         </div>
 
