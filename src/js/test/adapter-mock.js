@@ -95,7 +95,7 @@ const me = { status: 'success', user: {
   firstname: 'Peter II',
   lastname: 'Fox',
   headline: 'Lead Developer @ Stamkracht',
-  image: 'https://profilepicture.jpg',
+  image: 'http://lorempixel.com/300/300/business/',
   email: 'example@example.org',
   phone: '0987654321',
   twitterHandle: 'everybodylovesmartha',
@@ -116,12 +116,12 @@ const chats = { status: 'success', chats: [
       {
         id: 2,
         name: 'John Graham',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       },
       {
         id: 3,
         name: 'Peter Fox',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       }
     ],
     lastMessage: 'Ik kan er maar niet aan wennen',
@@ -131,17 +131,17 @@ const chats = { status: 'success', chats: [
   {
     id: 2,
     title: 'A horror story',
-    image: 'http://placehold.it/50x50',
+    image: 'http://lorempixel.com/300/300/business/',
     members: [
       {
         id: 1,
         name: 'George Best',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       },
       {
         id: 3,
         name: 'Peter Fox',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       }
     ],
     lastMessage: 'Ik kan er maar niet aan vastzitten',
@@ -151,22 +151,22 @@ const chats = { status: 'success', chats: [
   {
     id: 3,
     title: 'A triangular story',
-    image: 'http://placehold.it/50x50',
+    image: 'http://lorempixel.com/300/300/business/',
     members: [
       {
         id: 1,
         name: 'George Best',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       },
       {
         id: 2,
         name: 'John Graham',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       },
       {
         id: 3,
         name: 'Peter Fox',
-        image: 'http://placehold.it/50x50',
+        image: 'http://lorempixel.com/300/300/business/',
       }
     ],
     lastMessage: 'Samen',
@@ -181,7 +181,7 @@ const contacts = { status: 'success', contacts: [
     firstname: 'John',
     lastname: 'Graham',
     headline: 'Lead Developer @ Stamkracht',
-    image: 'https://profilepicture.jpg',
+    image: 'http://lorempixel.com/300/300/business/',
     email: 'example@example.org',
     phone: '0987654321',
     twitterHandle: 'everybodylovesmartha',
@@ -198,7 +198,7 @@ const contacts = { status: 'success', contacts: [
     firstname: 'George',
     lastname: 'Best',
     headline: 'Lead Developer @ Stamkracht',
-    image: 'https://profilepicture.jpg',
+    image: 'http://lorempixel.com/300/300/business/',
     email: 'example@example.org',
     phone: '0987654321',
     twitterHandle: 'everybodylovesmartha',

@@ -7,17 +7,17 @@ class ProfileSummary extends React.Component {
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__img">
-          <img src="http://lorempixel.com/300/300/business/"/>
+          <img src={ user.image }/>
         </article>
 
         <article className="c-profile-summary__info">
-          <p className="c-profile-summary__data">last seen 18:08</p>
+          <p className="c-profile-summary__data">last seen { user.lastSeenAt }</p>
           <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
           <h2 className="c-profile-summary__function">{ user.headline }</h2>
 
           <ul className="c-profile-summary__contact">
-            <li><a href="#">{ user.email }</a></li>
-            <li><a href="#">{ user.phone }</a></li>
+            <li>{ this.renderEmail(user.email) }</li>
+            <li>{ this.renderPhone(user.phone) }</li>
             <li>{ this.renderTwitterHandle(user.twitterHandle) }</li>
           </ul>
 
@@ -52,10 +52,19 @@ class ProfileSummary extends React.Component {
     );
   }
 
+  renderEmail(email) {
+    const url = `mailto:${ email }`;
+    return (<a href={ url }>{ email }</a>);
+  }
+
+  renderPhone(phone) {
+    const url = `tel:${ phone }`;
+    return (<a href={ url }>{ phone }</a>);
+  }
+
   renderTwitterHandle(twitterHandle) {
     const url = `https://twitter.com/${ twitterHandle }`;
-
-    return (<a href={ url }>twitter.com/{ twitterHandle }</a>);
+    return (<a href={ url } target="_blank">twitter.com/{ twitterHandle }</a>);
   }
 }
 
