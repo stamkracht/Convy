@@ -131,7 +131,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setSwipeViewIndex: (index) => {
-      dispatch(actions.swiper.setSwipeViewIndex(ownProps.swipeViewId, index));
+      dispatch(actions.swipeView.setSwipeViewIndex(ownProps.swipeViewId, index));
     },
   };
 };

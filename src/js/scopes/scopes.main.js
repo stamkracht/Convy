@@ -10,9 +10,7 @@ class Main extends React.Component {
   render() {
     return (
       <main className="s-main">
-        <SwipeView
-          swipeViewId={ swipeViewId }
-        >
+        <SwipeView swipeViewId={ swipeViewId }>
           <UserList
             listType={ 'chats' }
             users={ this.getChatList() }
@@ -61,7 +59,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setSwipeViewIndex: (index) => {
-      dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index));
+      dispatch(actions.swipeView.setSwipeViewIndex(swipeViewId, index));
     },
     fetchContacts: () => {
       dispatch(actions.contacts.fetchContacts())

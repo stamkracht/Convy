@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchChat: (id) => dispatch(actions.chats.fetchChat(id)),
     fetchContact: (id) => dispatch(actions.contacts.fetchContact(id)),
-    setSwipeViewIndex: (index) => dispatch(actions.swiper.setSwipeViewIndex(swipeViewId, index)),
+    setSwipeViewIndex: (index) => dispatch(actions.swipeView.setSwipeViewIndex(swipeViewId, index)),
     setChatHeader: () => dispatch(actions.header.setMode('CHAT')),
   };
 };

@@ -121,11 +121,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     setMainSwipeViewIndex: (index) => {
-      dispatch(actions.swiper.setSwipeViewIndex('mainSwipeView', index));
+      dispatch(actions.swipeView.setSwipeViewIndex('mainSwipeView', index));
     },
 
     setConversationSwipeViewIndex: (index) => {
-      dispatch(actions.swiper.setSwipeViewIndex('conversationSwipeView', index));
+      dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', index));
     },
   };
 };
