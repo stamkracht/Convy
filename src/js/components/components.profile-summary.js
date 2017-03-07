@@ -1,14 +1,6 @@
 import React from 'react';
 
 class ProfileSummary extends React.Component {
-
-  _renderTwitterHandle(twitterHandle) {
-    const url = `https://twitter.com/${twitterHandle}`;
-    return (
-      <a href={url}>twitter.com/{twitterHandle}</a>
-    )
-  }
-
   render() {
     const user = this.props.user;
 
@@ -20,19 +12,19 @@ class ProfileSummary extends React.Component {
 
         <article className="c-profile-summary__info">
           <p className="c-profile-summary__data">last seen 18:08</p>
-          <h1 className="c-profile-summary__name">{user.firstname} {user.lastname}</h1>
-          <h2 className="c-profile-summary__function">{user.headline}</h2>
+          <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
+          <h2 className="c-profile-summary__function">{ user.headline }</h2>
 
           <ul className="c-profile-summary__contact">
-            <li><a href="#">{user.email}</a></li>
-            <li><a href="#">{user.phone}</a></li>
-            <li>{this._renderTwitterHandle(user.twitterHandle)}</li>
+            <li><a href="#">{ user.email }</a></li>
+            <li><a href="#">{ user.phone }</a></li>
+            <li>{ this.renderTwitterHandle(user.twitterHandle) }</li>
           </ul>
 
           <ul className="c-profile-summary__location">
-            <li>{user.location.address}</li>
-            <li>{user.location.zipcode}, {user.location.city}</li>
-            <li>{user.location.country}</li>
+            <li>{ user.location.address }</li>
+            <li>{ user.location.zipcode }, { user.location.city }</li>
+            <li>{ user.location.country }</li>
           </ul>
         </article>
 
@@ -60,7 +52,11 @@ class ProfileSummary extends React.Component {
     );
   }
 
-  // functions.
+  renderTwitterHandle(twitterHandle) {
+    const url = `https://twitter.com/${ twitterHandle }`;
+
+    return (<a href={ url }>twitter.com/{ twitterHandle }</a>);
+  }
 }
 
 export default ProfileSummary

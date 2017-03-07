@@ -1,27 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import config from '../config';
+import actions  from '../actions';
 import SwipeView from './scopes.swipe-view';
 import UserList from './scopes.user-list';
-import { connect } from 'react-redux';
-import actions  from '../actions';
-import config from '../config';
 
 class Main extends React.Component {
-
-  _getChatList() {
-    return this.props.chatsState.chatList.map((id) =>
-      this.props.chatsState.chats[id]
-    )
-  }
-
-  _getContactList() {
-    return this.props.contactsState.contactList.map((id) =>
-      this.props.contactsState.contacts[id]
-    )
-  }
-
   render() {
-
     return (
       <main className="s-main">
         <SwipeView
@@ -29,13 +15,13 @@ class Main extends React.Component {
         >
           <UserList
             listType={ 'chats' }
-            users={ this._getChatList() }
+            users={ this.getChatList() }
             searchPlaceholder={ 'Search conversations' }
             emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
           />
           <UserList
             listType={ 'contacts' }
-            users={ this._getContactList() }
+            users={ this.getContactList() }
             searchPlaceholder={ 'Search contacts' }
             emptyMessage={ 'Please wait for participants to join the platform.' }
           />
@@ -52,6 +38,18 @@ class Main extends React.Component {
     if (!this.props.chatsState.receivedAt) {
       this.props.fetchChats();
     }
+  }
+
+  getChatList() {
+    return this.props.chatsState.chatList.map((id) =>
+      this.props.chatsState.chats[id]
+    )
+  }
+
+  getContactList() {
+    return this.props.contactsState.contactList.map((id) =>
+      this.props.contactsState.contacts[id]
+    )
   }
 
 }
