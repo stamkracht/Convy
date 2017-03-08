@@ -3,39 +3,41 @@ import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { conditionalClass } from '../utillities';
+import config from '../config';
 import actions from '../actions';
-import config from '../config'
+import { conditionalClass } from '../utillities';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
   render() {
+    const header = conditionalClass({
+      's-header': true,
+      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
+    });
+
+    const logo = conditionalClass({
+      'logo': true,
+      'state-active': this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE',
+    });
+
+    const backButton = conditionalClass({
+      'back-button': true,
+      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
+    });
+
     let navigation;
-    let headerClass;
-    let logoClass;
-    let backButtonClass;
 
     if (this.props.headerState.mode == 'CHAT') {
       navigation = <NavChat { ...this.props } key="nav-chat"/>;
-      headerClass = 's-header state-active';
-      logoClass = 'logo';
-      backButtonClass = 'back-button state-active';
-    } else if (this.props.headerState.mode == 'PROFILE') {
-      headerClass = 's-header state-active';
-      logoClass = 'logo';
-      backButtonClass = 'back-button state-active';
     } else {
       navigation = <NavMain { ...this.props } key="nav-main"/>;
-      headerClass = 's-header';
-      logoClass = 'logo state-active';
-      backButtonClass = 'back-button';
     }
 
     return (
-      <header className={ headerClass }>
+      <header className={ header }>
         <div className="icon">
-          <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ backButtonClass }>
+          <img className={ logo } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <Link to="/" className={ backButton }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -50,7 +52,7 @@ class Header extends React.Component {
           { navigation }
         </ReactCSSTransitionGroup>
 
-        <NavMore active={this.props.headerState.navMoreActive} toggle={this.props.toggleNavMore}/>
+        <NavMore active={ this.props.headerState.navMoreActive } toggle={ this.props.toggleNavMore }/>
       </header>
     );
   }

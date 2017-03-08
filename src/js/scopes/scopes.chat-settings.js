@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { conditionalClass } from '../utillities';
 import BlockUser from '../components/components.block-user';
 
 class ChatSettings extends React.Component {
@@ -12,19 +13,21 @@ class ChatSettings extends React.Component {
   }
 
   render() {
+    const chatSettings = conditionalClass({
+      's-chat-settings': true,
+      'state-new': this.props.groupNew,
+    });
+
     let groupName,
         participants,
         heading,
         icon,
         styles,
-        input,
-        chatSettingsClass;
+        input;
 
     groupName = this.props.groupName ? this.props.groupName : 'Group name';
 
     participants = renderParticipants(this.props);
-
-    chatSettingsClass = this.props.groupNew ? 's-chat-settings state-new' : 's-chat-settings';
 
     if (this.props.participants.length === 0) {
       heading = 'Tap on the right icon above to start add participants.';
@@ -51,7 +54,7 @@ class ChatSettings extends React.Component {
     }
 
     return (
-      <section className={ chatSettingsClass }>
+      <section className={ chatSettings }>
         <div className="s-chat-settings__inner">
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
