@@ -1,8 +1,7 @@
-export function conditionalClasses(conditionalClasses) {
-  const classString = Object.keys(conditionalClasses).filter((key) =>
-    conditionalClasses[key]
-  ).join(" ");
-  return classString
+export function conditionalClass(conditionalClass) {
+  const classString = Object.keys(conditionalClass).filter((key) =>
+    conditionalClass[key]
+  ).join(' ');
+
+  return classString;
 }
-
-

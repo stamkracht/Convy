@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import { conditionalClasses as cc } from '../utillities'
+import { conditionalClass } from '../utillities'
 
 class NavMore extends React.Component {
   render() {
-    let dropdownClass = cc({
+    const dropdown = conditionalClass({
       'c-nav-more__dropdown': true,
       'state-active': this.props.active
-    })
+    });
 
     return (
       <nav className="c-nav-more">
@@ -16,7 +16,7 @@ class NavMore extends React.Component {
           <i className="icon-more"></i>
         </button>
 
-        <ul className={ dropdownClass }>
+        <ul className={ dropdown }>
           <li>
             <Link to="my-profile">
               <i className="icon-person-outline"></i>Profile
