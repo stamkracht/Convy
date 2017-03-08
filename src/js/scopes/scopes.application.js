@@ -29,6 +29,7 @@ class Application extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),

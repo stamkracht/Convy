@@ -1,5 +1,5 @@
-import convyReducers from './reducers'
-import convyRoute from './route'
-import convyConfig from './config'
+import convyReducers from './reducers';
+import convyRoute from './route';
+import convyConfig from './config';
 
-export { convyRoute, convyReducers, convyConfig }
+export { convyRoute, convyReducers, convyConfig };

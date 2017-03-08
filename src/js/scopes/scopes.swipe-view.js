@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+import config from '../config';
 import actions from '../actions';
-import config from '../config'
 
 class SwipeView extends React.Component {
   constructor(props) {
@@ -39,11 +40,12 @@ class SwipeView extends React.Component {
     }
 
     return (
-      <div className="s-swipe-view"
-           style={ styles }
-           onTouchStart={ this.startSwipe.bind(this) }
-           onTouchMove={ this.moveSwipe.bind(this) }
-           onTouchEnd={ this.endSwipe.bind(this) }
+      <div
+        className="s-swipe-view"
+        style={ styles }
+        onTouchStart={ this.startSwipe.bind(this) }
+        onTouchMove={ this.moveSwipe.bind(this) }
+        onTouchEnd={ this.endSwipe.bind(this) }
       >
         { this.props.children }
       </div>
@@ -109,8 +111,8 @@ class SwipeView extends React.Component {
       offset,
       currentIndex
     }, () => {
-      if(oldIndex != currentIndex) {
-        // Set the redux state
+      if (oldIndex != currentIndex) {
+        // set the redux state.
         this.props.setSwipeViewIndex(currentIndex)
       }
     })

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import config from './config';
 import Application from './scopes/scopes.application';
 import Main from './scopes/scopes.main';
 import Conversation from './scopes/scopes.conversation';
 import Profile from './scopes/scopes.profile';
-import config from './config'
 
 export default () => {
   return (

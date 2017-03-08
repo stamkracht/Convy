@@ -1,4 +1,4 @@
-import Adapter from './test/adapter-mock'
+import Adapter from './test/adapter-mock';
 
 class Config {
   constructor() {
@@ -8,4 +8,4 @@ class Config {
   }
 }
 
-export default new Config()
+export default new Config();
