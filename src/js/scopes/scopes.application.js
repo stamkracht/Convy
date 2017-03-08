@@ -1,10 +1,10 @@
 import React from 'react';
-
-import AppBackground from '../components/components.app-background';
 import { connect } from 'react-redux';
+
+import config from '../config';
+import actions from '../actions';
 import Header from '../scopes/scopes.header';
-import actions from '../actions'
-import config from '../config'
+import AppBackground from '../components/components.app-background';
 
 class Application extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import { conditionalClass } from '../utillities'
+import { conditionalClass } from '../utillities';
 
 class NavMore extends React.Component {
   render() {
