@@ -8,7 +8,8 @@
 .c-messenger {
   position: relative;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
+  max-height: 96px;
   box-shadow: 0px 0px 10px 2px rgba($black-100, 0.15);
   background: $white;
 }
@@ -31,13 +32,14 @@
 
 .c-messenger textarea {
   position: absolute;
-  top: 13px;
+  top: 0;
   left: 40px;
   resize: none;
   width: calc(100% - 80px);
-  height: 24px;
+  min-height: 50px;
+  max-height: 96px;
   border: 0;
-  padding: 0;
+  padding: 12px 0;
   background: transparent;
 }
 

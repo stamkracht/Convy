@@ -46,7 +46,14 @@ class UserList extends React.Component {
                   <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
                     <i className="icon-close"></i>
                   </button>
-                  <input className="c-input-group__field" type="text" placeholder={ this.props.searchPlaceholder }/>
+                  <input
+                    className="c-input-group__field"
+                    type="text"
+                    placeholder={ this.props.searchPlaceholder }
+                    autoFocus
+                    onKeyDown={ this.keyDownSearchInteraction.bind(this) }
+                    onKeyUp={ this.keyUpSearchInteraction.bind(this) }
+                  />
                   <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
                 </article>
               </div>;
@@ -94,6 +101,20 @@ class UserList extends React.Component {
     });
   }
 
+  keyDownSearchInteraction(e) {
+    let value = e.target.value,
+        keyCode = e.keyCode;
+
+    // if input is empty and user presses backspace or esc, hide search.
+    if (value === '' && keyCode === 8 || keyCode === 27) {
+      this.hideSearch()
+    }
+  }
+
+  keyUpSearchInteraction() {
+    this.props.searchResults();
+  }
+
   newGroupConversation() {
     console.info('Start new group conversation.');
   }
@@ -103,6 +124,7 @@ UserList.propTypes = {
   openChat: React.PropTypes.func,
   users: React.PropTypes.array,
   listType: React.PropTypes.string,
+  searchResults: React.PropTypes.func,
 };
 
 function renderUsers(props) {

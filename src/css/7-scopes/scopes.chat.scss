@@ -12,6 +12,7 @@
 
 .s-chat__output {
   overflow-y: auto;
+  min-height: calc(100vh - 116px);
   max-height: calc(100vh - 70px);
   padding-top: 75px;
 }
