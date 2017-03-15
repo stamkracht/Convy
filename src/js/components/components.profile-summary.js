@@ -2,27 +2,29 @@ import React from 'react';
 
 class ProfileSummary extends React.Component {
   render() {
+    const user = this.props.user;
+
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__img">
-          <img src="http://lorempixel.com/300/300/business/"/>
+          <img src={ user.image }/>
         </article>
 
         <article className="c-profile-summary__info">
-          <p className="c-profile-summary__data">last seen 18:08</p>
-          <h1 className="c-profile-summary__name">Martha Diaz</h1>
-          <h2 className="c-profile-summary__function">Lead Developer at Stamkracht</h2>
+          <p className="c-profile-summary__data">last seen { user.lastSeenAt }</p>
+          <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
+          <h2 className="c-profile-summary__function">{ user.headline }</h2>
 
           <ul className="c-profile-summary__contact">
-            <li><a href="#">martha@stamkracht.com</a></li>
-            <li><a href="#">+316 1234 5678</a></li>
-            <li><a href="https://twitter.com/everybodylovesmartha">twitter.com/everybodylovesmartha</a></li>
+            <li>{ this.renderEmail(user.email) }</li>
+            <li>{ this.renderPhone(user.phone) }</li>
+            <li>{ this.renderTwitterHandle(user.twitterHandle) }</li>
           </ul>
 
           <ul className="c-profile-summary__location">
-            <li>Oostenburgervoorstraat 72</li>
-            <li>1018MR, Amsterdam</li>
-            <li>Nederland</li>
+            <li>{ user.location.address }</li>
+            <li>{ user.location.zipcode }, { user.location.city }</li>
+            <li>{ user.location.country }</li>
           </ul>
         </article>
 
@@ -50,7 +52,20 @@ class ProfileSummary extends React.Component {
     );
   }
 
-  // functions.
+  renderEmail(email) {
+    const url = `mailto:${ email }`;
+    return (<a href={ url }>{ email }</a>);
+  }
+
+  renderPhone(phone) {
+    const url = `tel:${ phone }`;
+    return (<a href={ url }>{ phone }</a>);
+  }
+
+  renderTwitterHandle(twitterHandle) {
+    const url = `https://twitter.com/${ twitterHandle }`;
+    return (<a href={ url } target="_blank">twitter.com/{ twitterHandle }</a>);
+  }
 }
 
 export default ProfileSummary

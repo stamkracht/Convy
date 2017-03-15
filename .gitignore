@@ -24,4 +24,5 @@ node_modules
 # Compiled files #
 ######################
 dest/
+lib/
 kss_styleguide/styleguide/

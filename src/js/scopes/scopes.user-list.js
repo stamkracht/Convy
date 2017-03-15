@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { openChat } from '../actions/actions';
+import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
 class UserList extends React.Component {
@@ -132,14 +132,14 @@ function renderUsers(props) {
     return props.users.map((user, index) => (
       <BlockUser
         key={ index }
+        id={ user.id}
         name={ user.firstName }
         description={ user.description }
         lastMessage={ user.lastMessage }
-        imageSource={ user.imageSource }
-        lastSeenDate={ user.lastSeenDate }
-        lastMessageDate={ user.lastMessageDate }
-        unreadMessagesLength={ user.unreadMessagesLength }
-        openChat={ () => props.openChat(user.id) }
+        image={ user.image }
+        lastSeenAt={ user.lastSeenAt }
+        lastMessageAt={ user.lastMessageAt }
+        unreadMessagesCount={ user.unreadMessagesCount }
       />
     ));
   }
@@ -150,7 +150,7 @@ function renderUsers(props) {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     openChat: (id) => {
-      dispatch(openChat(id));
+      dispatch(actions.header.openChat(id));
     },
   };
 };

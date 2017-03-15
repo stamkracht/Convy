@@ -10,4 +10,4 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-else { console.info('Navigator does not support the feature serviceWorker.') }
+else { console.info('Navigator does not support the feature serviceWorker.'); }

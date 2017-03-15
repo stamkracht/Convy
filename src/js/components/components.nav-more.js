@@ -1,19 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { conditionalClass } from '../utillities';
+
 class NavMore extends React.Component {
   render() {
-    let dropdownClass = `c-nav-more__dropdown ${this.props.navMoreActive ? 'state-active' : ''}`;
+    const dropdown = conditionalClass({
+      'c-nav-more__dropdown': true,
+      'state-active': this.props.active
+    });
 
     return (
       <nav className="c-nav-more">
-        <button className="c-nav-more__button" onClick={ this.props.toggleNavMore }>
+        <button className="c-nav-more__button" onClick={ this.props.toggle }>
           <i className="icon-more"></i>
         </button>
 
-        <ul className={ dropdownClass }>
+        <ul className={ dropdown }>
           <li>
-            <Link to="/my-profile" onClick={ this.props.openMyProfile }>
+            <Link to="my-profile">
               <i className="icon-person-outline"></i>Profile
             </Link>
           </li>

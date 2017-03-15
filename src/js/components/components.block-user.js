@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
+import 'moment/locale/nl';
 
 class BlockUser extends React.Component {
   render() {
     return (
-      <Link to="/conversation" className="c-block-user" onClick={ this.props.openChat } key={ this.props.id }>
+      <Link to={`conversation/${this.props.id}`} className="c-block-user" key={ this.props.id }>
         <span className="circle"></span>
 
         <ul className="c-block-user__data">
@@ -13,7 +15,7 @@ class BlockUser extends React.Component {
 
         <div className="o-flag">
           <div className="c-block-user__image o-flag__img">
-            <img src={ this.props.imageSource } alt="User name" width="50" height="50"/>
+            <img src={ this.props.image } alt="User name" width="50" height="50"/>
           </div>
 
           <div className="c-block-user__content o-flag__body">
@@ -28,16 +30,16 @@ class BlockUser extends React.Component {
   renderBlockUserData() {
     let data = [];
 
-    if (this.props.unreadMessagesLength) {
-      data.push(<li key="counter" className="message-count">{this.props.unreadMessagesLength} new messages</li>);
+    if (this.props.unreadMessagesCount) {
+      data.push(<li key="counter" className="message-count">{this.props.unreadMessagesCount} new messages</li>);
     }
 
     if (this.props.lastMessage) {
-      data.push(<li key="last-message">{this.props.lastMessageDate}</li>);
+      data.push(<li key="last-message">{moment(this.props.lastMessageAt).fromNow()}</li>);
     }
 
-    else if (this.props.lastSeenDate) {
-      data.push(<li key="last-seen">{ this.props.lastSeenDate }</li>);
+    else if (this.props.lastSeenAt) {
+      data.push(<li key="last-seen">{moment(this.props.lastSeenAt).fromNow()}</li>);
     }
 
     return data;

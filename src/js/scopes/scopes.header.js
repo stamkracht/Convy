@@ -3,37 +3,41 @@ import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { closeChat, openMyProfile, closeMyProfile, toggleNavMore } from '../actions/actions';
+import config from '../config';
+import actions from '../actions';
+import { conditionalClass } from '../utillities';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
   render() {
-    let navigation;
-    let headerClass;
-    let logoClass;
-    let backButtonClass;
+    const header = conditionalClass({
+      's-header': true,
+      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
+    });
 
-    if (this.props.chatActive) {
+    const logo = conditionalClass({
+      'logo': true,
+      'state-active': this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE',
+    });
+
+    const backButton = conditionalClass({
+      'back-button': true,
+      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
+    });
+
+    let navigation;
+
+    if (this.props.headerState.mode == 'CHAT') {
       navigation = <NavChat { ...this.props } key="nav-chat"/>;
-      headerClass = 's-header state-active';
-      logoClass = 'logo';
-      backButtonClass = 'back-button state-active';
-    } else if (this.props.myProfileActive) {
-      headerClass = 's-header state-active';
-      logoClass = 'logo';
-      backButtonClass = 'back-button state-active';
     } else {
       navigation = <NavMain { ...this.props } key="nav-main"/>;
-      headerClass = 's-header';
-      logoClass = 'logo state-active';
-      backButtonClass = 'back-button';
     }
 
     return (
-      <header className={ headerClass }>
+      <header className={ header }>
         <div className="icon">
-          <img className={ logoClass } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ backButtonClass } onClick={ this.props.closeOverlayNav }>
+          <img className={ logo } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <Link to="/" className={ backButton }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -48,7 +52,7 @@ class Header extends React.Component {
           { navigation }
         </ReactCSSTransitionGroup>
 
-        <NavMore { ...this.props }/>
+        <NavMore active={ this.props.headerState.navMoreActive } toggle={ this.props.toggleNavMore }/>
       </header>
     );
   }
@@ -56,11 +60,29 @@ class Header extends React.Component {
 
 class NavMain extends React.Component {
   render() {
+    const navMainItem1 = conditionalClass({
+      'c-nav-main__button': true,
+      'state-active': this.props.swipeViewState['mainSwipeView'] == 0,
+    });
+
+    const navMainItem2 = conditionalClass({
+      'c-nav-main__button': true,
+      'state-active': this.props.swipeViewState['mainSwipeView'] == 1,
+    });
+
     return (
       <nav className="c-nav-main">
         <ul>
-          <li><IndexLink className="c-nav-main__button" to="/" activeClassName="state-active">Chats</IndexLink></li>
-          <li><Link className="c-nav-main__button" to="contact-list" activeClassName="state-active">Contacts</Link></li>
+          <li>
+            <IndexLink className={ navMainItem1 } onClick={ () => this.props.setMainSwipeViewIndex(0) }>
+              Chats
+            </IndexLink>
+          </li>
+          <li>
+            <Link className={ navMainItem2 } onClick={ () => this.props.setMainSwipeViewIndex(1) }>
+              Contacts
+            </Link>
+          </li>
         </ul>
       </nav>
     );
@@ -69,21 +91,36 @@ class NavMain extends React.Component {
 
 class NavChat extends React.Component {
   render() {
+    const navChatItem1 = conditionalClass({
+      'c-nav-main__button c-nav-main__button--chat': true,
+      'state-active': this.props.swipeViewState['conversationSwipeView'] == 0,
+    });
+
+    const navChatItem2 = conditionalClass({
+      'c-nav-main__button c-nav-main__button--profile': true,
+      'state-active': this.props.swipeViewState['conversationSwipeView'] == 1,
+    });
+
+    const navChatItem3 = conditionalClass({
+      'c-nav-main__button c-nav-main__button--charts': true,
+      'state-active': this.props.swipeViewState['conversationSwipeView'] == 2,
+    });
+
     return (
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <Link to="/conversation" className="c-nav-main__button c-nav-main__button--chat" activeClassName="state-active">
+            <Link className={ navChatItem1 } onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
               <i className="icon-message"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/profile"  className="c-nav-main__button c-nav-main__button--profile" activeClassName="state-active">
+            <Link className={ navChatItem2 } onClick={ () => this.props.setConversationSwipeViewIndex(1) }>
               <i className="icon-person"></i>
             </Link>
           </li>
           <li>
-            <Link to="/conversation/stats" className="c-nav-main__button c-nav-main__button--charts" activeClassName="state-active">
+            <Link className={ navChatItem3 } onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
               <i className="icon-bar-chart"></i>
             </Link>
           </li>
@@ -93,23 +130,20 @@ class NavChat extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return state.headerState;
-};
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    closeOverlayNav: () => {
-      dispatch(closeChat());
-      dispatch(closeMyProfile());
-    },
-
-    openMyProfile: () => {
-      dispatch(openMyProfile());
-    },
-
     toggleNavMore: () => {
-      dispatch(toggleNavMore());
+      dispatch(actions.header.toggleNavMore());
+    },
+
+    setMainSwipeViewIndex: (index) => {
+      dispatch(actions.swipeView.setSwipeViewIndex('mainSwipeView', index));
+    },
+
+    setConversationSwipeViewIndex: (index) => {
+      dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', index));
     },
   };
 };
