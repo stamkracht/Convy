@@ -97,7 +97,7 @@ const me = {
     firstname: 'Peter II',
     lastname: 'Fox',
     headline: 'Lead Developer @ Stamkracht',
-    image: 'http://lorempixel.com/300/300/business/',
+    image: 'http://lorempixel.com/500/500/business/',
     email: 'example@example.org',
     phone: '0987654321',
     twitterHandle: 'everybodylovesmartha',
@@ -106,7 +106,8 @@ const me = {
       zipcode: '1018 MR',
       city: 'Amsterdam',
       country: 'Nederland',
-    }
+    },
+    lastSeenAt: '2017-02-25T17:37:53.227Z',
   }
 };
 
