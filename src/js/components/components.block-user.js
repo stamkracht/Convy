@@ -39,7 +39,7 @@ class BlockUser extends React.Component {
     }
 
     else if (this.props.lastSeenAt) {
-      data.push(<li key="last-seen">{moment(this.props.lastSeenAt).fromNow()}</li>);
+      data.push(<li key="last-seen">last seen: {moment(this.props.lastSeenAt).fromNow()}</li>);
     }
 
     return data;
