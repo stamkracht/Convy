@@ -19,7 +19,7 @@
 
   &:before {
     position: absolute;
-    right: 100%;
+    left: -4px;
     top: -3px;
     content: '';
     width: 0;
@@ -30,11 +30,11 @@
 
   &:after {
     position: absolute;
-    right: 100%;
+    left: -4px;
     top: 0;
     content: '';
     height: 100%;
-    width: 4px;
+    width: 5px;
     background: lighten($brand-color-3, 20%);
   }
 }
@@ -45,14 +45,16 @@
   text-align: right;
 
   &:before {
-    left: 100%;
+    left: auto;
+    right: -4px;
     border-bottom: 3px solid $brand-color-1;
     border-right: 4px solid transparent;
     border-left: 0;
   }
 
   &:after {
-    left: 100%;
+    left: auto;
+    right: -4px;
     background: lighten($brand-color-1, 20%);
   }
 }
