@@ -6,12 +6,12 @@ class ProfileSummary extends React.Component {
 
     return (
       <section className="c-profile-summary">
-        <article className="c-profile-summary__img">
+        <article className="c-profile-summary__head">
           <img src={ user.image }/>
+          <p className="c-profile-summary__data">last seen: { user.lastSeenAt }</p>
         </article>
 
         <article className="c-profile-summary__info">
-          <p className="c-profile-summary__data">last seen { user.lastSeenAt }</p>
           <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
           <h2 className="c-profile-summary__function">{ user.headline }</h2>
 
