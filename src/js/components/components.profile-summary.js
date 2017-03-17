@@ -1,14 +1,18 @@
 import React from 'react';
+import moment from 'moment';
 
 class ProfileSummary extends React.Component {
   render() {
     const user = this.props.user;
 
+    let today = moment(user.lastSeenAt).isSame(new Date(), 'd');
+    let dateFormat = today ? 'HH:mm' : 'D/M/YYYY';
+
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__head">
           <img src={ user.image }/>
-          <p className="c-profile-summary__data">last seen: { user.lastSeenAt }</p>
+          <p className="c-profile-summary__data">last seen: { moment(user.lastSeenAt).format(dateFormat) }</p>
         </article>
 
         <article className="c-profile-summary__info">
