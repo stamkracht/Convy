@@ -47,6 +47,24 @@ function chatsReducer(state, action) {
     });
   }
 
+  if (action.type === 'CREATE_CHAT') {
+    if(!action.status) {
+      return Object.assign({}, state, {
+        isFetching: true
+      });
+    } else if(action.status == 'success') {
+      const chat = action.chat;
+      const chats = Object.assign({}, state.chats , { [chat.id]: chat });
+      const chatList = [chat.id].concat(state.chatList);
+      return Object.assign({}, state, {
+        isFetching: false,
+        receivedAt: action.receivedAt,
+        chats,
+        chatList
+      });
+    }
+  }
+
   return state;
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
+import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
@@ -116,7 +118,11 @@ class UserList extends React.Component {
   }
 
   newGroupConversation() {
-    console.info('Start new group conversation.');
+    this.props.swipeToContactPicker();
+    browserHistory.push('/conversation');
+
+    //this.props.createChat(participantIds).then((chatId) => {
+    //});
   }
 }
 
@@ -146,15 +152,18 @@ function renderUsers(props) {
 
   else { return []; }
 }
+const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     openChat: (id) => {
       dispatch(actions.header.openChat(id));
     },
+    swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1))
+    //createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
   };
 };
 
-const UserListConnect = connect(null, mapDispatchToProps)(UserList);
+const UserListConnect = connect(mapStateToProps, mapDispatchToProps)(UserList);
 
 export default UserListConnect;

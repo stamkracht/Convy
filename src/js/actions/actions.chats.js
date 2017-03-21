@@ -57,3 +57,29 @@ export function updateChat(id, update) {
 export function subscribeToChats(chatCallback) {
   config.adapter.subscribeToChats(chatCallback);
 }
+
+
+function requestCreateChat() {
+  return {
+    type: 'CREATE_CHAT',
+  }
+}
+
+function finishCreateChat(chat, status='success') {
+  return {
+    type: 'CREATE_CHAT',
+    receivedAt: Date.now(),
+    status,
+    chat,
+  }
+}
+
+export function createChat(participantIds) {
+  return async function(dispatch, getState) {
+    dispatch(requestCreateChat());
+    const result = await config.adapter.createChat(participantIds);
+    dispatch(finishCreateChat(result.chat, result.status));
+    return result.chat.id;
+  }
+
+}

@@ -3,18 +3,18 @@ class Adapter {
     this.chatSubscribers = [];
 
     // Generate dummy updates
-    setInterval(() => {
-      this.chatSubscribers.forEach((callback) => {
-        const chatId = getRandom(chats.chats.map((chat) => chat.id));
-        const chat = getById(chats.chats, chatId);
-        chat.unreadMessagesCount++;
-        callback(chatId, {
-          lastMessageAt: new Date().toISOString(),
-          unreadMessagesCount: chat.unreadMessagesCount,
-          lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
-        });
-      })
-    }, 5000)
+    //setInterval(() => {
+    //  this.chatSubscribers.forEach((callback) => {
+    //    const chatId = getRandom(chats.chats.map((chat) => chat.id));
+    //    const chat = getById(chats.chats, chatId);
+    //    chat.unreadMessagesCount++;
+    //    callback(chatId, {
+    //      lastMessageAt: new Date().toISOString(),
+    //      unreadMessagesCount: chat.unreadMessagesCount,
+    //      lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
+    //    });
+    //  })
+    //}, 5000)
   }
 
   getMe() {
@@ -60,6 +60,19 @@ class Adapter {
         resolve({
           status: 'success',
           contact: contacts.contacts.filter((contact) => contact.id == id)[0]
+        })
+      }, 1000);
+    })
+
+  }
+  createChat() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          status: 'success',
+          chat: {
+            id: 1
+          }
         })
       }, 1000);
     })
@@ -113,73 +126,7 @@ const me = {
 
 const chats = {
   status: 'success',
-  chats: [
-    {
-      id: 1,
-      title: 'A love story',
-      image: null,
-      members: [
-        {
-          id: 2,
-          name: 'John Graham',
-          image: 'http://lorempixel.com/300/300/business/',
-        },
-        {
-          id: 3,
-          name: 'Peter Fox',
-          image: 'http://lorempixel.com/300/300/business/',
-        }
-      ],
-      lastMessage: 'Ik kan er maar niet aan wennen',
-      lastMessageAt: '2017-02-28T17:37:53.227Z',
-      unreadMessagesCount: 7,
-    },
-    {
-      id: 2,
-      title: 'A horror story',
-      image: 'http://lorempixel.com/300/300/business/',
-      members: [
-        {
-          id: 1,
-          name: 'George Best',
-          image: 'http://lorempixel.com/300/300/business/',
-        },
-        {
-          id: 3,
-          name: 'Peter Fox',
-          image: 'http://lorempixel.com/300/300/business/',
-        }
-      ],
-      lastMessage: 'Ik kan er maar niet aan vastzitten',
-      lastMessageAt: '2017-02-27T17:37:53.227Z',
-      unreadMessagesCount: 7,
-    },
-    {
-      id: 3,
-      title: 'A triangular story',
-      image: 'http://lorempixel.com/300/300/business/',
-      members: [
-        {
-          id: 1,
-          name: 'George Best',
-          image: 'http://lorempixel.com/300/300/business/',
-        },
-        {
-          id: 2,
-          name: 'John Graham',
-          image: 'http://lorempixel.com/300/300/business/',
-        },
-        {
-          id: 3,
-          name: 'Peter Fox',
-          image: 'http://lorempixel.com/300/300/business/',
-        }
-      ],
-      lastMessage: 'Samen',
-      lastMessageAt: '2017-02-27T17:37:53.227Z',
-      unreadMessagesCount: 7,
-    },
-  ]
+  chats: []
 };
 
 const contacts = {
