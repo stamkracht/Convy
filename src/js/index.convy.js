@@ -1,4 +1,4 @@
-import registerServiceWorker from './register-service-worker.js';
+//import registerServiceWorker from './register-service-worker.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -23,7 +23,7 @@ function configureStore() {
   const enhancer = compose(
     applyMiddleware(
       thunkMiddleware,
-      loggerMiddleware,
+      loggerMiddleware
     )
   );
 

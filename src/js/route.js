@@ -11,8 +11,8 @@ import Profile from './scopes/scopes.profile';
 export default () => {
   return (
     <Route path={ config.urlPrefix } component={ Application }>
-      <IndexRoute component={ Main } />
-      <Route path="conversation/:chatId" component={ Conversation }/>
+      <IndexRoute component={ Main }/>
+      <Route path="conversation(/:chatId)" component={ Conversation }/>
       <Route path="my-profile" component={ Profile }/>
     </Route>
   );
