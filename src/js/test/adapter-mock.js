@@ -113,7 +113,7 @@ const me = {
     image: 'http://lorempixel.com/500/500/business/',
     email: 'example@example.org',
     phone: '0987654321',
-    twitterHandle: 'everybodylovesmartha',
+    twitter: 'everybodylovesmartha',
     location: {
       address: 'Oostenburgervoorstraat 72',
       zipcode: '1018 MR',
@@ -140,7 +140,7 @@ const contacts = {
       image: 'http://lorempixel.com/300/300/business/',
       email: 'example@example.org',
       phone: '0987654321',
-      twitterHandle: 'everybodylovesmartha',
+      twitter: 'everybodylovesmartha',
       location: {
         address: 'Oostenburgervoorstraat 72',
         zipcode: '1018 MR',
@@ -157,7 +157,7 @@ const contacts = {
       image: 'http://lorempixel.com/300/300/business/',
       email: 'example@example.org',
       phone: '0987654321',
-      twitterHandle: 'everybodylovesmartha',
+      twitter: 'everybodylovesmartha',
       location: {
         address: 'Oostenburgervoorstraat 72',
         zipcode: '1018 MR',

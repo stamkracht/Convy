@@ -22,7 +22,7 @@ class ProfileSummary extends React.Component {
           <ul className="c-profile-summary__contact">
             <li>{ this.renderEmail(user.email) }</li>
             <li>{ this.renderPhone(user.phone) }</li>
-            <li>{ this.renderTwitterHandle(user.twitterHandle) }</li>
+            <li>{ this.renderTwitterHandle(user.twitter) }</li>
           </ul>
 
           <ul className="c-profile-summary__location">
@@ -66,9 +66,9 @@ class ProfileSummary extends React.Component {
     return (<a href={ url }>{ phone }</a>);
   }
 
-  renderTwitterHandle(twitterHandle) {
-    const url = `https://twitter.com/${ twitterHandle }`;
-    return (<a href={ url } target="_blank">twitter.com/{ twitterHandle }</a>);
+  renderTwitterHandle(handle) {
+    const url = `https://twitter.com/${ handle }`;
+    return (<a href={ url } target="_blank">twitter.com/{ handle }</a>);
   }
 }
 
