@@ -1,3 +1,5 @@
+let authenticated = false;
+
 class Adapter {
   constructor() {
     this.chatSubscribers = [];
@@ -52,6 +54,15 @@ class Adapter {
       }, 1000);
     })
 
+  }
+  login(email, password) {
+    if (password == 'jordy') {
+      authenticated = true
+    }
+  }
+
+  isAuthenticated() {
+    return authenticated
   }
 
   getContact(id) {
