@@ -164,7 +164,6 @@ function renderUsers(props) {
 
   else { return []; }
 }
-const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
 
