@@ -1,13 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import actions from '../actions';
+import config from '../config'
 
 class Authentication extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      connecting: false
-    };
-  }
 
   render() {
     let authenticationClass = 'c-authentication c-authentication--vertical';
@@ -17,7 +13,7 @@ class Authentication extends React.Component {
       authenticationClass += ' state-register';
     }
 
-    if (this.state.connecting) {
+    if (this.props.meState.isConnecting) {
       connectClass = 'state-loading';
     }
 
@@ -25,16 +21,16 @@ class Authentication extends React.Component {
       <section className={authenticationClass}>
         <section className="c-authentication__inner">
           <article className="c-authentication__front">
-            <form>
+            <form method="post">
               <div className="c-authentication__fields">
                 <label>
                   {/* <span className="c-authentication__feedback"><i className="icon-alert-outline"></i>Woops! Your email address is invalid.</span> */}
-                  <input type="email" name="email" placeholder="email" required/>
+                  <input ref={(input => this.email = input)} type="email" name="email" placeholder="email" required/>
                 </label>
 
                 <label>
                   {/* <span className="c-authentication__feedback">Incorrect email or password. Let's try again.</span> */}
-                  <input type="password" name="password" placeholder="password" required/>
+                  <input ref={(input => this.password = input)} type="password" name="password" placeholder="password" required/>
                 </label>
               </div>
               <div className="c-authentication__submit">
@@ -44,7 +40,7 @@ class Authentication extends React.Component {
           </article>
 
           <article className="c-authentication__back">
-            <form>
+            <form method="post">
               <div className="c-authentication__fields">
                 <label>
                   {/* <span className="c-authentication__feedback">Woops! Your email address is invalid.</span> */}
@@ -71,9 +67,7 @@ class Authentication extends React.Component {
   }
 
   connect() {
-    this.setState({
-      connecting: true
-    });
+    this.props.login(this.email.value, this.password.value)
   }
 }
 
@@ -82,4 +76,14 @@ Authentication.propTypes = {
   hideRegister: React.PropTypes.func
 };
 
-export default Authentication;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    login: (identifier, password) => dispatch(actions.auth.login(identifier, password)),
+  };
+};
+
+const AuthenticationConnect = connect(mapStateToProps, mapDispatchToProps)(Authentication);
+
+export default AuthenticationConnect;
