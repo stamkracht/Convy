@@ -48,7 +48,7 @@ class Conversation extends React.Component {
     );
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.setChatHeader();
 
     if (this.props.params.chatId) { this.loadInitialData(); }

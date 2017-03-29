@@ -28,7 +28,7 @@ function contactsReducer(state, action) {
     }
   }
 
-  if (action.type === 'FETCH_CONTACT') {
+  else if (action.type === 'FETCH_CONTACT') {
     if(action.status == 'success') {
       // Set the contact in the dictionary
       return Object.assign({}, state, {
@@ -38,6 +38,15 @@ function contactsReducer(state, action) {
       });
 
     }
+  }
+
+  else if (action.type === 'UPDATE_CONTACT') {
+    // Update the chat in the dictionary
+    return Object.assign({}, state, {
+      contacts: Object.assign({}, state.contacts, {
+        [action.id]: Object.assign({}, state.contacts[action.id], action.update)
+      }),
+    });
   }
 
   return state;

@@ -46,6 +46,28 @@ export function fetchChat(id) {
   }
 }
 
+function startUpdateLastSeen() {
+  return {
+    type: 'UPDATE_LAST_SEEN',
+  }
+}
+
+function finishUpdateLastSeen(status='success') {
+  return {
+    type: 'UPDATE_LAST_SEEN',
+    status,
+  }
+}
+
+export function updateLastSeen(chatId) {
+  return async function(dispatch, getState) {
+    dispatch(startUpdateLastSeen());
+    await config.adapter.updateLastSeen(chatId);
+    dispatch(finishUpdateLastSeen());
+  }
+
+}
+
 export function updateChat(id, update) {
   return {
     type: 'UPDATE_CHAT',

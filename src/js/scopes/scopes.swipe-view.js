@@ -17,7 +17,7 @@ class SwipeView extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.setSwipeViewIndex(this.props.swipeViewIndex)
   }
 

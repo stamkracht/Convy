@@ -1,22 +1,34 @@
-let authenticated = false;
+let authenticated = true;
 
 class Adapter {
   constructor() {
     this.chatSubscribers = [];
+    this.contactSubscribers = [];
 
     // Generate dummy updates
-    //setInterval(() => {
-    //  this.chatSubscribers.forEach((callback) => {
-    //    const chatId = getRandom(chats.chats.map((chat) => chat.id));
-    //    const chat = getById(chats.chats, chatId);
-    //    chat.unreadMessagesCount++;
-    //    callback(chatId, {
-    //      lastMessageAt: new Date().toISOString(),
-    //      unreadMessagesCount: chat.unreadMessagesCount,
-    //      lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
-    //    });
-    //  })
-    //}, 5000)
+    setInterval(() => {
+      this.chatSubscribers.forEach((callback) => {
+        const chatId = getRandom(chats.chats.map((chat) => chat.id));
+        const chat = getById(chats.chats, chatId);
+        chat.unreadMessagesCount++;
+        callback(chatId, {
+          lastMessageAt: new Date().toISOString(),
+          unreadMessagesCount: chat.unreadMessagesCount,
+          lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
+        });
+      })
+    }, 5000)
+
+    setInterval(() => {
+      this.contactSubscribers.forEach((callback) => {
+        const contactId = getRandom(contacts.contacts.map((contact) => contact.id));
+        const contact = getById(contacts.contacts, contactId);
+        contact.unreadMessagesCount++;
+        callback(contactId, {
+          lastSeenAt: new Date().toISOString()
+        });
+      })
+    }, 5000)
   }
 
   getMe() {
@@ -65,6 +77,15 @@ class Adapter {
     return authenticated
   }
 
+  updateLastSeen(chatId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve()
+      }, 1000);
+    });
+  }
+
+
   getContact(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -96,6 +117,18 @@ class Adapter {
         const index = this.chatSubscribers.indexOf(callback)
         if(index != -1) {
           this.chatSubscribers.splice(index, 1)
+        }
+      }
+    }
+  }
+
+  subscribeToContacts(callback) {
+    this.contactSubscribers.push(callback);
+    return {
+      cancel: () => {
+        const index = this.contactSubscribers.indexOf(callback)
+        if(index != -1) {
+          this.contactSubscribers.splice(index, 1)
         }
       }
     }
@@ -137,7 +170,73 @@ const me = {
 
 const chats = {
   status: 'success',
-  chats: []
+  chats: [
+    {
+      id: 1,
+      title: 'A love story',
+      image: null,
+      members: [
+        {
+          id: 2,
+          name: 'John Graham',
+          image: 'http://lorempixel.com/300/300/business/',
+        },
+        {
+          id: 3,
+          name: 'Peter Fox',
+          image: 'http://lorempixel.com/300/300/business/',
+        }
+      ],
+      lastMessage: 'Ik kan er maar niet aan wennen',
+      lastMessageAt: '2017-02-28T17:37:53.227Z',
+      unreadMessagesCount: 7,
+    },
+    {
+      id: 2,
+      title: 'A horror story',
+      image: 'http://lorempixel.com/300/300/business/',
+      members: [
+        {
+          id: 1,
+          name: 'George Best',
+          image: 'http://lorempixel.com/300/300/business/',
+        },
+        {
+          id: 3,
+          name: 'Peter Fox',
+          image: 'http://lorempixel.com/300/300/business/',
+        }
+      ],
+      lastMessage: 'Ik kan er maar niet aan vastzitten',
+      lastMessageAt: '2017-02-27T17:37:53.227Z',
+      unreadMessagesCount: 7,
+    },
+    {
+      id: 3,
+      title: 'A triangular story',
+      image: 'http://lorempixel.com/300/300/business/',
+      members: [
+        {
+          id: 1,
+          name: 'George Best',
+          image: 'http://lorempixel.com/300/300/business/',
+        },
+        {
+          id: 2,
+          name: 'John Graham',
+          image: 'http://lorempixel.com/300/300/business/',
+        },
+        {
+          id: 3,
+          name: 'Peter Fox',
+          image: 'http://lorempixel.com/300/300/business/',
+        }
+      ],
+      lastMessage: 'Samen',
+      lastMessageAt: '2017-02-27T17:37:53.227Z',
+      unreadMessagesCount: 7,
+    },
+  ]
 };
 
 const contacts = {

@@ -2,6 +2,10 @@ import React from 'react';
 
 import Messenger from '../components/components.messenger';
 import BlockChat from './scopes.block-chat';
+import { connect } from 'react-redux';
+import actions from '../actions';
+import config from '../config'
+
 
 class Chat extends React.Component {
   constructor(props) {
@@ -57,6 +61,20 @@ class Chat extends React.Component {
       showAttachment: !this.state.showAttachment
     });
   }
+
+  componentDidMount() {
+    this.props.updateLastSeen();
+  }
 }
 
-export default Chat;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateLastSeen: () => dispatch(actions.chats.updateLastSeen(ownProps.chatId)),
+  };
+};
+
+const ChatConnect = connect(mapStateToProps, mapDispatchToProps)(Chat);
+
+export default ChatConnect;
