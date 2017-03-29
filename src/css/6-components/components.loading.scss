@@ -4,12 +4,14 @@
 
 
 .c-loading {
+  z-index: 100;
   position: absolute;
-  top: calc(50% - 50px);
-  left: calc(50% - 50px);
+  top: 0;
+  left: 0;
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
+  background: $white;
 }
 
 .c-loading__circle {
