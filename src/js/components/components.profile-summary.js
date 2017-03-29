@@ -6,7 +6,7 @@ class ProfileSummary extends React.Component {
     const user = this.props.user;
 
     let today = moment(user.lastSeenAt).isSame(new Date(), 'd');
-    let dateFormat = today ? 'HH:mm' : 'D/M/YYYY';
+    let dateFormat = today ? 'HH:mm' : 'D-M-YYYY';
 
     return (
       <section className="c-profile-summary">
