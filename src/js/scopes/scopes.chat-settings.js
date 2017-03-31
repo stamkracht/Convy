@@ -23,7 +23,8 @@ class ChatSettings extends React.Component {
         heading,
         icon,
         styles,
-        input;
+        input,
+        mute;
 
     groupName = this.props.groupName ? this.props.groupName : 'Group name';
 
@@ -33,6 +34,18 @@ class ChatSettings extends React.Component {
       heading = 'Tap on the right icon above to start add participants.';
     } else {
       heading = 'Participants';
+      mute = (
+        <form>
+          <label className="c-switch__control">
+            <span className="c-switch__label">Mute</span>
+
+            <div className="c-switch__toggle" data-on="ON" data-off="OFF">
+              <input type="checkbox"/>
+              <div className="c-switch__track"></div>
+            </div>
+          </label>
+        </form>
+      );
     }
 
     if (this.props.groupImage) {
@@ -90,6 +103,9 @@ class ChatSettings extends React.Component {
             <h1 className="c-banner__title">{ groupName }</h1>
             { icon }
           </article>
+
+          { mute }
+
           <h2 className="s-chat-settings__heading">{ heading }</h2>
 
           { participants }

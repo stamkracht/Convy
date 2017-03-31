@@ -15,6 +15,19 @@ class ProfileSummary extends React.Component {
           <p className="c-profile-summary__data">last seen: { moment(user.lastSeenAt).format(dateFormat) }</p>
         </article>
 
+        <article className="c-profile-summary__settings">
+          <form>
+            <label className="c-switch__control">
+              <span className="c-switch__label">Mute</span>
+
+              <div className="c-switch__toggle" data-on="ON" data-off="OFF">
+                <input type="checkbox"/>
+                <div className="c-switch__track"></div>
+              </div>
+            </label>
+          </form>
+        </article>
+
         <article className="c-profile-summary__info">
           <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
           <h2 className="c-profile-summary__function">{ user.headline }</h2>
