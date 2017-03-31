@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import config from '../config';
 import { conditionalClass } from '../utillities';
 
 class NavMore extends React.Component {
@@ -24,10 +25,14 @@ class NavMore extends React.Component {
           </li>
           <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
           <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>
-          <li><a className="sign-out" href="#"><i className="icon-sign-out"></i>Logout</a></li>
+          <li><a className="sign-out" href="#" onClick={ this.logout.bind(this) }><i className="icon-sign-out"></i>Logout</a></li>
         </ul>
       </nav>
     );
+  }
+
+  logout() {
+    config.adapter.logout();
   }
 }
 
