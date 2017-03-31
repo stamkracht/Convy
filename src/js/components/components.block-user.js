@@ -35,14 +35,14 @@ class BlockUser extends React.Component {
 
     if (this.props.lastMessage) {
       let today = moment(this.props.lastMessageAt).isSame(new Date(), 'd');
-      let dateFormat = today ? 'HH:mm' : 'D/M/YYYY HH:mm';
+      let dateFormat = today ? 'HH:mm' : 'D-M-YYYY HH:mm';
 
       data.push(<li key="last-message">{ moment(this.props.lastMessageAt).format(dateFormat) }</li>);
     }
 
     else if (this.props.lastSeenAt) {
       let today = moment(this.props.lastSeenAt).isSame(new Date(), 'd');
-      let dateFormat = today ? 'HH:mm' : 'D/M/YYYY';
+      let dateFormat = today ? 'HH:mm' : 'D-M-YYYY';
 
       data.push(<li key="last-seen">last seen: { moment(this.props.lastSeenAt).format(dateFormat) }</li>);
     }

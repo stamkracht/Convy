@@ -2,6 +2,7 @@ function meReducer(state, action) {
   if (state === undefined) {
     state = {
       isFetching: false,
+      isConnecting: false,
       me: null,
       receivedAt: null
     };
@@ -16,6 +17,19 @@ function meReducer(state, action) {
       return Object.assign({}, state, {
         isFetching: false,
         me: action.me,
+        receivedAt: action.receivedAt,
+      });
+
+    }
+  }
+  else if (action.type === 'LOGIN') {
+    if(!action.status) {
+      return Object.assign({}, state, {
+        isConnecting: true
+      });
+    } else if(action.status == 'success') {
+      return Object.assign({}, state, {
+        isConnecting: false,
         receivedAt: action.receivedAt,
       });
 

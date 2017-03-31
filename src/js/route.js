@@ -7,6 +7,7 @@ import Main from './scopes/scopes.main';
 import Conversation from './scopes/scopes.conversation';
 import Profile from './scopes/scopes.profile';
 
+
 export default () => {
   return (
     <Route path={ config.urlPrefix } component={ Application }>

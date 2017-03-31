@@ -16,14 +16,24 @@ class UserList extends React.Component {
   }
 
   render() {
+    const chatFetching = this.props.listType == 'chats' && this.props.chatsState.isFetching,
+          contactsFetching = this.props.listType == 'contacts' && this.props.contactsState.isFetching;
+
     let listType,
         groupAction,
         users,
         userListInnerClass,
         emptyMessageContainer,
-        input;
+        input,
+        loading;
 
     listType = this.props.listType;
+
+    if (chatFetching || contactsFetching) {
+      loading = <span className="c-loading">
+                  <span className="c-loading__circle"></span>
+                </span>
+    }
 
     if (listType === 'chats') {
       groupAction = <li>
@@ -64,6 +74,8 @@ class UserList extends React.Component {
     return (
       <section className="s-user-list">
         <div className={ userListInnerClass }>
+          { loading }
+
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
               <ul>
@@ -152,6 +164,8 @@ function renderUsers(props) {
 
   else { return []; }
 }
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
 const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {

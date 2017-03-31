@@ -38,3 +38,16 @@ export function fetchContact(id) {
     dispatch(receiveContact(result.contact))
   }
 }
+
+export function updateContact(id, update) {
+  return {
+    type: 'UPDATE_CONTACT',
+    id,
+    update,
+  }
+}
+
+
+export function subscribeToContacts(contactCallback) {
+  config.adapter.subscribeToContacts(contactCallback);
+}

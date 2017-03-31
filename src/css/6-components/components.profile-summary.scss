@@ -15,15 +15,20 @@
   position: relative;
   box-shadow: 0px 0px 10px 2px rgba($black-100, 0.25);
   margin: 0 10px 10px;
-  padding: 10px;
+  padding: 4px;
   background: $white;
 }
 
 .c-profile-summary__head img { margin: 0 auto; }
 
 .c-profile-summary__data {
-  padding-top: 10px;
-  color: rgba($black-100, 0.50);
+  z-index: 10;
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  padding: 6px 10px;
+  color: $white;
+  background: rgba($black-100, 0.5);
   font-size: em(12px);
 
   @include mq(min-w, 400px) { font-size: em(14px); }
