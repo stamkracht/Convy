@@ -65,12 +65,16 @@ class Adapter {
         resolve(contacts);
       }, 1000);
     })
-
   }
+
   login(email, password) {
     if (password == 'jordy') {
-      authenticated = true
+      authenticated = true;
     }
+  }
+
+  logout() {
+    authenticated = false;
   }
 
   isAuthenticated() {
