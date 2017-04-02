@@ -66,8 +66,9 @@ class Authentication extends React.Component {
     );
   }
 
-  connect() {
-    this.props.login(this.email.value, this.password.value)
+  connect(e) {
+    e.preventDefault();
+    this.props.login(this.email.value, this.password.value);
   }
 }
 
