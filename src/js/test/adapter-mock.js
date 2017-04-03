@@ -4,31 +4,6 @@ class Adapter {
   constructor() {
     this.chatSubscribers = [];
     this.contactSubscribers = [];
-
-    // Generate dummy updates
-    setInterval(() => {
-      this.chatSubscribers.forEach((callback) => {
-        const chatId = getRandom(chats.chats.map((chat) => chat.id));
-        const chat = getById(chats.chats, chatId);
-        chat.unreadMessagesCount++;
-        callback(chatId, {
-          lastMessageAt: new Date().toISOString(),
-          unreadMessagesCount: chat.unreadMessagesCount,
-          lastMessage: `${chat.unreadMessagesCount}: ${chat.lastMessage}`,
-        });
-      })
-    }, 5000)
-
-    setInterval(() => {
-      this.contactSubscribers.forEach((callback) => {
-        const contactId = getRandom(contacts.contacts.map((contact) => contact.id));
-        const contact = getById(contacts.contacts, contactId);
-        contact.unreadMessagesCount++;
-        callback(contactId, {
-          lastSeenAt: new Date().toISOString()
-        });
-      })
-    }, 5000)
   }
 
   getMe() {
@@ -110,7 +85,7 @@ class Adapter {
     })
 
   }
-  subscribeToChats(callback) {
+  subscribeToChatEvents(callback) {
     this.chatSubscribers.push(callback);
     return {
       cancel: () => {
@@ -122,7 +97,7 @@ class Adapter {
     }
   }
 
-  subscribeToContacts(callback) {
+  subscribeToContactEvents(callback) {
     this.contactSubscribers.push(callback);
     return {
       cancel: () => {
