@@ -39,7 +39,8 @@ export function fetchContact(id) {
   }
 }
 
-export function updateContact(id, update) {
+export function handleContactEvent(event, payload) {
+  // Ouput action based on event and payload
   return {
     type: 'UPDATE_CONTACT',
     id,
@@ -48,6 +49,6 @@ export function updateContact(id, update) {
 }
 
 
-export function subscribeToContacts(contactCallback) {
-  config.adapter.subscribeToContacts(contactCallback);
+export function subscribeToContactEvents(contactCallback) {
+  config.adapter.subscribeToContactEvents(contactCallback);
 }
