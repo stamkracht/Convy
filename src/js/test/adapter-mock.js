@@ -1,4 +1,4 @@
-let authenticated = true;
+let authenticated = false;
 
 class Adapter {
   constructor() {
@@ -43,9 +43,14 @@ class Adapter {
   }
 
   login(email, password) {
-    if (password == 'jordy') {
-      authenticated = true;
-    }
+    return new Promise((resolve, reject) => {
+      if (password == 'jordy') {
+        authenticated = true;
+        resolve()
+      } else {
+        reject('wrong password')
+      }
+    })
   }
 
   logout() {
