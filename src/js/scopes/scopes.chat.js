@@ -63,7 +63,9 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.props.updateLastSeen();
+    if ( !!this.props.chat ) {
+      this.props.updateLastSeen();
+    }
   }
 }
 
