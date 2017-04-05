@@ -54,7 +54,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),
-    setAuthenticated: () => dispatch(action.auth.receiveLogin()),
+    setAuthenticated: () => dispatch(actions.auth.receiveLogin()),
     handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),
     handleContactEvent: (event, payload) => dispatch(actions.contacts.handleContactEvent(event, payload))
   };
