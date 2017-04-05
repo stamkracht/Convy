@@ -16,6 +16,7 @@ class Conversation extends React.Component {
     const chat = this.state && this.props.chatsState.chats[this.state.chatId];
 
     if (chat) {
+      // Existing conversation
       let group = chat.members.length > 2;
       let groupName = 'We are TMNT';
       let groupImage = 'http://placehold.it/500x200';
@@ -33,6 +34,17 @@ class Conversation extends React.Component {
           user={ this.props.contactsState.contacts[this.state.contactId] }
         />
       }
+    } else {
+      // New conversation
+      let groupName = 'Group Name';
+      let groupImage = '';
+      let participants = [];
+
+      view = <ChatSettings
+        groupName={ groupName }
+        groupImage={ groupImage }
+        participants={ participants }
+      />
     }
 
     return (
