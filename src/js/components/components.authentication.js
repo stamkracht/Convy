@@ -13,7 +13,7 @@ class Authentication extends React.Component {
       authenticationClass += ' state-register';
     }
 
-    if (this.props.meState.isConnecting) {
+    if (this.props.authState.isConnecting) {
       connectClass = 'state-loading';
     }
 
@@ -72,16 +72,16 @@ class Authentication extends React.Component {
   }
 
   getEmailError() {
-    if(this.props.meState.error && this.props.meState.error.email) {
-      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.email[0]}</span>);
-    } else if(this.props.meState.error && this.props.meState.error.non_field_errors) {
-      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.non_field_errors[0]}</span>);
+    if(this.props.authState.error && this.props.authState.error.email) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.authState.error.email[0]}</span>);
+    } else if(this.props.authState.error && this.props.authState.error.non_field_errors) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.authState.error.non_field_errors[0]}</span>);
     }
   }
 
   getPasswordError() {
-    if(this.props.meState.error && this.props.meState.error.password) {
-      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.password[0]}</span>);
+    if(this.props.authState.error && this.props.authState.error.password) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.authState.error.password[0]}</span>);
     }
   }
 

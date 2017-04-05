@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import actions from '../actions';
 
 import config from '../config';
 import { conditionalClass } from '../utillities';
@@ -25,15 +27,21 @@ class NavMore extends React.Component {
           </li>
           <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
           <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>
-          <li><a className="sign-out" href="#" onClick={ this.logout.bind(this) }><i className="icon-sign-out"></i>Logout</a></li>
+          <li><a className="sign-out" href="#" onClick={ this.props.logout.bind(this) }><i className="icon-sign-out"></i>Logout</a></li>
         </ul>
       </nav>
     );
   }
-
-  logout() {
-    config.adapter.logout();
-  }
 }
 
-export default NavMore;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    logout: () => dispatch(actions.auth.logout()),
+  };
+};
+
+const NavMoreConnect = connect(mapStateToProps, mapDispatchToProps)(NavMore);
+
+export default NavMoreConnect;
