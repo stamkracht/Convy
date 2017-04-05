@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { conditionalClass } from '../utillities';
+import config from '../config';
+import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
 class ChatSettings extends React.Component {
@@ -47,8 +50,8 @@ class ChatSettings extends React.Component {
                   <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
                     <i className="icon-close"></i>
                   </button>
-                  <input className="c-input-group__field" type="text" placeholder="Add participants"/>
-                  <button className="c-input-group__addon submit"><i className="icon-group-add"></i></button>
+                  <input className="c-input-group__field" type="text" placeholder="Add participants" ref={ input => this.participantsInput = input }/>
+                  <button className="c-input-group__addon submit" onClick={ this.addParticipants.bind(this) }><i className="icon-group-add"></i></button>
                 </article>
               </div>;
     }
@@ -81,7 +84,6 @@ class ChatSettings extends React.Component {
                   </button>
                 </li>
               </ul>
-
               { input }
             </nav>
           </section>
@@ -96,6 +98,11 @@ class ChatSettings extends React.Component {
         </div>
       </section>
     );
+  }
+
+  addParticipants() {
+    const particpantIds = this.participantsInput.value.split(',');
+    this.props.createChat(particpantIds);
   }
 
   leaveGroup() {
@@ -150,4 +157,13 @@ function renderParticipants(props) {
   else { return []; }
 }
 
-export default ChatSettings;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
+  };
+};
+
+const ChatSettingsConnect = connect(mapStateToProps, mapDispatchToProps)(ChatSettings);
+export default ChatSettingsConnect;

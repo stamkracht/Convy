@@ -81,7 +81,7 @@ class Authentication extends React.Component {
 
   getPasswordError() {
     if(this.props.authState.error && this.props.authState.error.password) {
-      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.authState.error.password[0]}</span>);
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.password[0]}</span>);
     }
   }
 

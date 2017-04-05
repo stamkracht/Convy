@@ -54,7 +54,10 @@ class Adapter {
   }
 
   logout() {
-    authenticated = false;
+    return new Promise((resolve, reject) => {
+      authenticated = false;
+      resolve()
+    })
   }
 
   isAuthenticated() {

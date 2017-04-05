@@ -92,8 +92,8 @@ function finishCreateChat(chat, status='success') {
   return {
     type: 'CREATE_CHAT',
     receivedAt: Date.now(),
-    status,
     chat,
+    status,
   }
 }
 
