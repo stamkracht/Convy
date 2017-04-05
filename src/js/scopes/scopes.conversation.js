@@ -17,14 +17,12 @@ class Conversation extends React.Component {
 
     if (chat) {
       let group = chat.members.length > 2;
-      let groupNew = true;
       let groupName = 'We are TMNT';
       let groupImage = 'http://placehold.it/500x200';
       let participants = [];
 
       if (group) {
         view = <ChatSettings
-          groupNew={ groupNew }
           groupName={ groupName }
           groupImage={ groupImage }
           participants={ participants }

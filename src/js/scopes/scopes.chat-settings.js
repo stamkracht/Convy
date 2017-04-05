@@ -15,7 +15,7 @@ class ChatSettings extends React.Component {
   render() {
     const chatSettings = conditionalClass({
       's-chat-settings': true,
-      'state-new': this.props.groupNew,
+      'state-new': !this.props.chat,
     });
 
     let groupName,
@@ -128,7 +128,6 @@ class ChatSettings extends React.Component {
 }
 
 ChatSettings.propTypes = {
-  groupNew: React.PropTypes.bool,
   groupName: React.PropTypes.string,
   groupImage: React.PropTypes.string,
   participants: React.PropTypes.array,
