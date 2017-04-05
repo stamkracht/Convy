@@ -18,8 +18,12 @@ function receiveLogin(status='success') {
 export function login(identifier, password) {
   return async function(dispatch, getState) {
     dispatch(requestLogin());
-    await config.adapter.login(identifier, password);
-    dispatch(receiveLogin());
+    try {
+      await config.adapter.login(identifier, password);
+      dispatch(receiveLogin())
+    } catch (e) {
+      dispatch(receiveLogin(e))
+    }
   }
 }
 

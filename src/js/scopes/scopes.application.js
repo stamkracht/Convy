@@ -28,13 +28,13 @@ class Application extends React.Component {
 
   componentDidMount() {
     this.props.fetchMe();
-    this.chatSubscribtion = actions.chats.subscribeToChats(this.props.updateChat);
-    this.contactSubscribtion = actions.contacts.subscribeToContacts(this.props.updateContact);
+    this.chatEventSubscribtion = actions.chats.subscribeToChatEvents(this.props.handleChatEvent);
+    this.contactEventSubscribtion = actions.contacts.subscribeToContactEvents(this.props.handleContactEvent);
   }
 
   componentWillUnmount() {
-    this.chatSubscribtion.cancel();
-    this.contactSubscribtion.cancel();
+    this.chatEventSubscribtion.cancel();
+    this.contactEventSubscribtion.cancel();
   }
 
 }
@@ -44,8 +44,8 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),
-    updateChat: (id, update) => dispatch(actions.chats.updateChat(id, update)),
-    updateContact: (id, update) => dispatch(actions.contacts.updateContact(id, update))
+    handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),
+    handleContactEvent: (event, payload) => dispatch(actions.contacts.handleContactEvent(event, payload))
   };
 };
 

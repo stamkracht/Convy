@@ -24,12 +24,12 @@ class Authentication extends React.Component {
             <form method="post">
               <div className="c-authentication__fields">
                 <label>
-                  {/* <span className="c-authentication__feedback"><i className="icon-alert-outline"></i>Woops! Your email address is invalid.</span> */}
+                  { this.getEmailError() }
                   <input ref={(input => this.email = input)} type="email" name="email" placeholder="email" required/>
                 </label>
 
                 <label>
-                  {/* <span className="c-authentication__feedback">Incorrect email or password. Let's try again.</span> */}
+                  { this.getPasswordError() }
                   <input ref={(input => this.password = input)} type="password" name="password" placeholder="password" required/>
                 </label>
               </div>
@@ -66,10 +66,25 @@ class Authentication extends React.Component {
     );
   }
 
-  connect(e) {
-    e.preventDefault();
+  connect(event) {
+    event.preventDefault();
     this.props.login(this.email.value, this.password.value);
   }
+
+  getEmailError() {
+    if(this.props.meState.error && this.props.meState.error.email) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.email[0]}</span>);
+    } else if(this.props.meState.error && this.props.meState.error.non_field_errors) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.non_field_errors[0]}</span>);
+    }
+  }
+
+  getPasswordError() {
+    if(this.props.meState.error && this.props.meState.error.password) {
+      return (<span className="c-authentication__feedback"><i className="icon-alert-outline"></i>{this.props.meState.error.password[0]}</span>);
+    }
+  }
+
 }
 
 Authentication.propTypes = {

@@ -68,7 +68,8 @@ export function updateLastSeen(chatId) {
 
 }
 
-export function updateChat(id, update) {
+export function handleChatEvent(event, payload) {
+  // Ouput action based on event and payload
   return {
     type: 'UPDATE_CHAT',
     id,
@@ -76,8 +77,8 @@ export function updateChat(id, update) {
   }
 }
 
-export function subscribeToChats(chatCallback) {
-  config.adapter.subscribeToChats(chatCallback);
+export function subscribeToChatEvents(chatCallback) {
+  config.adapter.subscribeToChatEvents(chatCallback);
 }
 
 

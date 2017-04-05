@@ -32,7 +32,11 @@ function meReducer(state, action) {
         isConnecting: false,
         receivedAt: action.receivedAt,
       });
-
+    } else {
+      return Object.assign({}, state, {
+        isConnecting: false,
+        error: action.status
+      })
     }
   }
 
