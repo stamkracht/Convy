@@ -21,13 +21,13 @@ class BlockChat extends React.Component {
   }
 
   render() {
-    let messages = (this.props.chat.messages ?
+    let messages = (this.props.chat && this.props.chat.messages ?
       this.props.chat.messages.map(this.renderMessage) :
       (<h1>Empty</h1>))
 
     return (
       <section className="s-block-chat">
-        { this.props.chat.messages && <div className="s-block-chat__header">
+        { this.props.chat && this.props.chat.messages && <div className="s-block-chat__header">
           <p>Unread messages</p>
           <ul className="s-block-chat__data">
             <li>31 augustus</li>

@@ -1,3 +1,6 @@
+import moment from 'moment';
+
+
 export function conditionalClass(conditionalClass) {
   const classString = Object.keys(conditionalClass).filter((key) =>
     conditionalClass[key]
@@ -9,5 +12,5 @@ export function conditionalClass(conditionalClass) {
 export function humanReadableTimeStamp(inputValue) {
   let today = moment(inputValue).isSame(new Date(), 'd');
   let dateFormat = today ? 'HH:mm' : 'D-M-YYYY HH:mm';
-  return moment(message.timeStamp).format(dateFormat)
+  return moment(inputValue).format(dateFormat)
 }

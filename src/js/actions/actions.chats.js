@@ -16,8 +16,16 @@ function receiveChats(chats, status='success') {
 }
 
 function getChatImage(chat, id) {
-  return chat.image || (chat.members.length == 2 &&
-    chat.members.filter((member) => member.id != id)[0].image)
+  if (chat.image) {
+    return chat.image;
+  } else {
+    if(chat.participants.length == 2) {
+      const participant = chat.participants.filter((participant) => participant.id != id)[0];
+      if(participant && participant.image) {
+        return participant.image
+      }
+    }
+  }
 }
 
 function receiveChat(chat, status='success') {
