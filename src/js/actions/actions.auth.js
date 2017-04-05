@@ -7,7 +7,7 @@ function requestLogin() {
   }
 }
 
-function receiveLogin(status='success') {
+export function receiveLogin(status='success') {
   return {
     type: 'LOGIN',
     receivedAt: Date.now(),
@@ -27,4 +27,29 @@ export function login(identifier, password) {
   }
 }
 
+function requestLogout() {
+  return {
+    type: 'LOGOUT',
+  }
+}
+
+export function receiveLogout(status='success') {
+  return {
+    type: 'LOGOUT',
+    receivedAt: Date.now(),
+    status,
+  }
+}
+
+export function logout(identifier, password) {
+  return async function(dispatch, getState) {
+    dispatch(requestLogout());
+    try {
+      await config.adapter.logout();
+      dispatch(receiveLogout())
+    } catch (e) {
+      dispatch(receiveLogout(e))
+    }
+  }
+}
 

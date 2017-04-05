@@ -27,9 +27,19 @@ class Application extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMe();
-    this.chatEventSubscribtion = actions.chats.subscribeToChatEvents(this.props.handleChatEvent);
-    this.contactEventSubscribtion = actions.contacts.subscribeToContactEvents(this.props.handleContactEvent);
+    if(config.adapter.isAuthenticated()) {
+      this.props.setAuthenticated();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Will be triggered when the redux state is changed
+    const authenticated = nextProps.authState.authenticated;
+    if(authenticated && (this.props.authState.authenticated != authenticated)) {
+      this.props.fetchMe();
+      this.chatEventSubscribtion = actions.chats.subscribeToChatEvents(this.props.handleChatEvent);
+      this.contactEventSubscribtion = actions.contacts.subscribeToContactEvents(this.props.handleContactEvent);
+    }
   }
 
   componentWillUnmount() {
@@ -44,6 +54,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),
+    setAuthenticated: () => dispatch(action.auth.receiveLogin()),
     handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),
     handleContactEvent: (event, payload) => dispatch(actions.contacts.handleContactEvent(event, payload))
   };
