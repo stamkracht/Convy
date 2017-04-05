@@ -13,7 +13,7 @@ class Conversation extends React.Component {
   render() {
     let view;
 
-    const chat = this.state && this.props.chatsState.chats[this.state.chatId];
+    const chat = this.props.chatsState.chats[this.props.params.chatId];
 
     if (chat) {
       // Existing conversation

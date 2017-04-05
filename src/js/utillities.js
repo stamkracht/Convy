@@ -5,3 +5,9 @@ export function conditionalClass(conditionalClass) {
 
   return classString;
 }
+
+export function humanReadableTimeStamp(inputValue) {
+  let today = moment(inputValue).isSame(new Date(), 'd');
+  let dateFormat = today ? 'HH:mm' : 'D-M-YYYY HH:mm';
+  return moment(message.timeStamp).format(dateFormat)
+}
