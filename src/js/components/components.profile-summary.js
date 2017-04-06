@@ -22,11 +22,11 @@ class ProfileSummary extends React.Component {
             <li>{ this.renderTwitterHandle(user.twitter) }</li>
           </ul>
 
-          <ul className="c-profile-summary__location">
+          {user.location && (<ul className="c-profile-summary__location">
             <li>{ user.location.address }</li>
             <li>{ user.location.zipcode }, { user.location.city }</li>
             <li>{ user.location.country }</li>
-          </ul>
+          </ul>)}
         </article>
 
         <article className="c-profile-summary__stats">

@@ -173,7 +173,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(actions.header.openChat(id));
     },
     swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1))
-    //createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
   };
 };
 

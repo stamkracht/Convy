@@ -15,6 +15,21 @@ function receiveChats(chats, status='success') {
   }
 }
 
+function requestMessages() {
+  return {
+    type: 'FETCH_MESSAGES',
+  }
+}
+
+function receiveMessages(chatId, messages, status='success') {
+  return {
+    type: 'FETCH_MESSAGES',
+    chatId,
+    messages,
+    status,
+  }
+}
+
 function getChatImage(chat, id) {
   if (chat.image) {
     return chat.image;
@@ -44,6 +59,14 @@ export function fetchChats() {
     dispatch(receiveChats(result.chats.map((chat) => {
       return Object.assign({}, chat, { image: getChatImage(chat, state.meState.me.id )})
     })));
+  }
+}
+
+export function fetchMessages(chatId) {
+  return async function(dispatch, getState) {
+    dispatch(requestMessages());
+    const result = await config.adapter.getMessages(chatId);
+    dispatch(receiveMessages(chatId, result.messages))
   }
 }
 
@@ -78,10 +101,11 @@ export function updateLastSeen(chatId) {
 
 export function handleChatEvent(event, payload) {
   // Ouput action based on event and payload
-  return {
-    type: 'UPDATE_CHAT',
-    id,
-    update,
+  if (event == 'NEW_MESSAGE') {
+    return {
+      type: 'NEW_MESSAGE',
+      message: payload,
+    }
   }
 }
 
@@ -99,7 +123,6 @@ function requestCreateChat() {
 function finishCreateChat(chat, status='success') {
   return {
     type: 'CREATE_CHAT',
-    receivedAt: Date.now(),
     chat,
     status,
   }

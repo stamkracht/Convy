@@ -20,14 +20,19 @@ class Chat extends React.Component {
   render() {
     let chatOutputStyles = { height: `calc(100vh - ${ this.state.messengerHeight + 20 }px` };
 
+    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.map(
+      message => Object.assign({}, message, {user: this.props.contactsState.contacts[message.user]})
+    ) : [];
+
     return (
       <section className="s-chat">
         <div className="s-chat__output" style={ chatOutputStyles }>
-          <BlockChat chat={this.props.chat}/>
+          <BlockChat myId={this.props.meState.me.id} messages={ messages }/>
         </div>
 
         <div className="s-chat__input">
           <Messenger
+            chatId={this.props.chat && this.props.chat.id}
             messengerHeight={ this.state.messengerHeight }
             keyUpInteraction={ this.keyUpInteraction.bind(this) }
             showAttachment={ this.state.showAttachment }

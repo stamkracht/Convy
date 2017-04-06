@@ -15,15 +15,15 @@ function contactsReducer(state, action) {
       });
     } else if(action.status == 'success') {
       // Update the dictionary and list
-      const [contacts, contactList] = action.contacts.reduce((a, b) =>
-          [Object.assign({}, a[0], { [b.id]: b }), [b.id].concat(a[1])], [{},[]]
+      const contacts = action.contacts.reduce((a, b) =>
+          Object.assign({}, a, { [b.id]: b }), state.contacts
       );
+      const contactList = Object.keys(contacts);
       return Object.assign({}, state, {
         isFetching: false,
-        receivedAt: action.receivedAt,
         contacts,
         contactList,
-      });
+      }, action.receivedAt && {receivedAt: action.receivedAt});
 
     }
   }

@@ -7,10 +7,10 @@ function requestContacts() {
   }
 }
 
-function receiveContacts(contacts, status='success') {
+function receiveContacts(contacts=[], status='success', partial=false) {
   return {
     type: 'FETCH_CONTACTS',
-    receivedAt: Date.now(),
+    receivedAt: !partial && Date.now(),
     contacts,
     status,
   }
@@ -24,11 +24,11 @@ function receiveContact(contact, status='success') {
   }
 }
 
-export function fetchContacts() {
+export function fetchContacts(options={}) {
   return async function(dispatch, getState) {
     dispatch(requestContacts());
-    const result = await config.adapter.getContacts();
-    dispatch(receiveContacts(result.contacts))
+    const result = await config.adapter.getContacts(options);
+    dispatch(receiveContacts(result.contacts, 'success', !!options.ids))
   }
 }
 

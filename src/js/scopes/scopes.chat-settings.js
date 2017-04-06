@@ -142,7 +142,9 @@ ChatSettings.propTypes = {
 
 function renderParticipants(props) {
   if (props.participants.length > 0) {
-    return props.participants.map((user, index) => (
+    return props.participants.map(p => props.contactsState.contacts[p.id])
+      .filter(x => x)
+      .map((user, index) => (
       <BlockUser
         key={ index }
         name={ user.firstName }

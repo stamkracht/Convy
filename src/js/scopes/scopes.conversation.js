@@ -64,44 +64,26 @@ class Conversation extends React.Component {
     if (this.props.params.chatId) { this.loadInitialData(); }
   }
 
-  getContactId(chat) {
-    return chat.members.filter((member) =>
-      member.id != this.props.meState.id
-    )[0].id;
+  getParticipantIds(chat) {
+    return chat.participants.filter((participant) =>
+      participant.id != this.props.meState.id
+    ).map(p => p.id);
   }
 
   async loadInitialData() {
+    let chat;
     if (!this.props.chatsState.chats[this.props.params.chatId]) {
       // fetch the chat.
-      const chat = this.props.chatsState.chats[this.props.params.chatId];
-      const contactId = this.getContactId(chat);
-
       await this.props.fetchChat(this.props.params.chatId);
+    }
+    chat = this.props.chatsState.chats[this.props.params.chatId];
+    this.props.fetchMessages(chat.id)
 
-      this.setState({
-        chatId: this.props.params.chatId,
-      });
-
-      if (!this.props.contactsState.contacts[contactId]) {
-        // fetch the contact.
-        await this.props.fetchContact(contactId);
-      }
-
-      this.setState({ contactId });
-    } else {
-      const chat = this.props.chatsState.chats[this.props.params.chatId];
-      const contactId = this.getContactId(chat);
-
-      this.setState({
-        chatId: this.props.params.chatId,
-      });
-
-      if(!this.props.contactsState.contacts[contactId]) {
-        // fetch the contact.
-        await this.props.fetchContact(contactId);
-      }
-
-      this.setState({ contactId })
+    // fetch the contacts
+    const participantIds = this.getParticipantIds(chat);
+    const fetchParticipantIds = participantIds.filter(id => !this.props.contactsState.contacts[id])
+    if (fetchParticipantIds.length) {
+      this.props.fetchContacts(fetchParticipantIds);
     }
   }
 }
@@ -113,7 +95,8 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchChat: (id) => dispatch(actions.chats.fetchChat(id)),
-    fetchContact: (id) => dispatch(actions.contacts.fetchContact(id)),
+    fetchContacts: (ids) => dispatch(actions.contacts.fetchContacts({ids})),
+    fetchMessages: (id) => dispatch(actions.chats.fetchMessages(id)),
     setSwipeViewIndex: (index) => dispatch(actions.swipeView.setSwipeViewIndex(swipeViewId, index)),
     setChatHeader: () => dispatch(actions.header.setMode('CHAT')),
   };

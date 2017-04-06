@@ -41,14 +41,16 @@ class Main extends React.Component {
   }
 
   getChatList() {
-    return this.props.chatsState.chatList.map((id) =>
-      this.props.chatsState.chats[id]
+    const chats = this.props.chatsState.chats;
+    return Object.keys(chats).map((id) =>
+      chats[id]
     )
   }
 
   getContactList() {
-    return this.props.contactsState.contactList.map((id) =>
-      this.props.contactsState.contacts[id]
+    const contacts = this.props.contactsState.contacts;
+    return Object.keys(contacts).map((id) =>
+      contacts[id]
     )
   }
 

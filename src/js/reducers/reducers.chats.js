@@ -2,6 +2,7 @@ function chatsReducer(state, action) {
   if (state === undefined) {
     state = {
       isFetching: false,
+      isFetchingMessages: false,
       chats: {},
       chatList: [],
       receivedAt: null
@@ -20,10 +21,9 @@ function chatsReducer(state, action) {
       );
       return Object.assign({}, state, {
         isFetching: false,
-        receivedAt: action.receivedAt,
         chats,
         chatList
-      });
+      }, action.receivedAt && {receivedAt: action.receivedAt});
 
     }
   }
@@ -58,11 +58,40 @@ function chatsReducer(state, action) {
       const chatList = [chat.id].concat(state.chatList);
       return Object.assign({}, state, {
         isFetching: false,
-        receivedAt: action.receivedAt,
         chats,
         chatList
       });
     }
+  }
+
+  if (action.type == 'FETCH_MESSAGES') {
+    if(!action.status) {
+      return Object.assign({}, state, {
+        isFetchingMessages: true
+      });
+    } else if(action.status == 'success') {
+      const messages = action.messages;
+      const chat = Object.assign({}, state.chats[action.chatId], {messages})
+      const chats = Object.assign({}, state.chats , { [action.chatId]: chat });
+      return Object.assign({}, state, {
+        isFetchingMessages: false,
+        chats,
+      });
+
+    }
+
+  }
+
+  if (action.type == 'NEW_MESSAGE') {
+    const message = action.message;
+    const chatId = message.conversation;
+    const messages = state.chats[chatId].messages.concat([message])
+    const chat = Object.assign({}, state.chats[chatId], {messages})
+    const chats = Object.assign({}, state.chats , { [chatId]: chat });
+    return Object.assign({}, state, {
+      receivedAt: action.receivedAt,
+      chats,
+    });
   }
 
   return state;
