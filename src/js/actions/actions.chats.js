@@ -135,5 +135,25 @@ export function createChat(participantIds) {
     dispatch(finishCreateChat(result.chat, result.status));
     return result.chat.id;
   }
+}
 
+function startSendMessage() {
+  return {
+    type: 'SEND_MESSAGE',
+  }
+}
+
+function finishSendMessage(status='success') {
+  return {
+    type: 'SEND_MESSAGE',
+    status,
+  }
+}
+
+export function sendMessage(chatId, message) {
+  return async function(dispatch, getState) {
+    dispatch(startSendMessage());
+    await config.adapter.sendMessage(chatId, message);
+    dispatch(finishSendMessage());
+  }
 }
