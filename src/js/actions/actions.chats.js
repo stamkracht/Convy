@@ -34,10 +34,10 @@ function getChatImage(chat, id) {
   if (chat.image) {
     return chat.image;
   } else {
-    if(chat.participants.length == 2) {
+    if (chat.participants.length == 2) {
       const participant = chat.participants.filter((participant) => participant.id != id)[0];
-      if(participant && participant.image) {
-        return participant.image
+      if (participant && participant.image) {
+        return participant.image;
       }
     }
   }
@@ -96,7 +96,6 @@ export function updateLastSeen(chatId) {
     await config.adapter.updateLastSeen(chatId);
     dispatch(finishUpdateLastSeen());
   }
-
 }
 
 export function handleChatEvent(event, payload) {
@@ -112,7 +111,6 @@ export function handleChatEvent(event, payload) {
 export function subscribeToChatEvents(chatCallback) {
   config.adapter.subscribeToChatEvents(chatCallback);
 }
-
 
 function requestCreateChat() {
   return {
@@ -135,5 +133,25 @@ export function createChat(participantIds) {
     dispatch(finishCreateChat(result.chat, result.status));
     return result.chat.id;
   }
+}
 
+function startSendMessage() {
+  return {
+    type: 'SEND_MESSAGE',
+  }
+}
+
+function finishSendMessage(status='success') {
+  return {
+    type: 'SEND_MESSAGE',
+    status,
+  }
+}
+
+export function sendMessage(chatId, message) {
+  return async function(dispatch, getState) {
+    dispatch(startSendMessage());
+    await config.adapter.sendMessage(chatId, message);
+    dispatch(finishSendMessage());
+  }
 }

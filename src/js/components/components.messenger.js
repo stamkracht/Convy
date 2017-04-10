@@ -1,11 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import config from '../config'
+import actions from '../actions';
 
 class Messenger extends React.Component {
 
   sendMessage() {
     const message = this.messageInput.value;
-    config.adapter.sendMessage(this.props.chatId, message)
+    this.props.sendMessage(this.props.chatId, message);
   }
   render() {
     let messengerAttachmentClass = `c-messenger__attachment ${ this.props.showAttachment ? 'state-active' : '' }`;
@@ -32,4 +35,14 @@ class Messenger extends React.Component {
   }
 }
 
-export default Messenger;
+const mapStateToProps = (state, ownProps) => state[config.stateName];
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    sendMessage: (chatId, message) => dispatch(actions.chats.sendMessage(chatId, message)),
+  };
+};
+
+const MessengerConnect = connect(mapStateToProps, mapDispatchToProps)(Messenger);
+
+export default MessengerConnect;
