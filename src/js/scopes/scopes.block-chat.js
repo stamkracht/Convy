@@ -5,13 +5,13 @@ class BlockChat extends React.Component {
 
   renderMessage(message) {
     if(message.user) {
-      const cssClass = conditionalClass({
+      const messageClass = conditionalClass({
         'c-message': true,
         'c-message--user': message.user.id == this.props.myId, // Check if current user is author
       });
 
       return (
-        <article key={message.created_at} className={ cssClass }>
+        <article key={message.created_at} className={ messageClass }>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
           <p>{ message.content }</p>
           <ul className="c-message__data">
@@ -23,21 +23,32 @@ class BlockChat extends React.Component {
   }
 
   render() {
-    const messages = this.props.messages ?
+    const blockChatClass = conditionalClass({
+      's-block-chat': true,
+      'state-empty': this.props.messages.length === 0 ? true : false,
+    });
+
+    const header = this.props.messages.length > 0 ?
+      (<div className="s-block-chat__header">
+         <p>Unread messages</p>
+         <ul className="s-block-chat__data">
+           <li>31 augustus</li>
+         </ul>
+       </div>) :
+      (<div className="s-block-chat__header">
+         <p>No messages, yet</p>
+       </div>);
+
+    const messages = this.props.messages.length > 0 ?
       this.props.messages.map(m => this.renderMessage(m)) :
-      (<h1>Empty</h1>);
+      (<p className="empty-message">Be the first to start the conversation!</p>);
 
     return (
-      <section className="s-block-chat">
-        { this.props.messages && <div className="s-block-chat__header">
-          <p>Unread messages</p>
-          <ul className="s-block-chat__data">
-            <li>31 augustus</li>
-          </ul>
-        </div> }
+      <section className={ blockChatClass }>
+        { header }
 
         <div className="s-block-chat__main">
-          {messages}
+          { messages }
         </div>
       </section>
     );
