@@ -5,13 +5,13 @@ class BlockChat extends React.Component {
 
   renderMessage(message) {
     if(message.user) {
-      const cssClass = conditionalClass({
+      const messageClass = conditionalClass({
         'c-message': true,
         'c-message--user': message.user.id == this.props.myId, // Check if current user is author
       });
 
       return (
-        <article key={message.created_at} className={ cssClass }>
+        <article key={message.created_at} className={ messageClass }>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
           <p>{ message.content }</p>
           <ul className="c-message__data">
