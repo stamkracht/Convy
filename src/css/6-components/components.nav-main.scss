@@ -67,6 +67,18 @@
 
 .c-nav-main__button--chat {
   [class^="icon"] { top: 4px; }
+
+  &.state-bounce { animation: bounce 2.5s infinite; }
+}
+
+@keyframes bounce {
+  from, 20%, 50%, 80%, to { transform: translate3d(0, 0, 0); }
+
+  40% { transform: translate3d(0, -6px, 0); }
+
+  70% { transform: translate3d(0, -6px, 0); }
+
+  90% { transform: translate3d(0, -2px, 0); }
 }
 
 .c-nav-main__button--profile {
