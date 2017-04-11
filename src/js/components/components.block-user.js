@@ -3,9 +3,10 @@ import { Link } from 'react-router';
 import { humanReadableTimeStamp } from '../utillities'
 
 class BlockUser extends React.Component {
+
   render() {
     return (
-      <Link to={`conversation/${this.props.id}`} className="c-block-user" key={ this.props.id }>
+      <Link to={`conversation/${this.props.id}`} className="c-block-user" key={ this.props.id } onClick={ () => this.props.onClick() }>
         <span className="circle"></span>
 
         <ul className="c-block-user__data">
@@ -68,6 +69,10 @@ BlockUser.propTypes = {
   lastSeenDate: React.PropTypes.string,
   lastMessageDate: React.PropTypes.string,
   unreadMessagesLength: React.PropTypes.number,
+};
+
+BlockUser.defaultProps = {
+  onClick: () => {},
 };
 
 export default BlockUser;
