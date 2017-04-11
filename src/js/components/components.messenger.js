@@ -10,6 +10,22 @@ class Messenger extends React.Component {
     const message = this.messageInput.value;
     this.props.sendMessage(this.props.chatId, message);
     this.messageInput.value = '';
+    this.props.onSizeChanged(50);
+  }
+
+  onKeyUp(event) {
+    event.persist();
+
+    // Send message on 'return' key press
+    if ( event.keyCode === 13 ) {
+      this.sendMessage();
+    }
+
+    setTimeout(() => {
+      this.props.onSizeChanged(50);
+      let height = event.target.scrollHeight;
+      this.props.onSizeChanged(height);
+    }, 0);
   }
 
   render() {
@@ -26,7 +42,7 @@ class Messenger extends React.Component {
         <textarea ref={ input => this.messageInput = input }
           style={ inputHeight }
           placeholder="Share knowledge"
-          onKeyUp={ this.props.keyUpInteraction }
+          onKeyUp={ this.onKeyUp.bind(this) }
         ></textarea>
 
         <button className="c-messenger__submit" onClick={ () => this.sendMessage() }>

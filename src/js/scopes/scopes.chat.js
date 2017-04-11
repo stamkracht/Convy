@@ -28,15 +28,14 @@ class Chat extends React.Component {
     return (
       <section className="s-chat">
         <div className="s-chat__output" style={ chatOutputStyles }>
-          <BlockChat myId={this.props.meState.me.id} messages={ messages }/>
+          <BlockChat myId={this.props.meState.me.id} messages={ messages } />
         </div>
-
         <div className="s-chat__input">
           <Messenger
             chatId={this.props.chat && this.props.chat.id}
-            messengerHeight={ this.state.messengerHeight }
-            keyUpInteraction={ this.keyUpInteraction.bind(this) }
             showAttachment={ this.state.showAttachment }
+            messengerHeight= { this.state.messengerHeight }
+            onSizeChanged= { (size) => this.onSizeChanged(size) }
             toggleAttachment={ this.toggleAttachment.bind(this) }
           />
         </div>
@@ -44,22 +43,10 @@ class Chat extends React.Component {
     );
   }
 
-  keyUpInteraction(event) {
-    let self = this;
-    event.persist();
-
-    setTimeout(function(){
-      self.setState({
-        messengerHeight: 50,
-      });
-
-      console.info('input scroll-height: ', event.target.scrollHeight);
-      let scrollHeight = event.target.scrollHeight;
-
-      self.setState({
-        messengerHeight: scrollHeight,
-      });
-    }, 0);
+  onSizeChanged(size) {
+    this.setState({
+      messengerHeight: size,
+    });
   }
 
   toggleAttachment() {
