@@ -67,7 +67,21 @@ class ChatSettings extends React.Component {
       );
 
       container = (
-        <div></div>
+        this.getContacts().map((user, index) => {
+          return (
+            <BlockUser
+              key={ index }
+              id={ user.id}
+              name={ user.firstName }
+              description={ user.description }
+              lastMessage={ user.lastMessage }
+              image={ user.image }
+              lastSeenAt={ user.lastSeenAt }
+              lastMessageAt={ user.lastMessageAt }
+              unreadMessagesCount={ user.unreadMessagesCount }
+            />
+          );
+        })
       );
     } else {
       container = (
@@ -129,6 +143,16 @@ class ChatSettings extends React.Component {
     this.setState({
       query: this.participantsInput.value,
     });
+  }
+
+  getContacts() {
+    const contacts = this.props.contactsState.contacts;
+    var x = Object.keys(contacts).map((id) => contacts[id]).filter((contact) => {
+      return (contact.firstName.toLowerCase().indexOf(this.state.query.toLowerCase()) >= 0) ||
+          (contact.lastName.toLowerCase().indexOf(this.state.query.toLowerCase()) >= 0);
+    });
+    console.log('get contacts', x)
+    return x;
   }
 
   addParticipants() {
