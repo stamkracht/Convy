@@ -8,6 +8,7 @@ import config from '../config'
 
 
 class Chat extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -43,17 +44,17 @@ class Chat extends React.Component {
     );
   }
 
-  keyUpInteraction(e) {
+  keyUpInteraction(event) {
     let self = this;
-    e.persist();
+    event.persist();
 
     setTimeout(function(){
       self.setState({
         messengerHeight: 50,
       });
 
-      console.info('input scroll-height: ', e.target.scrollHeight);
-      let scrollHeight = e.target.scrollHeight;
+      console.info('input scroll-height: ', event.target.scrollHeight);
+      let scrollHeight = event.target.scrollHeight;
 
       self.setState({
         messengerHeight: scrollHeight,
@@ -63,7 +64,7 @@ class Chat extends React.Component {
 
   toggleAttachment() {
     this.setState({
-      showAttachment: !this.state.showAttachment
+      showAttachment: !this.state.showAttachment,
     });
   }
 
