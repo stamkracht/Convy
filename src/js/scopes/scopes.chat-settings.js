@@ -119,6 +119,12 @@ class ChatSettings extends React.Component {
     );
   }
 
+  componentWillMount() {
+    if (!this.props.contactsState.receivedAt) {
+      this.props.fetchContacts();
+    }
+  }
+
   onKeyUp() {
     this.setState({
       query: this.participantsInput.value,
@@ -189,6 +195,9 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
+    fetchContacts: () => {
+      dispatch(actions.contacts.fetchContacts())
+    },
   };
 };
 
