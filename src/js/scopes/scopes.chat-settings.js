@@ -17,6 +17,12 @@ class ChatSettings extends React.Component {
     };
   }
 
+  componentWillMount() {
+    if (!this.props.contactsState.receivedAt) {
+      this.props.fetchContacts();
+    }
+  }
+
   render() {
     const chatSettings = conditionalClass({
       's-chat-settings': true,
@@ -131,12 +137,6 @@ class ChatSettings extends React.Component {
         </div>
       </section>
     );
-  }
-
-  componentWillMount() {
-    if (!this.props.contactsState.receivedAt) {
-      this.props.fetchContacts();
-    }
   }
 
   onKeyUp() {
