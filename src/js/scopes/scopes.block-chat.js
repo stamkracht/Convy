@@ -1,7 +1,17 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { conditionalClass, humanReadableTimeStamp } from '../utillities';
 
 class BlockChat extends React.Component {
+
+  componentDidUpdate(prevProps, prevState) {
+    if ( !!this.props.messages.length ) {
+      const node = ReactDOM.findDOMNode(this.lastMessage);
+      if ( node ) {
+        node.scrollIntoView({behavior: "smooth"});
+      }
+    }
+  }
 
   renderMessage(message) {
     if (message.user) {
@@ -11,7 +21,7 @@ class BlockChat extends React.Component {
       });
 
       return (
-        <article key={message.created_at} className={ messageClass }>
+        <article key={message.created_at} className={ messageClass } ref={(el) => { this.lastMessage = el; }}>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
           <p>{ message.content }</p>
           <ul className="c-message__data">
