@@ -55,7 +55,11 @@ class ChatSettings extends React.Component {
             <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
               <i className="icon-close"></i>
             </button>
-            <input className="c-input-group__field" type="text" placeholder="Add participants" ref={ input => this.participantsInput = input }/>
+            <input type="text"
+              className="c-input-group__field"
+              placeholder="Add participants"
+              onKeyUp={ this.onKeyUp.bind(this) }
+              ref={ input => this.participantsInput = input } />
             <button className="c-input-group__addon submit" onClick={ this.addParticipants.bind(this) }><i className="icon-group-add"></i></button>
           </article>
         </div>
@@ -112,6 +116,13 @@ class ChatSettings extends React.Component {
         </div>
       </section>
     );
+  }
+
+  onKeyUp() {
+    let q = this.participantsInput.value;
+    if ( q.length >= 3 ) {
+      console.log(q);
+    }
   }
 
   addParticipants() {
