@@ -13,6 +13,7 @@ class ChatSettings extends React.Component {
 
     this.state = {
       search: false,
+      query: '',
     };
   }
 
@@ -119,10 +120,9 @@ class ChatSettings extends React.Component {
   }
 
   onKeyUp() {
-    let q = this.participantsInput.value;
-    if ( q.length >= 3 ) {
-      console.log(q);
-    }
+    this.setState({
+      query: this.participantsInput.value,
+    });
   }
 
   addParticipants() {
