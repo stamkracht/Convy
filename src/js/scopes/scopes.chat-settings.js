@@ -14,6 +14,7 @@ class ChatSettings extends React.Component {
     this.state = {
       search: false,
       query: '',
+      selectedUsers: [],
     };
   }
 
@@ -143,6 +144,16 @@ class ChatSettings extends React.Component {
     this.setState({
       query: this.participantsInput.value,
     });
+  }
+
+  toggleUserSelection(user) {
+    let selectedUsers = this.state.selectedUsers.slice();
+    if ( selectedUsers.indexOf(user) >= 0 ) {
+      selectedUsers.splice(selectedUsers.indexOf(user), 1);
+    } else {
+      selectedUsers.push(user);
+    }
+    this.setState({selectedUsers});
   }
 
   getContacts() {
