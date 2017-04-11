@@ -10,6 +10,7 @@ import ChatSettings from './scopes.chat-settings';
 import Stats from './scopes.stats';
 
 class Conversation extends React.Component {
+
   render() {
     let view;
 
@@ -23,16 +24,20 @@ class Conversation extends React.Component {
       let participants = chat.participants;
 
       if (group) {
-        view = <ChatSettings
-          groupName={ groupName }
-          groupImage={ groupImage }
-          participants={ participants }
-        />
+        view = (
+          <ChatSettings
+            groupName={ groupName }
+            groupImage={ groupImage }
+            participants={ participants }
+          />
+        );
       } else {
-        view = <Profile
-          isRoot={ false }
-          user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
-        />
+        view = (
+          <Profile
+            isRoot={ false }
+            user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
+          />
+        );
       }
     } else {
       // New conversation
@@ -40,11 +45,13 @@ class Conversation extends React.Component {
       let groupImage = '';
       let participants = [];
 
-      view = <ChatSettings
-        groupName={ groupName }
-        groupImage={ groupImage }
-        participants={ participants }
-      />
+      view = (
+        <ChatSettings
+          groupName={ groupName }
+          groupImage={ groupImage }
+          participants={ participants }
+        />
+      );
     }
 
     return (
@@ -61,7 +68,9 @@ class Conversation extends React.Component {
   componentDidMount() {
     this.props.setChatHeader();
 
-    if (this.props.params.chatId) { this.loadInitialData(); }
+    if (this.props.params.chatId) {
+      this.loadInitialData();
+    }
   }
 
   getParticipantIds(chat) {
@@ -77,11 +86,11 @@ class Conversation extends React.Component {
       await this.props.fetchChat(this.props.params.chatId);
     }
     chat = this.props.chatsState.chats[this.props.params.chatId];
-    this.props.fetchMessages(chat.id)
+    this.props.fetchMessages(chat.id);
 
     // fetch the contacts
     const participantIds = this.getParticipantIds(chat);
-    const fetchParticipantIds = participantIds.filter(id => !this.props.contactsState.contacts[id])
+    const fetchParticipantIds = participantIds.filter(id => !this.props.contactsState.contacts[id]);
     if (fetchParticipantIds.length) {
       this.props.fetchContacts(fetchParticipantIds);
     }

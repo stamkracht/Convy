@@ -21,6 +21,7 @@ class Messenger extends React.Component {
       this.sendMessage();
     }
 
+    // Update height of input element
     setTimeout(() => {
       this.props.onSizeChanged(50);
       let height = event.target.scrollHeight;

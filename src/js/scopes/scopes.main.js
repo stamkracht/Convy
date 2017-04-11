@@ -53,7 +53,6 @@ class Main extends React.Component {
       contacts[id]
     )
   }
-
 }
 
 const swipeViewId = 'mainSwipeView';

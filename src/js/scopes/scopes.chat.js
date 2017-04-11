@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import actions from '../actions';
 import config from '../config'
 
-
 class Chat extends React.Component {
 
   constructor(props) {

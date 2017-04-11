@@ -7,6 +7,7 @@ import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
 class UserList extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -30,17 +31,21 @@ class UserList extends React.Component {
     listType = this.props.listType;
 
     if (chatFetching || contactsFetching) {
-      loading = <span className="c-loading">
-                  <span className="c-loading__circle"></span>
-                </span>
+      loading = (
+        <span className="c-loading">
+          <span className="c-loading__circle"></span>
+        </span>
+      );
     }
 
     if (listType === 'chats') {
-      groupAction = <li>
-                      <button onClick={ this.newGroupConversation.bind(this) }>
-                        <i className="icon-group-add"></i>
-                      </button>
-                    </li>;
+      groupAction = (
+        <li>
+          <button onClick={ this.newGroupConversation.bind(this) }>
+            <i className="icon-group-add"></i>
+          </button>
+        </li>
+      );
     }
 
     users = renderUsers(this.props);
@@ -53,22 +58,24 @@ class UserList extends React.Component {
     }
 
     if (this.state.search) {
-      input = <div className="s-block-actions__input">
-                <article className="c-input-group">
-                  <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
-                    <i className="icon-close"></i>
-                  </button>
-                  <input
-                    className="c-input-group__field"
-                    type="text"
-                    placeholder={ this.props.searchPlaceholder }
-                    autoFocus
-                    onKeyDown={ this.keyDownSearchInteraction.bind(this) }
-                    onKeyUp={ this.keyUpSearchInteraction.bind(this) }
-                  />
-                  <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
-                </article>
-              </div>;
+      input = (
+        <div className="s-block-actions__input">
+          <article className="c-input-group">
+            <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
+              <i className="icon-close"></i>
+            </button>
+            <input
+              className="c-input-group__field"
+              type="text"
+              placeholder={ this.props.searchPlaceholder }
+              autoFocus
+              onKeyDown={ this.keyDownSearchInteraction.bind(this) }
+              onKeyUp={ this.keyUpSearchInteraction.bind(this) }
+            />
+            <button className="c-input-group__addon submit"><i className="icon-search"></i></button>
+          </article>
+        </div>
+      );
     }
 
     return (
@@ -121,7 +128,7 @@ class UserList extends React.Component {
 
     // if input is empty and user presses backspace or esc, hide search.
     if (value === '' && keyCode === 8 || keyCode === 27) {
-      this.hideSearch()
+      this.hideSearch();
     }
   }
 
@@ -132,9 +139,6 @@ class UserList extends React.Component {
   newGroupConversation() {
     this.props.swipeToContactPicker();
     browserHistory.push('/conversation');
-
-    //this.props.createChat(participantIds).then((chatId) => {
-    //});
   }
 }
 
@@ -160,9 +164,9 @@ function renderUsers(props) {
         unreadMessagesCount={ user.unreadMessagesCount }
       />
     ));
+  } else {
+    return [];
   }
-
-  else { return []; }
 }
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
@@ -172,7 +176,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     openChat: (id) => {
       dispatch(actions.header.openChat(id));
     },
-    swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1))
+    swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1)),
   };
 };
 

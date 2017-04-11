@@ -7,6 +7,7 @@ import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
 class ChatSettings extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -38,22 +39,26 @@ class ChatSettings extends React.Component {
       heading = 'Participants';
     }
 
-    if (this.props.groupImage) {
+    if (!!this.props.groupImage) {
       styles = { backgroundImage: `url(${ this.props.groupImage })` };
     } else {
-      icon = <span className="c-banner__icon"><i className="icon-image"></i></span>;
+      icon = (
+        <span className="c-banner__icon"><i className="icon-image"></i></span>
+      );
     }
 
-    if (this.state.search) {
-      input = <div className="s-block-actions__input">
-                <article className="c-input-group">
-                  <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
-                    <i className="icon-close"></i>
-                  </button>
-                  <input className="c-input-group__field" type="text" placeholder="Add participants" ref={ input => this.participantsInput = input }/>
-                  <button className="c-input-group__addon submit" onClick={ this.addParticipants.bind(this) }><i className="icon-group-add"></i></button>
-                </article>
-              </div>;
+    if (!!this.state.search) {
+      input = (
+        <div className="s-block-actions__input">
+          <article className="c-input-group">
+            <button className="c-input-group__addon" onClick={ this.hideSearch.bind(this) }>
+              <i className="icon-close"></i>
+            </button>
+            <input className="c-input-group__field" type="text" placeholder="Add participants" ref={ input => this.participantsInput = input }/>
+            <button className="c-input-group__addon submit" onClick={ this.addParticipants.bind(this) }><i className="icon-group-add"></i></button>
+          </article>
+        </div>
+      );
     }
 
     return (
