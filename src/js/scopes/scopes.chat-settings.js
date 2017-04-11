@@ -148,9 +148,8 @@ class ChatSettings extends React.Component {
   getContacts() {
     const contacts = this.props.contactsState.contacts;
     return Object.keys(contacts).map((id) => contacts[id]).filter((contact) => {
-      return (contact.active) ||
-        (contact.firstName.toLowerCase().indexOf(this.state.query.toLowerCase()) >= 0) ||
-        (contact.lastName.toLowerCase().indexOf(this.state.query.toLowerCase()) >= 0);
+      let fullName = `${contact.firstName} ${contact.lastName}`;
+      return (fullName.toLowerCase().indexOf(this.state.query.toLowerCase()) >= 0);
     });
   }
 
