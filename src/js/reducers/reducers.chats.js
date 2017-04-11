@@ -28,11 +28,11 @@ function chatsReducer(state, action) {
     }
   }
   if (action.type === 'FETCH_CHAT') {
-    if(action.status == 'success') {
+    if (action.status == 'success') {
       // Set the chat in the dictionary
       return Object.assign({}, state, {
         chats: Object.assign({}, state.chats, {
-          [action.chat.id]: action.chat
+          [action.chat.id]: action.chat,
         }),
       });
 
@@ -48,11 +48,11 @@ function chatsReducer(state, action) {
   }
 
   if (action.type === 'CREATE_CHAT') {
-    if(!action.status) {
+    if (!action.status) {
       return Object.assign({}, state, {
         isFetching: true
       });
-    } else if(action.status == 'success') {
+    } else if (action.status == 'success') {
       const chat = action.chat;
       const chats = Object.assign({}, state.chats , { [chat.id]: chat });
       const chatList = [chat.id].concat(state.chatList);
@@ -65,11 +65,11 @@ function chatsReducer(state, action) {
   }
 
   if (action.type == 'FETCH_MESSAGES') {
-    if(!action.status) {
+    if (!action.status) {
       return Object.assign({}, state, {
         isFetchingMessages: true
       });
-    } else if(action.status == 'success') {
+    } else if (action.status == 'success') {
       const messages = action.messages;
       const chat = Object.assign({}, state.chats[action.chatId], {messages})
       const chats = Object.assign({}, state.chats , { [action.chatId]: chat });
@@ -77,9 +77,7 @@ function chatsReducer(state, action) {
         isFetchingMessages: false,
         chats,
       });
-
     }
-
   }
 
   if (action.type == 'NEW_MESSAGE') {

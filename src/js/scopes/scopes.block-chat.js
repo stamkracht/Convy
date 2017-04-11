@@ -4,7 +4,7 @@ import { conditionalClass, humanReadableTimeStamp } from '../utillities';
 class BlockChat extends React.Component {
 
   renderMessage(message) {
-    if(message.user) {
+    if (message.user) {
       const messageClass = conditionalClass({
         'c-message': true,
         'c-message--user': message.user.id == this.props.myId, // Check if current user is author

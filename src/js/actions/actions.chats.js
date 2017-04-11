@@ -73,7 +73,7 @@ export function fetchMessages(chatId) {
 export function fetchChat(id) {
   return async function(dispatch, getState) {
     const result = await config.adapter.getChat(id);
-    dispatch(receiveChat(result.chat))
+    dispatch(receiveChat(result.chat));
   }
 }
 

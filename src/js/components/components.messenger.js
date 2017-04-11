@@ -10,6 +10,7 @@ class Messenger extends React.Component {
     const message = this.messageInput.value;
     this.props.sendMessage(this.props.chatId, message);
   }
+
   render() {
     let messengerAttachmentClass = `c-messenger__attachment ${ this.props.showAttachment ? 'state-active' : '' }`;
 
