@@ -24,6 +24,7 @@ class ChatSettings extends React.Component {
 
     let groupName,
         participants,
+        container,
         heading,
         icon,
         styles,
@@ -59,6 +60,21 @@ class ChatSettings extends React.Component {
           </article>
         </div>
       );
+
+      container = (
+        <div></div>
+      );
+    } else {
+      container = (
+        <div>
+          <article className="c-banner" style={ styles }>
+            <h1 className="c-banner__title">{ groupName }</h1>
+            { icon }
+          </article>
+          <h2 className="s-chat-settings__heading">{ heading }</h2>
+          { participants }
+        </div>
+      );
     }
 
     return (
@@ -92,14 +108,7 @@ class ChatSettings extends React.Component {
               { input }
             </nav>
           </section>
-
-          <article className="c-banner" style={ styles }>
-            <h1 className="c-banner__title">{ groupName }</h1>
-            { icon }
-          </article>
-          <h2 className="s-chat-settings__heading">{ heading }</h2>
-
-          { participants }
+          { container }
         </div>
       </section>
     );
