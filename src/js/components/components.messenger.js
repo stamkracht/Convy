@@ -9,6 +9,7 @@ class Messenger extends React.Component {
   sendMessage() {
     const message = this.messageInput.value;
     this.props.sendMessage(this.props.chatId, message);
+    this.messageInput.value = '';
   }
 
   render() {
