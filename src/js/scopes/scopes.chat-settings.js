@@ -197,6 +197,7 @@ class ChatSettings extends React.Component {
 
     this.setState({
       search: false,
+      query: '',
     });
   }
 }
