@@ -86,6 +86,8 @@ class ChatSettings extends React.Component {
               lastSeenAt={ user.lastSeenAt }
               lastMessageAt={ user.lastMessageAt }
               unreadMessagesCount={ user.unreadMessagesCount }
+              isActive={ this.state.selectedUsers.indexOf(user) >= 0 }
+              onClick={ () => this.toggleUserSelection(user) }
             />
           );
         })
