@@ -1,12 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { humanReadableTimeStamp } from '../utillities'
+import { conditionalClass, humanReadableTimeStamp } from '../utillities'
 
 class BlockUser extends React.Component {
 
   render() {
+
     return (
-      <Link to={`conversation/${this.props.id}`} className="c-block-user" key={ this.props.id } onClick={ () => this.props.onClick() }>
+      <Link
+        className={
+          conditionalClass({
+            'c-block-user': true,
+            'state-active': this.props.isActive,
+          })
+        }
+        to={`conversation/${this.props.id}`}
+        key={ this.props.id }
+        onClick={ () => this.props.onClick() }>
+
         <span className="circle"></span>
 
         <ul className="c-block-user__data">
