@@ -16,7 +16,7 @@
   font-size: rem(16px);
   cursor: pointer;
 
-  &.state-active .circle {
+  &.state-animated .circle {
     transform: scale(10);
     transition-delay: 0s;
 
