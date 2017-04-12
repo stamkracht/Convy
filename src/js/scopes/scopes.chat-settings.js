@@ -168,8 +168,8 @@ class ChatSettings extends React.Component {
   }
 
   addParticipants() {
-    const particpantIds = this.participantsInput.value.split(',');
-    this.props.createChat(particpantIds);
+    let participantIds = this.state.selectedUsers.map((user) => user.id);
+    this.props.createChat(participantIds);
   }
 
   leaveGroup() {
