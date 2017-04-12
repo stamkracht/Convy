@@ -69,9 +69,12 @@ BlockUser.propTypes = {
   lastSeenDate: React.PropTypes.string,
   lastMessageDate: React.PropTypes.string,
   unreadMessagesLength: React.PropTypes.number,
+  isActive: React.PropTypes.bool,
+  onClick: React.PropTypes.func,
 };
 
 BlockUser.defaultProps = {
+  isActive: false,
   onClick: () => {},
 };
 
