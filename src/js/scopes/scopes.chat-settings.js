@@ -185,16 +185,12 @@ class ChatSettings extends React.Component {
   }
 
   showSearch() {
-    console.info('Show search bar.');
-
     this.setState({
       search: true,
     });
   }
 
   hideSearch() {
-    console.info('Hide search bar.');
-
     this.setState({
       search: false,
       query: '',

@@ -5,7 +5,6 @@ import { conditionalClass, humanReadableTimeStamp } from '../utillities'
 class BlockUser extends React.Component {
 
   render() {
-
     return (
       <Link
         className={
