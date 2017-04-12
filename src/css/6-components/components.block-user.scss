@@ -16,6 +16,10 @@
   font-size: rem(16px);
   cursor: pointer;
 
+  &.state-active {
+    background: lighten($brand-color-1, 10%);
+  }
+
   &.state-animated .circle {
     transform: scale(10);
     transition-delay: 0s;
