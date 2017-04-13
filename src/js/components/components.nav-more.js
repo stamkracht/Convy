@@ -7,19 +7,15 @@ import config from '../config';
 import { conditionalClass } from '../utillities';
 
 class NavMore extends React.Component {
-  render() {
-    const dropdown = conditionalClass({
-      'c-nav-more__dropdown': true,
-      'state-active': this.props.active
-    });
 
+  render() {
     return (
       <nav className="c-nav-more">
         <button className="c-nav-more__button" onClick={ this.props.toggle }>
           <i className="icon-more"></i>
         </button>
 
-        <ul className={ dropdown }>
+        <ul className={ `c-nav-more__dropdown ${conditionalClass({'state-active': this.props.active})}` }>
           <li>
             <Link to="my-profile">
               <i className="icon-person-outline"></i>Profile

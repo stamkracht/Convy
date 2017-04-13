@@ -9,21 +9,9 @@ import { conditionalClass } from '../utillities';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
+
   render() {
-    const header = conditionalClass({
-      's-header': true,
-      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
-    });
-
-    const logo = conditionalClass({
-      'logo': true,
-      'state-active': this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE',
-    });
-
-    const backButton = conditionalClass({
-      'back-button': true,
-      'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE',
-    });
+    const defaultState = this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE';
 
     let navigation;
 
@@ -34,10 +22,10 @@ class Header extends React.Component {
     }
 
     return (
-      <header className={ header }>
+      <header className={ `s-header ${conditionalClass({'state-active': !defaultState})}` }>
         <div className="icon">
-          <img className={ logo } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ backButton }>
+          <img className={ `logo ${conditionalClass({'state-active': defaultState})}` } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <Link to="/" className={ `back-button ${conditionalClass({'state-active': !defaultState})}` }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -59,27 +47,18 @@ class Header extends React.Component {
 }
 
 class NavMain extends React.Component {
+
   render() {
-    const navMainItem1 = conditionalClass({
-      'c-nav-main__button': true,
-      'state-active': this.props.swipeViewState['mainSwipeView'] == 0,
-    });
-
-    const navMainItem2 = conditionalClass({
-      'c-nav-main__button': true,
-      'state-active': this.props.swipeViewState['mainSwipeView'] == 1,
-    });
-
     return (
       <nav className="c-nav-main">
         <ul>
           <li>
-            <IndexLink className={ navMainItem1 } onClick={ () => this.props.setMainSwipeViewIndex(0) }>
+            <IndexLink className={ `c-nav-main__button ${conditionalClass({'state-active': this.props.swipeViewState['mainSwipeView'] == 0})}` } onClick={ () => this.props.setMainSwipeViewIndex(0) }>
               Chats
             </IndexLink>
           </li>
           <li>
-            <Link className={ navMainItem2 } onClick={ () => this.props.setMainSwipeViewIndex(1) }>
+            <Link className={ `c-nav-main__button ${conditionalClass({'state-active': !!this.props.swipeViewState['mainSwipeView'] == 1})}` } onClick={ () => this.props.setMainSwipeViewIndex(1) }>
               Contacts
             </Link>
           </li>
@@ -90,37 +69,29 @@ class NavMain extends React.Component {
 }
 
 class NavChat extends React.Component {
+
   render() {
-    const navChatItem1 = conditionalClass({
-      'c-nav-main__button c-nav-main__button--chat': true,
-      'state-active': this.props.swipeViewState['conversationSwipeView'] == 0,
-    });
-
-    const navChatItem2 = conditionalClass({
-      'c-nav-main__button c-nav-main__button--profile': true,
-      'state-active': this.props.swipeViewState['conversationSwipeView'] == 1,
-    });
-
-    const navChatItem3 = conditionalClass({
-      'c-nav-main__button c-nav-main__button--charts': true,
-      'state-active': this.props.swipeViewState['conversationSwipeView'] == 2,
-    });
-
     return (
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
           <li>
-            <Link className={ navChatItem1 } onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
+            <Link
+              className={ `c-nav-main__button c-nav-main__button--chat ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 0})}` }
+              onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
               <i className="icon-message"></i>
             </Link>
           </li>
           <li>
-            <Link className={ navChatItem2 } onClick={ () => this.props.setConversationSwipeViewIndex(1) }>
+            <Link
+              className={ `c-nav-main__button c-nav-main__button--profile ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 1})}` }
+              onClick={ () => this.props.setConversationSwipeViewIndex(1) }>
               <i className="icon-person"></i>
             </Link>
           </li>
           <li>
-            <Link className={ navChatItem3 } onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
+            <Link
+              className={ `c-nav-main__button c-nav-main__button--charts ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 2})}` }
+              onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
               <i className="icon-bar-chart"></i>
             </Link>
           </li>

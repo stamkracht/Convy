@@ -25,11 +25,6 @@ class ChatSettings extends React.Component {
   }
 
   render() {
-    const chatSettings = conditionalClass({
-      's-chat-settings': true,
-      'state-new': !this.props.chat,
-    });
-
     let groupName,
         participants,
         container,
@@ -106,7 +101,7 @@ class ChatSettings extends React.Component {
     }
 
     return (
-      <section className={ chatSettings }>
+      <section className={ `s-chat-settings ${conditionalClass({'state-new': !this.props.chat})}` }>
         <div className="s-chat-settings__inner">
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">

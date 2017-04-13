@@ -7,12 +7,7 @@ class BlockUser extends React.Component {
   render() {
     return (
       <Link
-        className={
-          conditionalClass({
-            'c-block-user': true,
-            'state-active': this.props.isActive,
-          })
-        }
+        className={ `c-block-user ${conditionalClass({'state-active': this.props.isActive})}` }
         to={`conversation/${this.props.id}`}
         key={ this.props.id }
         onClick={ () => this.props.onClick() }>

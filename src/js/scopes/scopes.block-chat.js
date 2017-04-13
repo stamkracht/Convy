@@ -15,13 +15,11 @@ class BlockChat extends React.Component {
 
   renderMessage(message) {
     if (message.user) {
-      const messageClass = conditionalClass({
-        'c-message': true,
-        'c-message--user': message.user.id == this.props.myId, // Check if current user is author
-      });
-
       return (
-        <article key={message.created_at} className={ messageClass } ref={(el) => { this.lastMessage = el; }}>
+        <article
+          className={ `c-message ${conditionalClass({'c-message--user': message.user.id == this.props.myId})}` }
+          key={message.created_at}
+          ref={(el) => { this.lastMessage = el; }}>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
           <p>{ message.content }</p>
           <ul className="c-message__data">
@@ -33,11 +31,6 @@ class BlockChat extends React.Component {
   }
 
   render() {
-    const blockChatClass = conditionalClass({
-      's-block-chat': true,
-      'state-empty': this.props.messages.length === 0 ? true : false,
-    });
-
     const header = this.props.messages.length > 0 ?
       (<div className="s-block-chat__header">
          <p>Unread messages</p>
@@ -54,7 +47,7 @@ class BlockChat extends React.Component {
       (<p className="empty-message">Be the first to start the conversation!</p>);
 
     return (
-      <section className={ blockChatClass }>
+      <section className={ `s-block-chat ${conditionalClass({'state-empty': !this.props.messages.length})}` }>
         { header }
 
         <div className="s-block-chat__main">
