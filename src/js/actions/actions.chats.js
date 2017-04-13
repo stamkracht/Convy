@@ -126,10 +126,10 @@ function finishCreateChat(chat, status='success') {
   }
 }
 
-export function createChat(participantIds) {
+export function createChat(chat) {
   return async function(dispatch, getState) {
     dispatch(requestCreateChat());
-    const result = await config.adapter.createChat(participantIds);
+    const result = await config.adapter.createChat(chat);
     dispatch(finishCreateChat(result.chat, result.status));
     return result.chat.id;
   }

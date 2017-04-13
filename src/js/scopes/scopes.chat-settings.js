@@ -213,9 +213,9 @@ function renderParticipants(props) {
         openChat={ () => props.openChat(user.id) }
       />
     ));
+  } else {
+    return [];
   }
-
-  else { return []; }
 }
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
@@ -224,7 +224,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
     fetchContacts: () => {
-      dispatch(actions.contacts.fetchContacts())
+      dispatch(actions.contacts.fetchContacts());
     },
   };
 };
