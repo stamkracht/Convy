@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import config from '../config';
 import actions from '../actions';
-import { conditionalClass } from '../utillities';
+import { classNames } from '../utillities';
 import NavMore from '../components/components.nav-more';
 
 class Header extends React.Component {
@@ -22,10 +22,12 @@ class Header extends React.Component {
     }
 
     return (
-      <header className={ `s-header ${conditionalClass({'state-active': !defaultState})}` }>
+      <header className={ classNames('s-header', {'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE'}) }>
         <div className="icon">
-          <img className={ `logo ${conditionalClass({'state-active': defaultState})}` } src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ `back-button ${conditionalClass({'state-active': !defaultState})}` }>
+          <img
+            className={ classNames('logo', {'state-active': this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE'}) }
+            src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
+          <Link to="/" className={ classNames('back-button', {'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE'}) }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>
@@ -53,12 +55,16 @@ class NavMain extends React.Component {
       <nav className="c-nav-main">
         <ul>
           <li>
-            <IndexLink className={ `c-nav-main__button ${conditionalClass({'state-active': this.props.swipeViewState['mainSwipeView'] == 0})}` } onClick={ () => this.props.setMainSwipeViewIndex(0) }>
+            <IndexLink
+              className={ classNames('c-nav-main__button', {'state-active': this.props.swipeViewState['mainSwipeView'] == 0}) }
+              onClick={ () => this.props.setMainSwipeViewIndex(0) }>
               Chats
             </IndexLink>
           </li>
           <li>
-            <Link className={ `c-nav-main__button ${conditionalClass({'state-active': !!this.props.swipeViewState['mainSwipeView'] == 1})}` } onClick={ () => this.props.setMainSwipeViewIndex(1) }>
+            <Link
+              className={ classNames('c-nav-main__button', {'state-active': !!this.props.swipeViewState['mainSwipeView'] == 1}) }
+              onClick={ () => this.props.setMainSwipeViewIndex(1) }>
               Contacts
             </Link>
           </li>
@@ -76,21 +82,21 @@ class NavChat extends React.Component {
         <ul>
           <li>
             <Link
-              className={ `c-nav-main__button c-nav-main__button--chat ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 0})}` }
+              className={ classNames('c-nav-main__button c-nav-main__button--chat', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 0}) }
               onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
               <i className="icon-message"></i>
             </Link>
           </li>
           <li>
             <Link
-              className={ `c-nav-main__button c-nav-main__button--profile ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 1})}` }
+              className={ classNames('c-nav-main__button c-nav-main__button--profile', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 1}) }
               onClick={ () => this.props.setConversationSwipeViewIndex(1) }>
               <i className="icon-person"></i>
             </Link>
           </li>
           <li>
             <Link
-              className={ `c-nav-main__button c-nav-main__button--charts ${conditionalClass({'state-active': this.props.swipeViewState['conversationSwipeView'] == 2})}` }
+              className={ classNames('c-nav-main__button c-nav-main__button--charts', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 2}) }
               onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
               <i className="icon-bar-chart"></i>
             </Link>

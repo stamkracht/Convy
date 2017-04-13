@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { conditionalClass, humanReadableTimeStamp } from '../utillities';
+import { classNames, humanReadableTimeStamp } from '../utillities';
 
 class BlockChat extends React.Component {
 
@@ -17,7 +17,7 @@ class BlockChat extends React.Component {
     if (message.user) {
       return (
         <article
-          className={ `c-message ${conditionalClass({'c-message--user': message.user.id == this.props.myId})}` }
+          className={ classNames('c-message', {'c-message--user': message.user.id == this.props.myId}) }
           key={message.created_at}
           ref={(el) => { this.lastMessage = el; }}>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
@@ -47,7 +47,7 @@ class BlockChat extends React.Component {
       (<p className="empty-message">Be the first to start the conversation!</p>);
 
     return (
-      <section className={ `s-block-chat ${conditionalClass({'state-empty': !this.props.messages.length})}` }>
+      <section className={ classNames('s-block-chat', {'state-empty': !this.props.messages.length}) }>
         { header }
 
         <div className="s-block-chat__main">

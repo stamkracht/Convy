@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { conditionalClass } from '../utillities';
+import { classNames } from '../utillities';
 import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
@@ -101,7 +101,7 @@ class ChatSettings extends React.Component {
     }
 
     return (
-      <section className={ `s-chat-settings ${conditionalClass({'state-new': !this.props.chat})}` }>
+      <section className={ classNames('s-chat-settings', {'state-new': !this.props.chat}) }>
         <div className="s-chat-settings__inner">
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">

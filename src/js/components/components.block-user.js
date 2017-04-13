@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { conditionalClass, humanReadableTimeStamp } from '../utillities'
+import { classNames, humanReadableTimeStamp } from '../utillities'
 
 class BlockUser extends React.Component {
 
   render() {
     return (
       <Link
-        className={ `c-block-user ${conditionalClass({'state-active': this.props.isActive})}` }
-        to={`conversation/${this.props.id}`}
+        className={ classNames('c-block-user', {'state-active': this.props.isActive}) }
         key={ this.props.id }
+        to={`conversation/${this.props.id}`}
         onClick={ () => this.props.onClick() }>
 
         <span className="circle"></span>
