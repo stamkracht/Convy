@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export function classNames(classNames, conditionalClassNames) {
-  return classNames.concat(Object.keys(conditionalClassNames).filter((key) => {
-    conditionalClassNames[key];
+export function classNames(classNames='', conditionalClassNames={}) {
+  return `${classNames} `.concat(Object.keys(conditionalClassNames).filter((key) => {
+    return conditionalClassNames[key];
   }).join(' '));
 }
 
