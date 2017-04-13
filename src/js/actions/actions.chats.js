@@ -135,6 +135,29 @@ export function createChat(chat) {
   }
 }
 
+function requestUpdateChat() {
+  return {
+    type: 'UPDATE_CHAT',
+  }
+}
+
+function finishUpdateChat(chat, status='success') {
+  return {
+    type: 'UPDATE_CHAT',
+    chat,
+    status,
+  }
+}
+
+export function updateChat(chat) {
+  return async function(dispatch, getState) {
+    dispatch(requestUpdateChat());
+    const result = await config.adapter.updateChat(chat);
+    dispatch(finishUpdateChat(result.chat, result.status));
+    return result.chat.id;
+  }
+}
+
 function startSendMessage() {
   return {
     type: 'SEND_MESSAGE',
