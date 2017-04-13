@@ -1,12 +1,9 @@
 import moment from 'moment';
 
-
-export function conditionalClass(conditionalClass) {
-  const classString = Object.keys(conditionalClass).filter((key) =>
-    conditionalClass[key]
-  ).join(' ');
-
-  return classString;
+export function classNames(classNames, conditionalClassNames) {
+  return classNames.concat(Object.keys(conditionalClassNames).filter((key) => {
+    conditionalClassNames[key];
+  }).join(' '));
 }
 
 export function humanReadableTimeStamp(inputValue) {
