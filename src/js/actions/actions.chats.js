@@ -1,4 +1,5 @@
 import config from '../config'
+import { browserHistory } from 'react-router';
 
 function requestChats() {
   return {
@@ -131,6 +132,7 @@ export function createChat(chat) {
     dispatch(requestCreateChat());
     const result = await config.adapter.createChat(chat);
     dispatch(finishCreateChat(result.chat, result.status));
+    browserHistory.push(`/conversation/${result.chat.id}`);
     return result.chat.id;
   }
 }
