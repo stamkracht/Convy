@@ -164,7 +164,7 @@ class ChatSettings extends React.Component {
 
   addParticipants() {
     let participantIds = this.state.selectedUsers.map((user) => user.id);
-    this.props.createChat(participantIds);
+    this.props.update({'participants': participantIds})
   }
 
   leaveGroup() {
@@ -172,11 +172,11 @@ class ChatSettings extends React.Component {
   }
 
   editGroupName() {
-    console.info('Edit group name.');
+    this.props.update({'groupName': prompt('Group name')});
   }
 
   addGroupImage() {
-    console.info('Add group image.');
+    this.props.update({'groupImage': prompt('Group image')});
   }
 
   showSearch() {
@@ -197,6 +197,7 @@ ChatSettings.propTypes = {
   groupName: React.PropTypes.string,
   groupImage: React.PropTypes.string,
   participants: React.PropTypes.array,
+  update: React.PropTypes.func,
 };
 
 function renderParticipants(props) {
@@ -222,7 +223,6 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createChat: (participantIds) => dispatch(actions.chats.createChat(participantIds)),
     fetchContacts: () => {
       dispatch(actions.contacts.fetchContacts());
     },

@@ -29,6 +29,7 @@ class Conversation extends React.Component {
             groupName={ groupName }
             groupImage={ groupImage }
             participants={ participants }
+            update={ (chat) => this.updateChat(chat) }
           />
         );
       } else {
@@ -50,6 +51,7 @@ class Conversation extends React.Component {
           groupName={ groupName }
           groupImage={ groupImage }
           participants={ participants }
+          update={ (chat) => this.createChat(chat) }
         />
       );
     }
@@ -95,6 +97,16 @@ class Conversation extends React.Component {
       this.props.fetchContacts(fetchParticipantIds);
     }
   }
+
+  createChat(chat) {
+    console.log('create chat', chat);
+    this.props.createChat(chat);
+  }
+
+  updateChat(chat) {
+    console.log('update chat', chat);
+    this.props.updateChat(chat);
+  }
 }
 
 const swipeViewId = 'conversationSwipeView';
@@ -108,6 +120,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchMessages: (id) => dispatch(actions.chats.fetchMessages(id)),
     setSwipeViewIndex: (index) => dispatch(actions.swipeView.setSwipeViewIndex(swipeViewId, index)),
     setChatHeader: () => dispatch(actions.header.setMode('CHAT')),
+    createChat: (chat) => dispatch(actions.chats.createChat(chat)),
+    updateChat: (chat) => dispatch(actions.chats.updateChat(chat)),
   };
 };
 
