@@ -18,22 +18,20 @@ class Conversation extends React.Component {
 
     // Existing conversation
     if (chat) {
-
-      // Group conversation
-      if ( chat.participants.length > 2 ) {
+      if ( chat.isPrivate ) {
+        view = (
+          <Profile
+            isRoot={ !!chat.participants.length }
+            user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
+          />
+        );
+      } else {
         view = (
           <ChatSettings
             groupName={ chat.groupName }
             groupImage={ chat.groupImage }
             participants={ chat.participants }
             update={ (chat) => this.updateChat(chat) }
-          />
-        );
-      } else {
-        view = (
-          <Profile
-            isRoot={ !!chat.participants.length }
-            user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
           />
         );
       }
