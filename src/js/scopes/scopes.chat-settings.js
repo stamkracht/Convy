@@ -155,6 +155,7 @@ class ChatSettings extends React.Component {
 
   getContacts() {
     const contacts = this.props.contactsState.contacts;
+    delete contacts[this.props.meState.me.id];
     return Object.keys(contacts).map((id) => contacts[id]).filter((contact) => {
       let fullName = `${contact.firstName} ${contact.lastName}`;
       return (this.state.selectedUsers.indexOf(contact) >= 0) ||
