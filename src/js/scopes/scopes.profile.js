@@ -6,8 +6,11 @@ import actions from '../actions'
 import config from '../config';
 
 class Profile extends React.Component {
+
   render() {
-    const user = this.props.isRoot ? this.props.meState.me: this.props.user;
+
+    const user = this.props.isRoot ? this.props.meState.me : this.props.user;
+
     return (
       <section className="s-profile">
         {
@@ -15,21 +18,19 @@ class Profile extends React.Component {
             <div>Loader thingy</div> :
             <ProfileSummary user={user}/>
         }
-
       </section>
     );
   }
 
   componentWillMount() {
-    if(this.props.isRoot) {
+    if ( this.props.isRoot ) {
       this.props.setProfileHeader();
     }
   }
-
 }
 
 Profile.defaultProps = {
-  isRoot: true
+  isRoot: true,
 };
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
@@ -37,7 +38,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setProfileHeader: () => {
-      dispatch(actions.header.setMode('PROFILE'))
+      dispatch(actions.header.setMode('PROFILE'));
     }
   };
 };

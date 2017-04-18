@@ -2,6 +2,7 @@ import React from 'react';
 import { humanReadableTimeStamp } from '../utillities'
 
 class ProfileSummary extends React.Component {
+
   render() {
     const user = this.props.user;
 
@@ -71,4 +72,4 @@ class ProfileSummary extends React.Component {
   }
 }
 
-export default ProfileSummary
+export default ProfileSummary;
