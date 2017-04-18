@@ -19,7 +19,9 @@ class ProfileSummary extends React.Component {
           <ul className="c-profile-summary__contact">
             <li>{ this.renderEmail(user.email) }</li>
             <li>{ this.renderPhone(user.phone) }</li>
-            <li>{ this.renderTwitterHandle(user.twitter) }</li>
+            {
+              !!user.twitter && <li>{ this.renderTwitterHandle(user.twitter) }</li>
+            }
           </ul>
 
           {user.location && (<ul className="c-profile-summary__location">
