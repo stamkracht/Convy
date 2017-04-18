@@ -16,47 +16,33 @@ class Conversation extends React.Component {
 
     const chat = this.props.chatsState.chats[this.props.params.chatId];
 
+    // Existing conversation
     if (chat) {
-      // Existing conversation
-      let groupName = 'We are TMNT';
-      let groupImage = 'http://placehold.it/500x200';
-      let participants = chat.participants;
 
-      let profileUser;
-      if ( participants.length == 1 ) {
-        profileUser = participants[0];
-      } else if ( participants.length == 2 ) {
-        profileUser = participants.filter(p => p.id != this.props.meState.me.id)[0];
-      }
-
-      if ( participants.length > 2 ) {
+      // Group conversation
+      if ( chat.participants.length > 2 ) {
         view = (
           <ChatSettings
-            groupName={ groupName }
-            groupImage={ groupImage }
-            participants={ participants }
+            groupName={ chat.groupName }
+            groupImage={ chat.groupImage }
+            participants={ chat.participants }
             update={ (chat) => this.updateChat(chat) }
           />
         );
       } else {
         view = (
           <Profile
-            isRoot={ false }
-            user={ profileUser }
+            isRoot={ !!chat.participants.length }
+            user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
           />
         );
       }
     } else {
-      // New conversation
-      let groupName = 'Group Name';
-      let groupImage = '';
-      let participants = [];
-
       view = (
         <ChatSettings
-          groupName={ groupName }
-          groupImage={ groupImage }
-          participants={ participants }
+          groupName={ 'Group Name' }
+          groupImage={ '' }
+          participants={ [] }
           update={ (chat) => this.createChat(chat) }
         />
       );
