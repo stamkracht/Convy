@@ -18,12 +18,18 @@ class Conversation extends React.Component {
 
     if (chat) {
       // Existing conversation
-      let group = chat.participants.length > 2;
       let groupName = 'We are TMNT';
       let groupImage = 'http://placehold.it/500x200';
       let participants = chat.participants;
 
-      if (group) {
+      let profileUser;
+      if ( participants.length == 1 ) {
+        profileUser = participants[0];
+      } else if ( participants.length == 2 ) {
+        profileUser = participants.filter(p => p.id != this.props.meState.me.id)[0];
+      }
+
+      if ( participants.length > 2 ) {
         view = (
           <ChatSettings
             groupName={ groupName }
@@ -36,7 +42,7 @@ class Conversation extends React.Component {
         view = (
           <Profile
             isRoot={ false }
-            user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
+            user={ profileUser }
           />
         );
       }
