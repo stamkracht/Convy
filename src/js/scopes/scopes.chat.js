@@ -56,7 +56,7 @@ class Chat extends React.Component {
 
   componentDidMount() {
     if ( !!this.props.chat ) {
-      this.props.updateLastSeen();
+      this.props.updateLastSeen(this.props.chat.id);
     }
   }
 }
@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateLastSeen: () => dispatch(actions.chats.updateLastSeen(ownProps.chatId)),
+    updateLastSeen: (id) => dispatch(actions.chats.updateLastSeen(id)),
   };
 };
 
