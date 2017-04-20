@@ -48,7 +48,19 @@ class UserList extends React.Component {
       );
     }
 
-    users = renderUsers(this.props);
+    users = this.props.users.map((user, index) => (
+      <BlockUser
+        key={ index }
+        id={ user.id}
+        name={ user.firstName }
+        description={ user.description }
+        lastMessage={ user.lastMessage }
+        image={ user.image }
+        lastSeenAt={ user.lastSeenAt }
+        lastMessageAt={ user.lastMessageAt }
+        unreadMessagesCount={ user.unreadMessagesCount }
+      />
+    ));
 
     userListInnerClass = 's-user-list__inner';
 
@@ -148,26 +160,6 @@ UserList.propTypes = {
   listType: React.PropTypes.string,
   searchResults: React.PropTypes.func,
 };
-
-function renderUsers(props) {
-  if (props.users.length > 0) {
-    return props.users.map((user, index) => (
-      <BlockUser
-        key={ index }
-        id={ user.id}
-        name={ user.firstName }
-        description={ user.description }
-        lastMessage={ user.lastMessage }
-        image={ user.image }
-        lastSeenAt={ user.lastSeenAt }
-        lastMessageAt={ user.lastMessageAt }
-        unreadMessagesCount={ user.unreadMessagesCount }
-      />
-    ));
-  } else {
-    return [];
-  }
-}
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
 
