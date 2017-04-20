@@ -9,7 +9,6 @@ class BlockUser extends React.Component {
       <Link
         className={ classNames('c-block-user', {'state-active': this.props.isActive}) }
         key={ this.props.id }
-        to={`conversation/${this.props.id}`}
         onClick={ () => this.props.onClick() }>
 
         <span className="circle"></span>
