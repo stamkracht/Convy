@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { classNames } from '../utillities';
 import config from '../config';
 import actions from '../actions';
+import { classNames } from '../utillities';
 import BlockUser from '../components/components.block-user';
 
 class ChatSettings extends React.Component {
