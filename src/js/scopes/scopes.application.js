@@ -7,7 +7,6 @@ import Header from '../scopes/scopes.header';
 import Entry from '../scopes/scopes.entry';
 import AppBackground from '../components/components.app-background';
 
-
 class Application extends React.Component {
   render() {
     let content, header;

@@ -1,5 +1,6 @@
-import config from '../config'
 import { browserHistory } from 'react-router';
+
+import config from '../config'
 
 function requestChats() {
   return {

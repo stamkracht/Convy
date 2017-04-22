@@ -1,10 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import config from '../config'
+import actions from '../actions';
 import Messenger from '../components/components.messenger';
 import BlockChat from './scopes.block-chat';
-import { connect } from 'react-redux';
-import actions from '../actions';
-import config from '../config'
 
 class Chat extends React.Component {
 

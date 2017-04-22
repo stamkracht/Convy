@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ProfileSummary from '../components/components.profile-summary';
 import actions from '../actions'
 import config from '../config';
+import ProfileSummary from '../components/components.profile-summary';
 
 class Profile extends React.Component {
 
