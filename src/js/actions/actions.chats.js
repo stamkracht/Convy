@@ -105,6 +105,7 @@ export function fetchPrivateChat(user) {
     dispatch(startFetchPrivateChat());
     const result = await config.adapter.getPrivateChat(user.id);
     dispatch(finishFetchPrivateChat(result.chat));
+    browserHistory.push(`/conversation/${result.chat.id}`);
   }
 }
 
