@@ -45,7 +45,7 @@ class ChatList extends React.Component {
         id={ chat.id}
         title={ chat.title }
         lastMessage={ chat.lastMessage }
-        image={ chat.image }
+        image={ this.getImage(chat) }
         lastMessageDate={ chat.lastMessageDate }
         unreadMessagesCount={ chat.unreadMessagesCount }
         onClick={ () => this.open(chat) }
@@ -99,6 +99,20 @@ class ChatList extends React.Component {
         </div>
       </section>
     );
+  }
+
+  getImage(chat) {
+    if ( chat.isPrivate ) {
+      let user = chat.participants.filter(
+        p => p.id != this.props.meState.me.id
+      )[0];
+      user = this.props.contactsState.contacts[user.id];
+      if ( user ) {
+        return user.image;
+      }
+    } else {
+      return chat.image;
+    }
   }
 
   open(chat) {
