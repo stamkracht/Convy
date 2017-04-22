@@ -95,7 +95,7 @@ class UserList extends React.Component {
   }
 
   selectUser(user) {
-    console.log('user', user);
+    this.props.fetchPrivateChat(user);
   }
 
   showSearch() {
@@ -146,6 +146,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     openChat: (id) => dispatch(actions.header.openChat(id)),
     swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1)),
+    fetchPrivateChat: (user) => dispatch(actions.chats.fetchPrivateChat(user)),
   };
 };
 
