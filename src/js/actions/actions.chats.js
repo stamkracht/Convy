@@ -85,6 +85,28 @@ export function fetchChat(id) {
   }
 }
 
+function startFetchPrivateChat() {
+  return {
+    type: 'FETCH_PRIVATE_CHAT',
+  }
+}
+
+function finishFetchPrivateChat(chat, status='success') {
+  return {
+    type: 'FETCH_PRIVATE_CHAT',
+    chat,
+    status,
+  }
+}
+
+export function fetchPrivateChat(user) {
+  return async function(dispatch, getState) {
+    dispatch(startFetchPrivateChat());
+    const result = await config.adapter.getPrivateChat(user.id);
+    dispatch(finishFetchPrivateChat(result.chat));
+  }
+}
+
 function startUpdateLastSeen() {
   return {
     type: 'UPDATE_LAST_SEEN',
