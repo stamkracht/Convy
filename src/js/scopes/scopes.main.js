@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import config from '../config';
 import actions  from '../actions';
 import SwipeView from './scopes.swipe-view';
+import ChatList from './scopes.chat-list';
 import UserList from './scopes.user-list';
 
 class Main extends React.Component {
@@ -11,9 +12,8 @@ class Main extends React.Component {
     return (
       <main className="s-main">
         <SwipeView swipeViewId={ swipeViewId }>
-          <UserList
-            listType={ 'chats' }
-            users={ this.getChatList() }
+          <ChatList
+            chats={ this.getChatList() }
             searchPlaceholder={ 'Search conversations' }
             emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
             searchResults={ () => { console.info('Show search results of the chats.'); } }
