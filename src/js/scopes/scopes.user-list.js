@@ -6,6 +6,8 @@ import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
 
+import { classNames } from '../utillities';
+
 class UserList extends React.Component {
 
   constructor(props) {
@@ -17,34 +19,15 @@ class UserList extends React.Component {
   }
 
   render() {
-    const chatFetching = this.props.listType == 'chats' && this.props.chatsState.isFetching,
-          contactsFetching = this.props.listType == 'contacts' && this.props.contactsState.isFetching;
+    let users,
+      input,
+      loading;
 
-    let listType,
-        groupAction,
-        users,
-        userListInnerClass,
-        emptyMessageContainer,
-        input,
-        loading;
-
-    listType = this.props.listType;
-
-    if (chatFetching || contactsFetching) {
+    if (this.props.contactsState.isFetching) {
       loading = (
         <span className="c-loading">
           <span className="c-loading__circle"></span>
         </span>
-      );
-    }
-
-    if (listType === 'chats') {
-      groupAction = (
-        <li>
-          <button onClick={ this.newGroupConversation.bind(this) }>
-            <i className="icon-group-add"></i>
-          </button>
-        </li>
       );
     }
 
@@ -62,13 +45,6 @@ class UserList extends React.Component {
         onClick={ () => this.selectUser(user) }
       />
     ));
-
-    userListInnerClass = 's-user-list__inner';
-
-    if (this.props.users.length < 1) {
-      userListInnerClass = 's-user-list__inner state-empty';
-      emptyMessageContainer = <p className="empty-message">{ this.props.emptyMessage }</p>;
-    }
 
     if (this.state.search) {
       input = (
@@ -93,13 +69,12 @@ class UserList extends React.Component {
 
     return (
       <section className="s-user-list">
-        <div className={ userListInnerClass }>
+        <div className={ classNames('s-user-list__inner', {'state-empty': !this.props.users.length}) }>
           { loading }
 
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
               <ul>
-                { groupAction }
                 <li>
                   <button onClick={ this.showSearch.bind(this) }>
                     <i className="icon-search"></i>
@@ -111,7 +86,7 @@ class UserList extends React.Component {
             </nav>
           </section>
 
-          { emptyMessageContainer }
+          {!this.props.users.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
 
           { users }
         </div>
@@ -162,7 +137,6 @@ class UserList extends React.Component {
 UserList.propTypes = {
   openChat: React.PropTypes.func,
   users: React.PropTypes.array,
-  listType: React.PropTypes.string,
   searchResults: React.PropTypes.func,
 };
 
@@ -170,9 +144,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    openChat: (id) => {
-      dispatch(actions.header.openChat(id));
-    },
+    openChat: (id) => dispatch(actions.header.openChat(id)),
     swipeToContactPicker: () => dispatch(actions.swipeView.setSwipeViewIndex('conversationSwipeView', 1)),
   };
 };

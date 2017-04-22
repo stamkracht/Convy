@@ -19,7 +19,6 @@ class Main extends React.Component {
             searchResults={ () => { console.info('Show search results of the chats.'); } }
           />
           <UserList
-            listType={ 'contacts' }
             users={ this.getContactList() }
             searchPlaceholder={ 'Search contacts' }
             emptyMessage={ 'Please wait for participants to join the platform.' }
