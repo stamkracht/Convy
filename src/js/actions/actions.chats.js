@@ -44,14 +44,6 @@ function getChatImage(chat, id) {
   }
 }
 
-function receiveChat(chat, status='success') {
-  return {
-    type: 'FETCH_CHAT',
-    chat,
-    status,
-  }
-}
-
 export function fetchChats() {
   return async function(dispatch, getState) {
     dispatch(requestChats());
@@ -71,10 +63,25 @@ export function fetchMessages(chatId) {
   }
 }
 
+function startFetchChat() {
+  return {
+    type: 'FETCH_CHAT',
+  }
+}
+
+function finishFetchChat(chat, status='success') {
+  return {
+    type: 'FETCH_CHAT',
+    chat,
+    status,
+  }
+}
+
 export function fetchChat(id) {
   return async function(dispatch, getState) {
+    dispatch(startFetchChat());
     const result = await config.adapter.getChat(id);
-    dispatch(receiveChat(result.chat));
+    dispatch(finishFetchChat(result.chat));
   }
 }
 
