@@ -59,6 +59,7 @@ class UserList extends React.Component {
         lastSeenAt={ user.lastSeenAt }
         lastMessageAt={ user.lastMessageAt }
         unreadMessagesCount={ user.unreadMessagesCount }
+        onClick={ () => this.selectUser(user) }
       />
     ));
 
@@ -116,6 +117,10 @@ class UserList extends React.Component {
         </div>
       </section>
     );
+  }
+
+  selectUser(user) {
+    console.log('user', user);
   }
 
   showSearch() {
