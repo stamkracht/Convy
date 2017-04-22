@@ -57,10 +57,10 @@ class BlockChat extends React.Component {
 BlockChat.propTypes = {
   id: React.PropTypes.number,
   title: React.PropTypes.string,
+  image: React.PropTypes.string,
+  unreadCount: React.PropTypes.number,
   lastMessage: React.PropTypes.string,
-  imageSource: React.PropTypes.string,
   lastMessageDate: React.PropTypes.string,
-  unreadMessagesLength: React.PropTypes.number,
   isActive: React.PropTypes.bool,
   onClick: React.PropTypes.func,
 };
