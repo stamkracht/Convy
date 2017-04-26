@@ -41,7 +41,7 @@ class Conversation extends React.Component {
           groupName={ 'Group Name' }
           groupImage={ '' }
           participants={ [] }
-          update={ (update) => this.updateChat(Object.assign({id: chat.id}, update)) }
+          update={ (chat) => this.createChat(chat) }
         />
       );
     }
