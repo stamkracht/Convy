@@ -12,8 +12,8 @@ export default () => {
   return (
     <Route path={ config.urlPrefix } component={ Application }>
       <IndexRoute component={ Main }/>
-      <Route path="conversation(/:chatId)" component={ Conversation }/>
-      <Route path="my-profile" component={ Profile }/>
+      <Route path={ config.urlPrefix + "conversation(/:chatId)"} component={ Conversation }/>
+      <Route path={ config.urlPrefix + "my-profile"} component={ Profile }/>
     </Route>
   );
 }

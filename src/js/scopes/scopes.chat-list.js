@@ -116,7 +116,7 @@ class ChatList extends React.Component {
   }
 
   open(chat) {
-    browserHistory.push(`/conversation/${chat.id}`);
+    browserHistory.push(`${config.urlPrefix}conversation/${chat.id}`);
   }
 
   showSearch() {
