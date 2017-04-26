@@ -130,7 +130,7 @@ class UserList extends React.Component {
 
   newGroupConversation() {
     this.props.swipeToContactPicker();
-    browserHistory.push('/conversation');
+    browserHistory.push(`${config.urlPrefix}conversation`);
   }
 }
 

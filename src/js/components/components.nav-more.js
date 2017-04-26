@@ -17,7 +17,7 @@ class NavMore extends React.Component {
 
         <ul className={ classNames('c-nav-more__dropdown', {'state-active': this.props.active}) }>
           <li>
-            <Link to="my-profile">
+            <Link to={config.urlPrefix + "my-profile"}>
               <i className="icon-person-outline"></i>Profile
             </Link>
           </li>

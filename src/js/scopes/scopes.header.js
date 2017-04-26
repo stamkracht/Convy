@@ -27,7 +27,7 @@ class Header extends React.Component {
           <img
             className={ classNames('logo', {'state-active': this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE'}) }
             src="/dest/text-icon.png" alt="Convy icon" width="30" height="30"/>
-          <Link to="/" className={ classNames('back-button', {'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE'}) }>
+          <Link to={config.urlPrefix} className={ classNames('back-button', {'state-active': this.props.headerState.mode == 'CHAT' || this.props.headerState.mode == 'PROFILE'}) }>
             <i className="icon-arrow-back"></i>
           </Link>
         </div>

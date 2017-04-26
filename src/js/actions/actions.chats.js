@@ -105,7 +105,7 @@ export function fetchPrivateChat(user) {
     dispatch(startFetchPrivateChat());
     const result = await config.adapter.getPrivateChat(user.id);
     dispatch(finishFetchPrivateChat(result.chat));
-    browserHistory.push(`/conversation/${result.chat.id}`);
+    browserHistory.push(`${config.urlPrefix}conversation/${result.chat.id}`);
   }
 }
 
@@ -163,7 +163,7 @@ export function createChat(chat) {
     dispatch(requestCreateChat());
     const result = await config.adapter.createChat(chat);
     dispatch(finishCreateChat(result.chat, result.status));
-    browserHistory.push(`/conversation/${result.chat.id}`);
+    browserHistory.push(`${config.urlPrefix}conversation/${result.chat.id}`);
     return result.chat.id;
   }
 }
