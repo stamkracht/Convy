@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import config from '../config';
 import actions from '../actions';
-import BlockChat from '../components/components.block-chat';
+import BlockUser from '../components/components.block-user';
 import { classNames } from '../utillities';
 
 class ChatList extends React.Component {
@@ -40,10 +40,10 @@ class ChatList extends React.Component {
     );
 
     chats = this.props.chats.map((chat, index) => (
-      <BlockChat
+      <BlockUser
         key={ index }
         id={ chat.id}
-        title={ chat.title }
+        name={ chat.name }
         lastMessage={ chat.lastMessage }
         image={ this.getImage(chat) }
         lastMessageDate={ chat.lastMessageDate }
