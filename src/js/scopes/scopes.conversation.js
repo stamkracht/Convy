@@ -12,16 +12,17 @@ import Stats from './scopes.stats';
 class Conversation extends React.Component {
 
   render() {
-    let view;
+    let view,
+        selfTalk;
 
     const chat = this.props.chatsState.chats[this.props.params.chatId];
 
     // Existing conversation
     if (chat) {
-      if ( chat.isPrivate ) {
+      if (chat.isPrivate) {
         view = (
           <Profile
-            isRoot={ !!chat.participants.length }
+            isRoot={ selfTalk = chat.participants.length < 2 ? true : false }
             user={ chat.participants.filter(p => p.id != this.props.meState.me.id)[0] }
           />
         );

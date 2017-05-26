@@ -29,8 +29,9 @@ class Profile extends React.Component {
   }
 }
 
-Profile.defaultProps = {
-  isRoot: true,
+Profile.propTypes = {
+  isRoot: React.PropTypes.bool,
+  user: React.PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
