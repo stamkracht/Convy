@@ -30,6 +30,10 @@ Profile.propTypes = {
   user: React.PropTypes.object,
 };
 
+Profile.defaultProps = {
+  isRoot: true,
+}
+
 const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
