@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import config from '../config';
 import actions from '../actions';
-import BlockChat from '../components/components.block-chat';
+import BlockUser from '../components/components.block-user';
 import { classNames } from '../utillities';
 
 class ChatList extends React.Component {
@@ -39,18 +39,30 @@ class ChatList extends React.Component {
       </li>
     );
 
-    chats = this.props.chats.map((chat, index) => (
-      <BlockChat
-        key={ index }
-        id={ chat.id}
-        title={ chat.title }
-        lastMessage={ chat.lastMessage }
-        image={ this.getImage(chat) }
-        lastMessageDate={ chat.lastMessageDate }
-        unreadMessagesCount={ chat.unreadMessagesCount }
-        onClick={ () => this.open(chat) }
-      />
-    ));
+    chats = this.props.chats.map((chat, index) => {
+      let name;
+      let participants = chat.participants
+        .filter(p => p.id !== this.props.meState.me.id)
+        .map(p => this.props.contactsState.contacts[p.id])
+        .filter(x => x);
+
+      if (participants.length < 1) { name = this.props.meState.me.firstName; }
+      else if (participants.length === 1) { name = participants[0].firstName }
+      else { name = chat.groupName }
+
+      return (
+        <BlockUser
+          key={ index }
+          id={ chat.id}
+          name={ name }
+          lastMessage={ chat.lastMessage }
+          image={ this.getImage(chat) }
+          lastMessageDate={ chat.lastMessageDate }
+          unreadMessagesCount={ chat.unreadMessagesCount }
+          onClick={ () => this.open(chat) }
+        />
+      )
+    });
 
     if (this.state.search) {
       input = (

@@ -20,7 +20,7 @@ class BlockUser extends React.Component {
 
         <div className="o-flag">
           <div className="c-block-user__image o-flag__img">
-            <img src={ this.props.image } alt="User name" width="50" height="50"/>
+            <img src={ this.props.image } width="50" height="50"/>
           </div>
 
           <div className="c-block-user__content o-flag__body">
@@ -73,7 +73,7 @@ BlockUser.propTypes = {
   imageSource: React.PropTypes.string,
   lastSeenDate: React.PropTypes.string,
   lastMessageDate: React.PropTypes.string,
-  unreadMessagesLength: React.PropTypes.number,
+  unreadCount: React.PropTypes.number,
   isActive: React.PropTypes.bool,
   onClick: React.PropTypes.func,
 };
