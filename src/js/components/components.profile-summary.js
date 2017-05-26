@@ -10,23 +10,23 @@ class ProfileSummary extends React.Component {
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__head">
-          <img src={ user.image }/>
-          <p className="c-profile-summary__data">last seen: { humanReadableTimeStamp(user.lastSeenAt) }</p>
+          <img src={ user && user.image }/>
+          <p className="c-profile-summary__data">last seen: { user && humanReadableTimeStamp(user.lastSeenAt) }</p>
         </article>
 
         <article className="c-profile-summary__info">
-          <h1 className="c-profile-summary__name">{ user.firstname } { user.lastname }</h1>
-          <h2 className="c-profile-summary__function">{ user.headline }</h2>
+          <h1 className="c-profile-summary__name">{ user && user.firstname } { user && user.lastname }</h1>
+          <h2 className="c-profile-summary__function">{ user && user.headline }</h2>
 
           <ul className="c-profile-summary__contact">
-            <li>{ this.renderEmail(user.email) }</li>
-            <li>{ this.renderPhone(user.phone) }</li>
+            <li>{ user && this.renderEmail(user.email) }</li>
+            <li>{ user && this.renderPhone(user.phone) }</li>
             {
-              !!user.twitter && <li>{ this.renderTwitterHandle(user.twitter) }</li>
+              user && !!user.twitter && <li>{ this.renderTwitterHandle(user.twitter) }</li>
             }
           </ul>
 
-          {user.location && (<ul className="c-profile-summary__location">
+          {user && user.location && (<ul className="c-profile-summary__location">
             <li>{ user.location.address }</li>
             <li>{ user.location.zipcode }, { user.location.city }</li>
             <li>{ user.location.country }</li>
@@ -72,5 +72,9 @@ class ProfileSummary extends React.Component {
     return (<a href={ url } target="_blank">twitter.com/{ handle }</a>);
   }
 }
+
+ProfileSummary.propTypes = {
+  user: React.PropTypes.object,
+};
 
 export default ProfileSummary;

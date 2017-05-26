@@ -9,15 +9,11 @@ class Profile extends React.Component {
 
   render() {
 
-    const user = this.props.isRoot ? this.props.meState.me : this.props.user;
+    const user = this.props.isRoot ? this.props.meState.me : this.props.contactsState.contacts[this.props.user.id];
 
     return (
       <section className="s-profile">
-        {
-          this.props.meState.isFetching ?
-            <div>Loader thingy</div> :
-            <ProfileSummary user={user}/>
-        }
+        { this.props.meState.isFetching ? <div>Loader thingy</div> : <ProfileSummary user={ user }/> }
       </section>
     );
   }
