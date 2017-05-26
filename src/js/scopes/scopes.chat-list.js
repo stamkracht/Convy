@@ -106,6 +106,9 @@ class ChatList extends React.Component {
       let user = chat.participants.filter(
         p => p.id != this.props.meState.me.id
       )[0];
+      if ( !user ) {
+        return this.props.meState.me.image;
+      }
       user = this.props.contactsState.contacts[user.id];
       if ( user ) {
         return user.image;
