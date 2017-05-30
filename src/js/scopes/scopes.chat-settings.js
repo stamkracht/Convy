@@ -118,9 +118,10 @@ class ChatSettings extends React.Component {
                   </button>
                 </li>
                 <li>
-                  <button onClick={ this.addGroupImage.bind(this) }>
+                  <input type='file' name='file' id='file' />
+                  <label htmlFor='file'>
                     <i className="icon-image"></i>
-                  </button>
+                  </label>
                 </li>
                 <li>
                   <button onClick={ this.showSearch.bind(this) }>
