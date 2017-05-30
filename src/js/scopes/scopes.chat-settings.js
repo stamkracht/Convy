@@ -201,6 +201,7 @@ ChatSettings.propTypes = {
   groupImage: React.PropTypes.string,
   participants: React.PropTypes.array,
   update: React.PropTypes.func,
+  leave: React.PropTypes.func,
 };
 
 function renderParticipants(props) {
