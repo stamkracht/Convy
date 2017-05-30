@@ -77,6 +77,21 @@ class NavMain extends React.Component {
 class NavChat extends React.Component {
 
   render() {
+    let statsIcon,
+        statsActive = false;
+
+    if (statsActive) {
+      statsIcon = (
+        <li>
+          <Link
+            className={ classNames('c-nav-main__button c-nav-main__button--charts', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 2}) }
+            onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
+            <i className="icon-bar-chart"></i>
+          </Link>
+        </li>
+      );
+    }
+
     return (
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
@@ -94,13 +109,7 @@ class NavChat extends React.Component {
               <i className="icon-person"></i>
             </Link>
           </li>
-          <li>
-            <Link
-              className={ classNames('c-nav-main__button c-nav-main__button--charts', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 2}) }
-              onClick={ () => this.props.setConversationSwipeViewIndex(2) }>
-              <i className="icon-bar-chart"></i>
-            </Link>
-          </li>
+          { statsIcon }
         </ul>
       </nav>
     );
