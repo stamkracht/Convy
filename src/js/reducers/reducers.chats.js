@@ -42,7 +42,7 @@ function chatsReducer(state, action) {
     // Update the chat in the dictionary
     return Object.assign({}, state, {
       chats: Object.assign({}, state.chats, {
-        [action.id]: Object.assign({}, state.chats[action.id], action.update)
+        [action.id]: Object.assign({}, state.chats[action.id], action.chat)
       }),
     });
   }
