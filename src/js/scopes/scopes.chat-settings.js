@@ -170,7 +170,7 @@ class ChatSettings extends React.Component {
   }
 
   leaveGroup() {
-    console.info('Leave group chat.');
+    this.props.leave();
   }
 
   editGroupName() {

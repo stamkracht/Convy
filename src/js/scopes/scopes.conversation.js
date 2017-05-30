@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+
 import { connect } from 'react-redux';
 
 import config from '../config';
@@ -33,6 +35,7 @@ class Conversation extends React.Component {
             groupImage={ chat.groupImage }
             participants={ chat.participants }
             update={ (update) => this.updateChat(Object.assign({id: chat.id}, update)) }
+            leave={ () => this.leaveChat({id: chat.id}) }
           />
         );
       }
@@ -43,6 +46,7 @@ class Conversation extends React.Component {
           groupImage={ '' }
           participants={ [] }
           update={ (chat) => this.createChat(chat) }
+          leave={ () => browserHistory.push(`${config.urlPrefix}/`) }
         />
       );
     }
@@ -98,6 +102,11 @@ class Conversation extends React.Component {
     console.log('update chat', chat);
     this.props.updateChat(chat);
   }
+
+  leaveChat(chat) {
+    console.log('leave chat', chat);
+    this.props.leaveChat(chat);
+  }
 }
 
 const swipeViewId = 'conversationSwipeView';
@@ -113,6 +122,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setChatHeader: () => dispatch(actions.header.setMode('CHAT')),
     createChat: (chat) => dispatch(actions.chats.createChat(chat)),
     updateChat: (chat) => dispatch(actions.chats.updateChat(chat)),
+    leaveChat: (chat) => dispatch(actions.chats.leaveChat(chat)),
   };
 };
 
