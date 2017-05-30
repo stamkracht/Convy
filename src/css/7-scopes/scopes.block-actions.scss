@@ -36,11 +36,21 @@
   &:first-child { flex: 1; }
 }
 
-.s-block-actions__nav > ul > li > button {
+.s-block-actions__nav > ul > li > button,
+.s-block-actions__nav > ul > li > label {
   display: flex;
   border: 0;
   padding: 10px 15px;
   background: transparent;
+}
+
+.s-block-actions__nav > ul > li > input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .s-block-actions__nav .sign-out {
