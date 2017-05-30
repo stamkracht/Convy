@@ -191,6 +191,28 @@ export function updateChat(chat) {
   }
 }
 
+function requestLeaveChat() {
+  return {
+    type: 'LEAVE_CHAT',
+  }
+}
+
+function finishLeaveChat(status='success') {
+  browserHistory.push(`${config.urlPrefix}/`);
+  return {
+    type: 'LEAVE_CHAT',
+    status,
+  }
+}
+
+export function leaveChat(chat) {
+  return async function(dispatch, getState) {
+    dispatch(requestLeaveChat());
+    await config.adapter.leaveChat(chat);
+    dispatch(finishLeaveChat());
+  }
+}
+
 function startSendMessage() {
   return {
     type: 'SEND_MESSAGE',
