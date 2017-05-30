@@ -8,7 +8,11 @@ class SwipeView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.viewLength = props.children.length;
+    this.viewLength = props.children
+      .filter(function(value) {
+        return value !== undefined;
+      })
+      .length;
 
     this.state = {
       offset: props.swipeViewIndex * 100,

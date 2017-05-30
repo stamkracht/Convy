@@ -13,7 +13,9 @@ class Conversation extends React.Component {
 
   render() {
     let view,
-        selfTalk;
+        selfTalk,
+        chatStats,
+        chatStatsActive = false;
 
     const chat = this.props.chatsState.chats[this.props.params.chatId];
 
@@ -47,12 +49,16 @@ class Conversation extends React.Component {
       );
     }
 
+    if (chatStatsActive) {
+      chatStats = (<Stats/>);
+    }
+
     return (
       <main className="s-conversation">
         <SwipeView swipeViewId={ swipeViewId }>
           <Chat chat={ chat }/>
           { view }
-          <Stats/>
+          { chatStats }
         </SwipeView>
       </main>
     );
