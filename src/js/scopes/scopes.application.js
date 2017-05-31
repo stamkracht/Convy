@@ -5,13 +5,21 @@ import config from '../config';
 import actions from '../actions';
 import Header from '../scopes/scopes.header';
 import Entry from '../scopes/scopes.entry';
+import Conversation from '../scopes/scopes.conversation';
 import AppBackground from '../components/components.app-background';
 
 class Application extends React.Component {
   render() {
     let content, header;
+
+    const routes = this.props.routes;
+    const headerOptions = {
+      isChat: routes[routes.length - 1].component === Conversation,
+      chatId: this.props.params.chatId,
+    };
+
     if(config.adapter.isAuthenticated()) {
-      header = <Header/>;
+      header = <Header options={ headerOptions } />;
       content = this.props.meState.me && this.props.children
     } else {
       content = <Entry/>
