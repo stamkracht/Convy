@@ -39,12 +39,14 @@ function chatsReducer(state, action) {
     }
   }
   if (action.type === 'UPDATE_CHAT') {
-    // Update the chat in the dictionary
-    return Object.assign({}, state, {
-      chats: Object.assign({}, state.chats, {
-        [action.id]: Object.assign({}, state.chats[action.id], action.chat)
-      }),
-    });
+    if (action.status == 'success') {
+      // Update the chat in the dictionary
+      return Object.assign({}, state, {
+        chats: Object.assign({}, state.chats, {
+          [action.chat.id]: Object.assign({}, state.chats[action.chat.id], action.chat)
+        }),
+      });
+    }
   }
 
   if (action.type === 'CREATE_CHAT') {

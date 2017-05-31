@@ -165,8 +165,7 @@ class ChatSettings extends React.Component {
   }
 
   addParticipants() {
-    let participantIds = this.state.selectedUsers.map((user) => user.id);
-    this.props.update({'participants': participantIds});
+    this.props.update({'participants': this.state.selectedUsers});
     this.hideSearch();
   }
 

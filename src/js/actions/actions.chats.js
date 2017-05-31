@@ -174,10 +174,9 @@ function requestUpdateChat() {
   }
 }
 
-function finishUpdateChat(id, chat, status='success') {
+function finishUpdateChat(chat, status='success') {
   return {
     type: 'UPDATE_CHAT',
-    id,
     chat,
     status,
   }
@@ -187,7 +186,7 @@ export function updateChat(chat) {
   return async function(dispatch, getState) {
     dispatch(requestUpdateChat());
     const result = await config.adapter.updateChat(chat);
-    dispatch(finishUpdateChat(result.chat.id, result.chat, result.status));
+    dispatch(finishUpdateChat(result.chat));
     return result.chat.id;
   }
 }
