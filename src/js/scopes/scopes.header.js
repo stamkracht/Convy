@@ -11,7 +11,7 @@ import NavMore from '../components/components.nav-more';
 class Header extends React.Component {
 
   render() {
-    const defaultState = this.props.headerState.mode !== 'CHAT' && this.props.headerState.mode !== 'PROFILE';
+    console.log('++++++++++++++++++++++++++++++ HEADER PROPS', this.props);
 
     let navigation;
 
@@ -78,7 +78,10 @@ class NavChat extends React.Component {
 
   render() {
     let statsIcon,
+        chatIcon,
         statsActive = false;
+
+    const chat = this.props.chatsState.chats[this.props.options.chatId];
 
     if (statsActive) {
       statsIcon = (
@@ -90,6 +93,14 @@ class NavChat extends React.Component {
           </Link>
         </li>
       );
+    }
+
+    if (chat) {
+      if (chat.isPrivate) {
+        chatIcon = <i className="icon-person"></i>;
+      } else {
+        chatIcon = <i className="icon-group"></i>;
+      }
     }
 
     return (
@@ -106,7 +117,7 @@ class NavChat extends React.Component {
             <Link
               className={ classNames('c-nav-main__button c-nav-main__button--profile', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 1}) }
               onClick={ () => this.props.setConversationSwipeViewIndex(1) }>
-              <i className="icon-person"></i>
+              { chatIcon }
             </Link>
           </li>
           { statsIcon }
