@@ -46,7 +46,7 @@ class ChatList extends React.Component {
         .map(p => this.props.contactsState.contacts[p.id])
         .filter(x => x);
 
-      if (participants.length < 1) { name = this.props.meState.me.firstName; }
+      if (participants.length < 1) { name = this.props.meState.me.first_name; }
       else if (participants.length === 1) { name = participants[0].firstName }
       else { name = chat.groupName }
 
