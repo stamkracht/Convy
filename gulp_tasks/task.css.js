@@ -5,7 +5,16 @@ module.exports = function (gulp) {
 
   var config = require('./config')();
   var processors = [
-    config.cssnext({ browsers: ['last 2 versions'] })
+    config.cssnext(
+      {
+        browsers: ['last 2 versions'],
+        features: {
+          customProperties: {
+            preserve: true
+          }
+        }
+      }
+    )
   ];
 
   gulp.task('css', function () {

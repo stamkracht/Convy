@@ -22,7 +22,7 @@
   display: block;
   width: 50px;
   height: 50px;
-  border-left: 3px solid $brand-color-1;
+  border-left: 3px solid var(--brand-color-1);
   border-radius: 50%;
   animation: spin-loading 1.75s cubic-bezier(0.50, 0.60, 0.70, 0.50) infinite;
 }

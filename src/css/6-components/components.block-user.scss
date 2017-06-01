@@ -17,7 +17,7 @@
   cursor: pointer;
 
   &.state-active {
-    background: lighten($brand-color-1, 10%);
+    background: var(--brand-color-1);
   }
 
   &.state-animated .circle {
