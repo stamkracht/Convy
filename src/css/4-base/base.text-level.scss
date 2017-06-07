@@ -20,7 +20,7 @@ h6 {
   font-family: var(--default-heading-font-family);
   font-size: rem($default-heading-font-size);
   font-weight: var(--default-heading-font-weight);
-  line-height: var(--default-heading-line-height);
+  line-height: $default-heading-line-height;
 }
 
 address { font-style: normal; }
