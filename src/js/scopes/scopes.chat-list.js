@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
+import SwipeView from '../scopes/scopes.swipe-view';
 import { classNames } from '../utillities';
 
 class ChatList extends React.Component {
@@ -87,28 +88,30 @@ class ChatList extends React.Component {
 
     return (
       <section className="s-chat-list">
-        <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
-          { loading }
+        <SwipeView>
+          <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
+            { loading }
 
-          <section className="s-block-actions">
-            <nav className="s-block-actions__nav">
-              <ul>
-                { groupAction }
-                <li>
-                  <button onClick={ this.showSearch.bind(this) }>
-                    <i className="icon-search"></i>
-                  </button>
-                </li>
-              </ul>
+            <section className="s-block-actions">
+              <nav className="s-block-actions__nav">
+                <ul>
+                  { groupAction }
+                  <li>
+                    <button onClick={ this.showSearch.bind(this) }>
+                      <i className="icon-search"></i>
+                    </button>
+                  </li>
+                </ul>
 
-              { input }
-            </nav>
-          </section>
+                { input }
+              </nav>
+            </section>
 
-          {!this.props.chats.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
+            {!this.props.chats.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
 
-          { chats }
-        </div>
+            { chats }
+          </div>
+        </SwipeView>
       </section>
     );
   }
