@@ -45,9 +45,9 @@
   margin-left: 11px;
 }
 
-.c-block-user__data .message-count { color: $fb-warning; }
+.c-block-user__data .message-count { color: var(--fb-warning); }
 
-.c-block-user__data .online { color: $fb-success; }
+.c-block-user__data .online { color: var(--fb-success); }
 
 .c-block-user__image img { border-radius: 50%; }
 

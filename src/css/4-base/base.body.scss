@@ -7,8 +7,8 @@
 
 body {
   color: $black;
-  font-family: $default-font-family;
+  font-family: var(--default-font-family);
   font-size: rem($default-font-size);
-  font-weight: $default-font-weight;
-  line-height: $default-line-height;
+  font-weight: var(--default-font-weight);
+  line-height: var(--default-line-height);
 }
