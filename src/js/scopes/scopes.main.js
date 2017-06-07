@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 
 import config from '../config';
 import actions  from '../actions';
-import SwipeView from './scopes.swipe-view';
 import ChatList from './scopes.chat-list';
 import UserList from './scopes.user-list';
+import SwipeableViews from 'react-swipeable-views';
 
 class Main extends React.Component {
   render() {
     return (
       <main className="s-main">
-        <SwipeView swipeViewId={ swipeViewId }>
+        <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
           <ChatList
             chats={ this.getChatList() }
             searchPlaceholder={ 'Search conversations' }
@@ -24,7 +24,7 @@ class Main extends React.Component {
             emptyMessage={ 'Please wait for participants to join the platform.' }
             searchResults={ () => { console.info('Show search results of the contacts.'); } }
           />
-        </SwipeView>
+        </SwipeableViews>
       </main>
     );
   }
