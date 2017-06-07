@@ -28,7 +28,7 @@
   justify-content: space-between;
   padding: 10px;
   color: $white;
-  background: $brand-color-2;
+  background: var(--brand-color-2);
   font-size: em(12px);
 
   @include mq(min-w, 400px) {

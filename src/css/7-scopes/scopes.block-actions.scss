@@ -54,7 +54,7 @@
 }
 
 .s-block-actions__nav .sign-out {
-  color: $fb-danger;
+  color: var(--fb-danger);
   padding-left: 5px;
 
   & span {

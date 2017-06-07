@@ -21,7 +21,7 @@
   display: block;
   border: 0;
   padding: 9px 10px;
-  color: $brand-color-2;
+  color: var(--brand-color-2);
   background: transparent;
   line-height: 1;
   font-size: em(20px);
@@ -52,7 +52,7 @@
   height: 40px;
   border: 0;
   padding: 0 10px;
-  color: $brand-color-2;
+  color: var(--brand-color-2);
   background: transparent;
   line-height: 1;
   font-size: em(20px);

@@ -46,7 +46,7 @@
     margin-right: 4px;
   }
 
-  .sign-out { color: $fb-danger; }
+  .sign-out { color: var(--fb-danger); }
 
   &.state-active {
     transform: none;
