@@ -118,7 +118,7 @@ class ChatSettings extends React.Component {
                   </button>
                 </li>
                 <li>
-                  <input type='file' name='file' id='file' />
+                  <input type='file' name='file' id='file' accept='image/*' />
                   <label htmlFor='file'>
                     <i className="icon-image"></i>
                   </label>
