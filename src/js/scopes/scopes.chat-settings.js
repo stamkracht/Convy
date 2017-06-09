@@ -24,10 +24,6 @@ class ChatSettings extends React.Component {
     }
   }
 
-  handleFileChange(event) {
-    console.log(event.target.files[0]);
-  }
-
   render() {
     let groupName,
         participants,
@@ -123,7 +119,7 @@ class ChatSettings extends React.Component {
                 </li>
                 <li>
                   <input type='file' id='file' accept='image/*'
-                    onChange={this.handleFileChange.bind(this)} />
+                    onChange={this.updateGroupImage.bind(this)} />
                   <label htmlFor='file'>
                     <i className="icon-image"></i>
                   </label>
@@ -182,8 +178,8 @@ class ChatSettings extends React.Component {
     this.props.update({'groupName': prompt('Group name')});
   }
 
-  addGroupImage() {
-    this.props.update({'groupImage': prompt('Group image')});
+  updateGroupImage(event) {
+    this.props.update({'groupImage': event.target.files[0]});
   }
 
   showSearch() {
