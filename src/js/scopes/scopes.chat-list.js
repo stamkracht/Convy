@@ -87,9 +87,8 @@ class ChatList extends React.Component {
     }
 
     return (
-      <section className="s-chat-list">
-        <SwipeView>
-          <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
+        <section className="s-chat-list">
+          <SwipeView className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
             { loading }
 
             <section className="s-block-actions">
@@ -110,9 +109,8 @@ class ChatList extends React.Component {
             {!this.props.chats.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
 
             { chats }
-          </div>
-        </SwipeView>
-      </section>
+          </SwipeView>
+        </section>
     );
   }
 
