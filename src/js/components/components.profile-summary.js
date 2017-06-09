@@ -27,8 +27,8 @@ class ProfileSummary extends React.Component {
         </article>
 
         <article className="c-profile-summary__info">
-          <h1 className="c-profile-summary__name">{ user && user.firstname } { user && user.lastname }</h1>
-          <h2 className="c-profile-summary__function">{ user && user.headline }</h2>
+          <h1 className="c-profile-summary__name">{ user && user.first_name } { user && user.last_name }</h1>
+          <h2 className="c-profile-summary__function">{ user && user.subtitle }</h2>
 
           <ul className="c-profile-summary__contact">
             <li>{ user && this.renderEmail(user.email) }</li>

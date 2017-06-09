@@ -36,12 +36,9 @@ class UserList extends React.Component {
         key={ index }
         id={ user.id}
         name={ user.firstName }
-        description={ user.description }
-        lastMessage={ user.lastMessage }
+        description={ user.headline }
         image={ user.image }
         lastSeenAt={ user.lastSeenAt }
-        lastMessageAt={ user.lastMessageAt }
-        unreadMessagesCount={ user.unreadMessagesCount }
         onClick={ () => this.selectUser(user) }
       />
     ));

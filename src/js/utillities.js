@@ -8,6 +8,6 @@ export function classNames(classNames='', conditionalClassNames={}) {
 
 export function humanReadableTimeStamp(inputValue) {
   let today = moment(inputValue).isSame(new Date(), 'd');
-  let dateFormat = today ? 'HH:mm' : 'D-M-YYYY HH:mm';
+  let dateFormat = today ? 'HH:mm' : 'D-M-YYYY';
   return moment(inputValue).format(dateFormat)
 }

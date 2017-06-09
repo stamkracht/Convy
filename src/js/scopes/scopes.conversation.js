@@ -1,11 +1,11 @@
 import React from 'react';
+import SwipeableViews from 'react-swipeable-views';
 import { browserHistory } from 'react-router';
 
 import { connect } from 'react-redux';
 
 import config from '../config';
 import actions from '../actions';
-import SwipeView from './scopes.swipe-view';
 import Chat from './scopes.chat';
 import Profile from './scopes.profile';
 import ChatSettings from './scopes.chat-settings';
@@ -53,17 +53,23 @@ class Conversation extends React.Component {
       );
     }
 
+
     if (chatStatsActive) {
-      chatStats = (<Stats/>);
+      chatStats = <Stats/>;
     }
+
+    const children = [
+      <Chat chat={ chat }/>,
+      view,
+      chatStats
+    ].filter(x => !!x);
+
 
     return (
       <main className="s-conversation">
-        <SwipeView swipeViewId={ swipeViewId }>
-          <Chat chat={ chat }/>
-          { view }
-          { chatStats }
-        </SwipeView>
+        <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
+          {children}
+        </SwipeableViews>
       </main>
     );
   }
