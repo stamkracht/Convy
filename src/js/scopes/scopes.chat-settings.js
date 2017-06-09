@@ -24,6 +24,10 @@ class ChatSettings extends React.Component {
     }
   }
 
+  handleFileChange(event) {
+    console.log(event.target.files[0]);
+  }
+
   render() {
     let groupName,
         participants,
@@ -118,7 +122,8 @@ class ChatSettings extends React.Component {
                   </button>
                 </li>
                 <li>
-                  <input type='file' name='file' id='file' accept='image/*' />
+                  <input type='file' id='file' accept='image/*'
+                    onChange={this.handleFileChange.bind(this)} />
                   <label htmlFor='file'>
                     <i className="icon-image"></i>
                   </label>
