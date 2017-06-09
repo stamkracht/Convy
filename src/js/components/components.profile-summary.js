@@ -7,15 +7,27 @@ class ProfileSummary extends React.Component {
   render() {
     const user = this.props.user;
 
+    let userImage;
+
+    if (user && user.image) {
+      userImage = (<img src={ user && user.image }/>);
+    } else {
+      userImage = (
+        <div className="c-profile-summary__image-placeholder">
+          <i className="icon-person-outline"></i>
+        </div>
+      );
+    }
+
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__head">
-          <img src={ user && user.image }/>
+          { userImage }
           <p className="c-profile-summary__data">last seen: { user && humanReadableTimeStamp(user.lastSeenAt) }</p>
         </article>
 
         <article className="c-profile-summary__info">
-          <h1 className="c-profile-summary__name">{ user && user.firstname } { user && user.lastname }</h1>
+          <h1 className="c-profile-summary__name">{ user && user.firstName } { user && user.lastName }</h1>
           <h2 className="c-profile-summary__function">{ user && user.headline }</h2>
 
           <ul className="c-profile-summary__contact">

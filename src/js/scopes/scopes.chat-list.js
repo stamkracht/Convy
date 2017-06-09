@@ -59,7 +59,7 @@ class ChatList extends React.Component {
           lastMessage={ chat.lastMessage }
           image={ this.getImage(chat) }
           lastMessageDate={ chat.lastMessageDate }
-          unreadMessagesCount={ chat.unreadMessagesCount }
+          unreadMessagesCount={ chat.unreadCount }
           onClick={ () => this.open(chat) }
         />
       )

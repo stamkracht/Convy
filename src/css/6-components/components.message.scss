@@ -12,7 +12,7 @@
   max-width: 85%;
   margin: 10px 0;
   padding: 5px 10px;
-  background: lighten($brand-color-3, 20%);
+  background: var(--brand-color-3);
   font-size: rem(14px);
 
   @include mq(min-w, 400px) { font-size: rem(16px); }
@@ -24,7 +24,7 @@
     content: '';
     width: 0;
     height: 0;
-    border-bottom: 3px solid $brand-color-3;
+    border-bottom: 3px solid rgba($black-100, 0.35);
     border-left: 4px solid transparent;
   }
 
@@ -35,19 +35,19 @@
     content: '';
     height: 100%;
     width: 5px;
-    background: lighten($brand-color-3, 20%);
+    background: var(--brand-color-3);
   }
 }
 
 .c-message.c-message--user {
   margin-left: auto;
-  background: lighten($brand-color-1, 20%);
+  background: var(--brand-color-1);
   text-align: right;
 
   &:before {
     left: auto;
     right: -4px;
-    border-bottom: 3px solid $brand-color-1;
+    border-bottom: 3px solid rgba($black-100, 0.35);
     border-right: 4px solid transparent;
     border-left: 0;
   }
@@ -55,7 +55,7 @@
   &:after {
     left: auto;
     right: -4px;
-    background: lighten($brand-color-1, 20%);
+    background: var(--brand-color-1);
   }
 }
 

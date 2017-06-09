@@ -14,12 +14,28 @@
   z-index: 30;
   position: relative;
   box-shadow: 0px 0px 10px 2px rgba($black-100, 0.25);
+  height: 150px;
   margin: 0 10px 10px;
-  padding: 4px;
+  border: 4px solid $white;
   background: $white;
 }
 
-.c-profile-summary__head img { margin: 0 auto; }
+.c-profile-summary__head img {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.c-profile-summary__image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: em(60px);
+}
 
 .c-profile-summary__data {
   z-index: 10;

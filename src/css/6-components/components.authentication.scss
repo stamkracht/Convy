@@ -135,7 +135,7 @@
   z-index: 0;
   top: -120px;
   left: 65px;
-  background: $brand-color-2;
+  background: var(--brand-color-2);
 
   @include mq(min-w, 400px) { top: -175px; }
 }
@@ -168,7 +168,7 @@
   border: 0;
   padding: 15px 10px;
   color: $white;
-  background: #198DBD;
+  background: transparent;
   text-transform: uppercase;
 
   &.state-loading:before { transform: none; }
@@ -184,7 +184,7 @@
     content: '';
     width: 100%;
     height: 250px;
-    background: #198DBD;
+    background: rgba($black-100, 0.2);
     transform: translateY(155px);
     transition: transform 0.5s ease-out;
   }
@@ -193,12 +193,12 @@
 .c-authentication__back .c-authentication__fields {
   left: 65px;
   box-shadow: -5px 10px 100px 5px rgba($black-100, 0.1);
-  background: $brand-color-2;
+  background: var(--brand-color-2);
 }
 
 .c-authentication__back .c-authentication__submit {
   left: 0px;
-  color: #198DBD;
+  color: var(--brand-color-2);
   background: $white;
 }
 

@@ -11,8 +11,6 @@ import NavMore from '../components/components.nav-more';
 class Header extends React.Component {
 
   render() {
-    console.log('++++++++++++++++++++++++++++++ HEADER PROPS', this.props);
-
     let navigation;
 
     if (this.props.headerState.mode == 'CHAT') {

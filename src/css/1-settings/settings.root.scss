@@ -1,0 +1,65 @@
+// Root
+//
+// Weight: 0
+//
+// Styleguide Settings.Root
+
+
+:root {
+  // Brand Colors
+  //
+  // --brand-color-1 -  #88CEE8, Viking
+  // --brand-color-2 -  #4BAFD9, Shakespeare
+  // --brand-color-3 -  #D0E37F, Manz
+  //
+  // Weight: 1
+  //
+  // Styleguide Settings.Root.BrandColors
+
+  --brand-color-1: #88CEE8;
+  --brand-color-2: #4BAFD9;
+  --brand-color-3: #D0E37F;
+
+
+  // Feedback Colors
+  //
+  // --fb-danger  -  #EB8585, Apricot
+  // --fb-success -  #69CA88, De York
+  // --fb-warning -  #F0CA85, Buff
+  // --fb-info    -  #5FA9CA, Danube
+  //
+  // Weight: 2
+  //
+  // Styleguide Settings.Root.FeedbackColors
+
+  --fb-danger:  #EB8585;
+  --fb-success: #69CA88;
+  --fb-warning: #F0CA85;
+  --fb-info:    #5FA9CA;
+
+
+  // Default font
+  //
+  // --default-font-family   - 'Ubuntu', sans-serif
+  // --default-font-weight   - normal
+  //
+  // Weight: 3
+  //
+  // Styleguide Settings.Root.DefaultFont
+
+  --default-font-family: 'Ubuntu', sans-serif;
+  --default-font-weight: normal;
+
+
+  // Default heading font
+  //
+  // --default-heading-font-family   - 'Ubuntu', sans-serif
+  // --default-heading-font-weight   - bold
+  //
+  // Weight: 4
+  //
+  // Styleguide Settings.Root.DefaultHeadingFont
+
+  --default-heading-font-family: 'Ubuntu', sans-serif;
+  --default-heading-font-weight: bold;
+}
