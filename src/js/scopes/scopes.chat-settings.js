@@ -118,7 +118,8 @@ class ChatSettings extends React.Component {
                   </button>
                 </li>
                 <li>
-                  <input type='file' name='file' id='file' />
+                  <input type='file' id='file' accept='image/*'
+                    onChange={this.updateGroupImage.bind(this)} />
                   <label htmlFor='file'>
                     <i className="icon-image"></i>
                   </label>
@@ -177,8 +178,8 @@ class ChatSettings extends React.Component {
     this.props.update({'groupName': prompt('Group name')});
   }
 
-  addGroupImage() {
-    this.props.update({'groupImage': prompt('Group image')});
+  updateGroupImage(event) {
+    this.props.update({'groupImage': event.target.files[0]});
   }
 
   showSearch() {
