@@ -15,9 +15,7 @@ class Conversation extends React.Component {
 
   render() {
     let view,
-        selfTalk,
-        chatStats,
-        chatStatsActive = false;
+        selfTalk;
 
     const chat = this.props.chatsState.chats[this.props.params.chatId];
 
@@ -53,22 +51,11 @@ class Conversation extends React.Component {
       );
     }
 
-
-    if (chatStatsActive) {
-      chatStats = <Stats/>;
-    }
-
-    const children = [
-      <Chat chat={ chat }/>,
-      view,
-      chatStats
-    ].filter(x => !!x);
-
-
     return (
       <main className="s-conversation">
         <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
-          {children}
+          <Chat chat={ chat }/>
+          { view }
         </SwipeableViews>
       </main>
     );

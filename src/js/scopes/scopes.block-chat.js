@@ -22,6 +22,7 @@ class BlockChat extends React.Component {
           key={message.created_at}
           ref={(el) => { this.lastMessage = el; }}>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
+          <img src={message.attachment} />
           <p>{ message.content }</p>
           <ul className="c-message__data">
             <li>{ humanReadableTimeStamp(message.created_at) }</li>

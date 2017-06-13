@@ -226,10 +226,10 @@ function finishSendMessage(status='success') {
   }
 }
 
-export function sendMessage(chatId, message) {
+export function sendMessage(chatId, message, attachment) {
   return async function(dispatch, getState) {
     dispatch(startSendMessage());
-    await config.adapter.sendMessage(chatId, message);
+    await config.adapter.sendMessage(chatId, message, attachment);
     dispatch(finishSendMessage());
   }
 }

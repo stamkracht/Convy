@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 
 import config from '../config'
 import actions from '../actions';
+import { classNames } from '../utillities';
 
 class Messenger extends React.Component {
 
-  sendMessage() {
+  sendMessage(attachment) {
     const message = this.messageInput.value;
-    this.props.sendMessage(this.props.chatId, message);
+    this.props.sendMessage(this.props.chatId, message, attachment);
     this.messageInput.value = '';
     this.props.onSizeChanged(50);
   }
@@ -29,20 +30,26 @@ class Messenger extends React.Component {
     }
   }
 
-  render() {
-    let messengerAttachmentClass = `c-messenger__attachment ${ this.props.showAttachment ? 'state-active' : '' }`;
+  addAttachment(event) {
+    this.sendMessage(event.target.files[0]);
+    this.props.toggleAttachment();
+  }
 
+  render() {
     let inputHeight = { height: `${ this.props.messengerHeight }px` };
 
     return (
       <article className="c-messenger" style={ inputHeight }>
-        <button className={ messengerAttachmentClass } onClick={ this.props.toggleAttachment }>
+
+        <input type='file' id='file' accept='image/*'
+          onChange={this.addAttachment.bind(this)} />
+        <label htmlFor='file' className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) }>
           <i className="icon-add-circle-outline"></i>
-        </button>
+        </label>
 
         <textarea ref={ input => this.messageInput = input }
           style={ inputHeight }
-          placeholder="Share knowledge"
+          placeholder="Blah blah blah"
           onKeyDown={ this.onKeyDown.bind(this) }
         ></textarea>
 
@@ -58,7 +65,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    sendMessage: (chatId, message) => dispatch(actions.chats.sendMessage(chatId, message)),
+    sendMessage: (chatId, message, attachment) => dispatch(actions.chats.sendMessage(chatId, message, attachment)),
   };
 };
 
