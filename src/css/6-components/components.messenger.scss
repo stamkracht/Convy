@@ -26,6 +26,8 @@
   line-height: 1;
   font-size: em(20px);
   transition: transform 0.2s;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 
   &.state-active { transform: rotate(45deg); }
 }
