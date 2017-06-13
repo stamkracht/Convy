@@ -42,7 +42,7 @@ class Messenger extends React.Component {
 
         <textarea ref={ input => this.messageInput = input }
           style={ inputHeight }
-          placeholder="Share knowledge"
+          placeholder="Blah blah blah"
           onKeyDown={ this.onKeyDown.bind(this) }
         ></textarea>
 
