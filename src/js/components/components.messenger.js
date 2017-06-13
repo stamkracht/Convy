@@ -7,9 +7,9 @@ import { classNames } from '../utillities';
 
 class Messenger extends React.Component {
 
-  sendMessage() {
+  sendMessage(attachment) {
     const message = this.messageInput.value;
-    this.props.sendMessage(this.props.chatId, message);
+    this.props.sendMessage(this.props.chatId, message, attachment);
     this.messageInput.value = '';
     this.props.onSizeChanged(50);
   }
@@ -30,7 +30,10 @@ class Messenger extends React.Component {
     }
   }
 
-
+  addAttachment(event) {
+    this.sendMessage(event.target.files[0]);
+    this.props.toggleAttachment();
+  }
 
   render() {
     let inputHeight = { height: `${ this.props.messengerHeight }px` };
@@ -38,9 +41,11 @@ class Messenger extends React.Component {
     return (
       <article className="c-messenger" style={ inputHeight }>
 
-        <button className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) } onClick={ this.props.toggleAttachment }>
+        <input type='file' id='file' accept='image/*'
+          onChange={this.addAttachment.bind(this)} />
+        <label htmlFor='file' className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) }>
           <i className="icon-add-circle-outline"></i>
-        </button>
+        </label>
 
         <textarea ref={ input => this.messageInput = input }
           style={ inputHeight }
