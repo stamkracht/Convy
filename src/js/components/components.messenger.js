@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import config from '../config'
 import actions from '../actions';
+import { classNames } from '../utillities';
 
 class Messenger extends React.Component {
 
@@ -29,14 +30,15 @@ class Messenger extends React.Component {
     }
   }
 
-  render() {
-    let messengerAttachmentClass = `c-messenger__attachment ${ this.props.showAttachment ? 'state-active' : '' }`;
 
+
+  render() {
     let inputHeight = { height: `${ this.props.messengerHeight }px` };
 
     return (
       <article className="c-messenger" style={ inputHeight }>
-        <button className={ messengerAttachmentClass } onClick={ this.props.toggleAttachment }>
+
+        <button className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) } onClick={ this.props.toggleAttachment }>
           <i className="icon-add-circle-outline"></i>
         </button>
 
