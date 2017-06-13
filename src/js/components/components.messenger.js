@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    sendMessage: (chatId, message) => dispatch(actions.chats.sendMessage(chatId, message)),
+    sendMessage: (chatId, message, attachment) => dispatch(actions.chats.sendMessage(chatId, message, attachment)),
   };
 };
 
