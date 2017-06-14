@@ -40,7 +40,7 @@ class BlockUser extends React.Component {
     }
 
     if (this.props.lastMessage) {
-      data.push(<li key="last-message">{ humanReadableTimeStamp(this.props.lastMessageAt) }</li>);
+      data.push(<li key="last-message">{ humanReadableTimeStamp(this.props.lastMessageDate) }</li>);
     }
 
     else if (this.props.lastSeenAt) {

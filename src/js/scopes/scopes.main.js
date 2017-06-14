@@ -40,10 +40,21 @@ class Main extends React.Component {
   }
 
   getChatList() {
-    const chats = this.props.chatsState.chats;
-    return Object.keys(chats).map((id) =>
-      chats[id]
-    )
+    return Object.values(this.props.chatsState.chats).sort(
+      (a,b) => {
+        const aa = a.lastMessageDate && new Date(a.lastMessageDate);
+        const bb = b.lastMessageDate && new Date(b.lastMessageDate);
+        if(aa && bb) {
+          return aa > bb ? -1 : 1
+        } else if (aa) {
+          return -1
+        } else if (bb) {
+          return 1
+        } else {
+          return 0
+        }
+      }
+    );
   }
 
   getContactList() {

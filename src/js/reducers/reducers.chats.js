@@ -16,13 +16,12 @@ function chatsReducer(state, action) {
       });
     } else if(action.status == 'success') {
       // Update the dictionary and list
-      const [chats, chatList] = action.chats.reduce((a, b) =>
-        [Object.assign({}, a[0], { [b.id]: b }), [b.id].concat(a[1])], [{},[]]
+      const chats = action.chats.reduce((mem, b) =>
+        Object.assign({}, mem, { [b.id]: b }), {}
       );
       return Object.assign({}, state, {
         isFetching: false,
         chats,
-        chatList
       }, action.receivedAt && {receivedAt: action.receivedAt});
 
     }
@@ -57,11 +56,9 @@ function chatsReducer(state, action) {
     } else if (action.status == 'success') {
       const chat = action.chat;
       const chats = Object.assign({}, state.chats , { [chat.id]: chat });
-      const chatList = [chat.id].concat(state.chatList);
       return Object.assign({}, state, {
         isFetching: false,
         chats,
-        chatList
       });
     }
   }
