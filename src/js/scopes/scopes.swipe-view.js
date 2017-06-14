@@ -59,14 +59,12 @@ class SwipeView extends React.Component {
         overflow: false,
       })
     }
-    if(this.state.menuVisible && difference < -threshold) {
-      const offset = this.state.offset - difference
+    if(this.state.menuVisible && difference < 0) {
+      const offset = this.state.offset - difference;
       this.setState({
-        offset: 0,
+        offset: (offset < 0 && offset ? offset : 0),
         clientY: newClientY,
-        animEnabled: true,
-        menuVisible: false,
-        overflow: true,
+        menuVisible: offset < 0,
       })
 
     }
@@ -86,8 +84,13 @@ class SwipeView extends React.Component {
       this.setState({
         animEnabled: true,
         offset: 0,
-      })
+      });
       window.location.reload()
+    }
+    if(!this.state.menuVisible) {
+      this.setState({
+        overflow: true,
+      })
     }
   }
 }
