@@ -11,4 +11,5 @@ body {
   font-size: rem($default-font-size);
   font-weight: var(--default-font-weight);
   line-height: $default-line-height;
+  overflow-y: hidden;
 }
