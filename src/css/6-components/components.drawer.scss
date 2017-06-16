@@ -4,6 +4,7 @@
 
 
 .c-drawer-container {
+  height: 100%;
 }
 
 .c-drawer-mover {
@@ -11,7 +12,7 @@
   flex-direction: column;
   width: 100%;
   padding: 0px 10px 0;
-  height: 100vh;
+  height: 100%;
 
 
   &.animate {

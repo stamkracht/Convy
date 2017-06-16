@@ -32,7 +32,7 @@ class Application extends React.Component {
         <div style={{
   position: 'fixed',
   top: 0,
-  height: '100vh',
+  height: '100%',
   width: '100vw',
   display: 'flex',
         }}>

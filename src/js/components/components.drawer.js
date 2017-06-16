@@ -122,9 +122,10 @@ class Drawer extends React.Component {
 
   render() {
     let styles = {}
+    console.log(window.innerHeight)
     if(this.state.marginTop < 0){
-      styles['height']= `calc(100vh + ${-this.state.marginTop }px`
       styles['marginTop']=  `${ this.state.marginTop }px`
+      styles['height']= `calc(100% + ${-this.state.marginTop }px`
     } else {
       styles['paddingTop'] = `${ this.state.marginTop }px`
     }
