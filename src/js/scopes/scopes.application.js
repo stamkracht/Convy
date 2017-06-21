@@ -24,11 +24,20 @@ class Application extends React.Component {
     } else {
       content = <Entry/>
     }
+
     return (
-      <div>
+      <div style={{scrollY: 'auto'}}>
         <AppBackground backgroundImage="dest/bg-app.jpg"/>
         { header }
+        <div style={{
+  position: 'fixed',
+  top: 0,
+  height: '100%',
+  width: '100vw',
+  display: 'flex',
+        }}>
         { content }
+          </div>
       </div>
     );
   }

@@ -4,23 +4,14 @@
 
 
 .s-chat-settings {
-  overflow: auto;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  padding: 0 10px;
   flex-shrink: 0;
   font-size: rem(16px);
+  display: flex;
 
-  &.state-new .s-chat-settings__inner {
-    height: calc(100vh - 75px);
-    margin-top: 75px;
-  }
 }
 
 .s-chat-settings__inner {
   background: $white;
-  height: 100vh;
 }
 
 .s-chat-settings__heading {

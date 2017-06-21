@@ -51,6 +51,13 @@ class Messenger extends React.Component {
           style={ inputHeight }
           placeholder="Blah blah blah"
           onKeyDown={ this.onKeyDown.bind(this) }
+                  onFocus={() => {
+                  const output = document.querySelector('.s-chat__output')
+                  setTimeout(() => {
+                  output.scrollTop = output.scrollHeight
+
+                  }, 1000);
+                  }}
         ></textarea>
 
         <button className="c-messenger__submit" onClick={ () => this.sendMessage() }>

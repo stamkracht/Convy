@@ -38,7 +38,6 @@ class SwipeView extends React.Component {
     this.setState({
       animEnabled: false,
       clientY: event.nativeEvent.touches[0].clientY,
-      initialOffset: this.state.offset,
       menuAccessible: this.state.offset == 0 && this.elm.scrollTop == 0,
       reloadAccessible: this.state.offset == -75,
     });
