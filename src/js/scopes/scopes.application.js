@@ -50,8 +50,8 @@ class Application extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Will be triggered when the redux state is changed
-    const authenticated = nextProps.authState.authenticated;
-    if(authenticated && (this.props.authState.authenticated != authenticated)) {
+    const authenticated = nextProps.authState.isAuthenticated;
+    if(authenticated && (this.props.authState.isAuthenticated != authenticated)) {
       this.props.fetchMe();
       this.chatEventSubscribtion = actions.chats.subscribeToChatEvents(this.props.handleChatEvent);
       this.contactEventSubscribtion = actions.contacts.subscribeToContactEvents(this.props.handleContactEvent);
