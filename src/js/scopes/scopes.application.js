@@ -18,7 +18,7 @@ class Application extends React.Component {
       chatId: this.props.params.chatId,
     };
 
-    if(config.adapter.isAuthenticated()) {
+    if ( this.props.authState.isAuthenticated ) {
       header = <Header options={ headerOptions } />;
       content = this.props.meState.me && this.props.children
     } else {
