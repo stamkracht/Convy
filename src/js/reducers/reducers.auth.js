@@ -2,7 +2,7 @@ function authReducer(state, action) {
   if (state === undefined) {
     state = {
       isConnecting: false,
-      authenticated: false,
+      isAuthenticated: false,
       receivedAt: null
     };
   }
@@ -16,13 +16,13 @@ function authReducer(state, action) {
       return Object.assign({}, state, {
         isConnecting: false,
         receivedAt: action.receivedAt,
-        authenticated: true,
+        isAuthenticated: true,
       });
     } else {
       return Object.assign({}, state, {
         isConnecting: false,
         error: action.status,
-        authenticated: false,
+        isAuthenticated: false,
       })
     }
   }
