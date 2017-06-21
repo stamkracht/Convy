@@ -35,6 +35,7 @@ class Application extends React.Component {
           height: '100%',
           width: '100vw',
           display: 'flex',
+          justifyContent: 'center'
         }}>
           { content }
         </div>
