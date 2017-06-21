@@ -18,11 +18,22 @@ class NavMore extends React.Component {
         <ul className={ classNames('c-nav-more__dropdown', {'state-active': this.props.active}) }>
           <li>
             <Link to={config.urlPrefix + "my-profile"}>
-              <i className="icon-person-outline"></i>Profile
+              <i className="icon-person-outline"></i>
+              Profile
             </Link>
           </li>
-          <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
-          <li><a className="sign-out" href="#" onClick={ this.props.logout.bind(this) }><i className="icon-sign-out"></i>Logout</a></li>
+          <li>
+            <a href="#">
+              <i className="icon-notifications-none"></i>
+              Notification settings
+            </a>
+          </li>
+          <li>
+            <a className="sign-out" href="#" onClick={ this.props.logout.bind(this) }>
+              <i className="icon-sign-out"></i>
+              Logout
+            </a>
+          </li>
         </ul>
       </nav>
     );
