@@ -22,7 +22,6 @@ class NavMore extends React.Component {
             </Link>
           </li>
           <li><a href="#"><i className="icon-notifications-none"></i>Notification settings</a></li>
-          <li><a href="#"><i className="icon-earth"></i>Platforms</a></li>
           <li><a className="sign-out" href="#" onClick={ this.props.logout.bind(this) }><i className="icon-sign-out"></i>Logout</a></li>
         </ul>
       </nav>
