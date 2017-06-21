@@ -27,6 +27,14 @@ function authReducer(state, action) {
     }
   }
 
+  if (action.type === 'LOGOUT') {
+    if ( action.status == 'success' ) {
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+      })
+    }
+  }
+
   return state;
 }
 
