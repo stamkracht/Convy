@@ -8,10 +8,9 @@ import { classNames } from '../utillities';
 class Messenger extends React.Component {
 
   sendMessage(attachment) {
-    const message = this.messageInput.value;
+    const message = this.messageInput.innerText;
     this.props.sendMessage(this.props.chatId, message, attachment);
-    this.messageInput.value = '';
-    this.props.onSizeChanged(50);
+    this.messageInput.innerText = '';
   }
 
   onKeyDown(event) {
@@ -22,11 +21,9 @@ class Messenger extends React.Component {
       event.preventDefault();
       this.sendMessage();
     } else {
-      setTimeout(() => {
-        this.props.onSizeChanged(50);
-        let height = event.target.scrollHeight;
-        this.props.onSizeChanged(height);
-      }, 0);
+      //this.props.onSizeChanged(50);
+      //let height = event.target.scrollHeight;
+      //this.props.onSizeChanged(height);
     }
   }
 
@@ -39,7 +36,7 @@ class Messenger extends React.Component {
     let inputHeight = { height: `${ this.props.messengerHeight }px` };
 
     return (
-      <article className="c-messenger" style={ inputHeight }>
+      <article className="c-messenger">
 
         <input type='file' id='file' accept='image/*'
           onChange={this.addAttachment.bind(this)} />
@@ -47,18 +44,19 @@ class Messenger extends React.Component {
           <i className="icon-add-circle-outline"></i>
         </label>
 
-        <textarea ref={ input => this.messageInput = input }
-          style={ inputHeight }
-          placeholder="Blah blah blah"
-          onKeyDown={ this.onKeyDown.bind(this) }
-                  onFocus={() => {
+        <div ref={ input => this.messageInput = input }
+             className="c-messenger__input"
+             contentEditable="true"
+             placeholder="Blah blah blah"
+             onKeyDown={ this.onKeyDown.bind(this) }
+             onFocus={() => {
                   const output = document.querySelector('.s-chat__output')
                   setTimeout(() => {
                   output.scrollTop = output.scrollHeight
 
                   }, 1000);
                   }}
-        ></textarea>
+        ></div>
 
         <button className="c-messenger__submit" onClick={ () => this.sendMessage() }>
           <i className="icon-send"></i>

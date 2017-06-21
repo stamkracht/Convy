@@ -33,18 +33,11 @@ class Chat extends React.Component {
             chatId={this.props.chat && this.props.chat.id}
             showAttachment={ this.state.showAttachment }
             messengerHeight= { this.state.messengerHeight }
-            onSizeChanged= { (size) => this.onSizeChanged(size) }
             toggleAttachment={ this.toggleAttachment.bind(this) }
           />
         </div>
       </section>
     );
-  }
-
-  onSizeChanged(size) {
-    this.setState({
-      messengerHeight: size,
-    });
   }
 
   toggleAttachment() {

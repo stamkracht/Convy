@@ -6,7 +6,9 @@
 
 
 .c-messenger {
+  display:flex;
   position: relative;
+  align-items: center;
   width: 100%;
   min-height: 50px;
   max-height: 96px;
@@ -24,7 +26,7 @@
 }
 
 .c-messenger__attachment {
-  position: absolute;
+  //position: absolute;
   bottom: 5px;
   left: 0;
   display: block;
@@ -41,15 +43,16 @@
   &.state-active { transform: rotate(45deg); }
 }
 
-.c-messenger textarea {
-  position: absolute;
+.c-messenger__input {
   top: 0;
   left: 40px;
   resize: none;
   width: calc(100% - 80px);
   min-height: 50px;
   max-height: 96px;
-  border: 0;
+  outline: none;
+  border: none;
+  overflow-y: auto;
   padding: 12px 0;
   background: transparent;
 }
