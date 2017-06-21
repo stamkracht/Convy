@@ -41,7 +41,7 @@ export function receiveLogout(status='success') {
   }
 }
 
-export function logout(identifier, password) {
+export function logout() {
   return async function(dispatch, getState) {
     dispatch(requestLogout());
     try {
