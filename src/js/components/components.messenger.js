@@ -38,9 +38,9 @@ class Messenger extends React.Component {
     return (
       <article className="c-messenger">
 
-        <input type='file' id='file' accept='image/*'
+        <input type='file' id='messageImage' accept='image/*'
           onChange={this.addAttachment.bind(this)} />
-        <label htmlFor='file' className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) }>
+        <label htmlFor='messageImage' className={ classNames('c-messenger__attachment', {'state-active': this.props.showAttachment}) }>
           <i className="icon-add-circle-outline"></i>
         </label>
 
