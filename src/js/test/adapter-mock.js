@@ -138,8 +138,8 @@ const me = {
   status: 'success',
   user: {
     id: 3,
-    firstname: 'Peter II',
-    lastname: 'Fox',
+    firstName: 'Peter II',
+    lastName: 'Fox',
     headline: 'Lead Developer @ Stamkracht',
     image: 'http://lorempixel.com/500/500/business/',
     email: 'example@example.org',
@@ -162,16 +162,12 @@ const chats = {
       id: 1,
       title: 'A love story',
       image: null,
-      members: [
+      participants: [
         {
           id: 2,
-          name: 'John Graham',
-          image: 'http://lorempixel.com/300/300/business/',
         },
         {
           id: 3,
-          name: 'Peter Fox',
-          image: 'http://lorempixel.com/300/300/business/',
         }
       ],
       lastMessage: 'Ik kan er maar niet aan wennen',
@@ -182,16 +178,12 @@ const chats = {
       id: 2,
       title: 'A horror story',
       image: 'http://lorempixel.com/300/300/business/',
-      members: [
+      participants: [
         {
           id: 1,
-          name: 'George Best',
-          image: 'http://lorempixel.com/300/300/business/',
         },
         {
           id: 3,
-          name: 'Peter Fox',
-          image: 'http://lorempixel.com/300/300/business/',
         }
       ],
       lastMessage: 'Ik kan er maar niet aan vastzitten',
@@ -202,7 +194,7 @@ const chats = {
       id: 3,
       title: 'A triangular story',
       image: 'http://lorempixel.com/300/300/business/',
-      members: [
+      participants: [
         {
           id: 1,
           name: 'George Best',
@@ -231,8 +223,8 @@ const contacts = {
   contacts: [
     {
       id: 2,
-      firstname: 'John',
-      lastname: 'Graham',
+      firstName: 'John',
+      lastName: 'Graham',
       headline: 'Lead Developer @ Stamkracht',
       image: 'http://lorempixel.com/300/300/business/',
       email: 'example@example.org',
@@ -248,8 +240,8 @@ const contacts = {
     },
     {
       id: 1,
-      firstname: 'George',
-      lastname: 'Best',
+      firstName: 'George',
+      lastName: 'Best',
       headline: 'Lead Developer @ Stamkracht',
       image: 'http://lorempixel.com/300/300/business/',
       email: 'example@example.org',
