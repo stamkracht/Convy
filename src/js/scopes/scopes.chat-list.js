@@ -139,7 +139,7 @@ class ChatList extends React.Component {
         return user.image;
       }
     } else {
-      return chat.image;
+      return chat.groupImage;
     }
   }
 
