@@ -19,10 +19,8 @@ function receiveMe(me, status='success') {
 export function fetchMe() {
   return async function(dispatch, getState) {
     dispatch(requestMe());
-    console.log('Started fetching me');
     const result = await config.adapter.getMe();
     dispatch(receiveMe(result.user))
-    console.log('Finished fetching me');
   }
 }
 

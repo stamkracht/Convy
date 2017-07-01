@@ -26,7 +26,7 @@ class Chat extends React.Component {
     return (
       <section className="s-chat">
         <div className="s-chat__output" style={ chatOutputStyles }>
-          <BlockChat myId={this.props.meState.me.id} messages={ messages } />
+          {messages && this.props.meState.me && <BlockChat myId={this.props.meState.me.id} messages={ messages } />}
         </div>
         <div className="s-chat__input">
           <Messenger
