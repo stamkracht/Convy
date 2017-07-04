@@ -17,7 +17,7 @@
 }
 
 .c-messenger__attachment {
-  //position: absolute;
+  position: absolute;
   bottom: 5px;
   left: 0;
   display: block;
@@ -33,17 +33,13 @@
 }
 
 .c-messenger__input {
-  top: 0;
-  left: 40px;
-  resize: none;
+  overflow-y: auto;
   width: calc(100% - 80px);
   min-height: 50px;
   max-height: 96px;
   outline: none;
-  border: none;
-  overflow-y: auto;
+  margin-left: 40px;
   padding: 12px 0;
-  background: transparent;
 }
 
 .c-messenger__submit {
