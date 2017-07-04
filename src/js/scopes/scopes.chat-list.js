@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
-import Drawer from '../components/components.drawer';
 import SwipeView from '../scopes/scopes.swipe-view';
 import { classNames } from '../utillities';
 
@@ -16,7 +15,6 @@ class ChatList extends React.Component {
 
     this.state = {
       search: false,
-      scrollPos: 0,
     };
   }
 
@@ -88,41 +86,31 @@ class ChatList extends React.Component {
       );
     }
 
-    const panel = (
-      <section className="s-block-actions">
-
-        <nav className="s-block-actions__nav">
-          <ul>
-            { groupAction }
-            <li>
-              <button onClick={ this.showSearch.bind(this) }>
-                <i className="icon-search"></i>
-              </button>
-            </li>
-          </ul>
-
-          { input }
-        </nav>
-      </section>
-    );
-
-    const main = (
-        <section className={ classNames('s-chat-list', {'state-empty': !this.props.chats.length}) }>
-          <div className='s-chat-list__inner'>
-          { loading }
-          {!this.props.chats.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
-          { chats }
-          </div>
-        </section>
-    );
-
     return (
-          <Drawer swipeThreshold={30}
-                  closedMargin={-10}
-                  openedMargin={75}
-                  refreshMargin={150}
-                  drawerComponent={panel}
-                  mainComponent={main}/>
+        <SwipeView className="s-chat-list">
+          <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
+            { loading }
+
+            <section className="s-block-actions">
+              <nav className="s-block-actions__nav">
+                <ul>
+                  { groupAction }
+                  <li>
+                    <button onClick={ this.showSearch.bind(this) }>
+                      <i className="icon-search"></i>
+                    </button>
+                  </li>
+                </ul>
+
+                { input }
+              </nav>
+            </section>
+
+            {!this.props.chats.length && <p className="empty-message">{ this.props.emptyMessage }</p>}
+
+            { chats }
+          </div>
+        </SwipeView>
     );
   }
 

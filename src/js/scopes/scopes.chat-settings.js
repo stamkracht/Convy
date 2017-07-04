@@ -5,8 +5,6 @@ import config from '../config';
 import actions from '../actions';
 import { classNames } from '../utillities';
 import BlockUser from '../components/components.block-user';
-import Drawer from '../components/components.drawer';
-
 
 class ChatSettings extends React.Component {
 
@@ -102,52 +100,42 @@ class ChatSettings extends React.Component {
       );
     }
 
-    const main = (
+    return (
       <section className={ classNames('s-chat-settings', {'state-new': !this.props.chat}) }>
         <div className="s-chat-settings__inner">
+          <section className="s-block-actions">
+            <nav className="s-block-actions__nav">
+              <ul>
+                <li>
+                  <button className="sign-out" onClick={ this.leaveGroup.bind(this) }>
+                    <i className="icon-sign-out"></i>
+                    <span>Leave group</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={ this.editGroupName.bind(this) }>
+                    <i className="icon-pencil"></i>
+                  </button>
+                </li>
+                <li>
+                  <input type='file' id='file' accept='image/*'
+                    onChange={this.updateGroupImage.bind(this)} />
+                  <label htmlFor='file'>
+                    <i className="icon-image"></i>
+                  </label>
+                </li>
+                <li>
+                  <button onClick={ this.showSearch.bind(this) }>
+                    <i className="icon-group-add"></i>
+                  </button>
+                </li>
+              </ul>
+              { input }
+            </nav>
+          </section>
           { container }
         </div>
       </section>
-    );
-    const panel = (
-      <section className="s-block-actions">
-        <nav className="s-block-actions__nav">
-          <ul>
-            <li>
-              <button className="sign-out" onClick={ this.leaveGroup.bind(this) }>
-                <i className="icon-sign-out"></i>
-                <span>Leave group</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={ this.editGroupName.bind(this) }>
-                <i className="icon-pencil"></i>
-              </button>
-            </li>
-            <li>
-              <input type='file' id='groupImage' accept='image/*'
-                     onChange={this.updateGroupImage.bind(this)} />
-              <label htmlFor='groupImage'>
-                <i className="icon-image"></i>
-              </label>
-            </li>
-            <li>
-              <button onClick={ this.showSearch.bind(this) }>
-                <i className="icon-group-add"></i>
-              </button>
-            </li>
-          </ul>
-          { input }
-        </nav>
-      </section>
-    )
-    return (
-      <Drawer swipeThreshold={30}
-              closedMargin={-10}
-              openedMargin={75}
-              refreshMargin={150}
-              drawerComponent={panel}
-              mainComponent={main}/>
     );
   }
 

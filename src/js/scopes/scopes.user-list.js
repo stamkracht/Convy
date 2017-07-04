@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
-import Drawer from '../components/components.drawer';
 
 import { classNames } from '../utillities';
 
@@ -65,7 +64,7 @@ class UserList extends React.Component {
       );
     }
 
-    const main = (
+    return (
       <section className="s-user-list">
         <div className={ classNames('s-user-list__inner', {'state-empty': !this.props.users.length}) }>
           { loading }
@@ -89,9 +88,6 @@ class UserList extends React.Component {
           { users }
         </div>
       </section>
-    )
-    return (
-      main
     );
   }
 

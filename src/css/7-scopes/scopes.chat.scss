@@ -4,28 +4,23 @@
 
 
 .s-chat {
-  overflow: auto;
+  position: relative;
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .s-chat__output {
   overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
+  min-height: calc(100vh - 116px);
+  max-height: calc(100vh - 70px);
   padding-top: 75px;
-  margin-bottom: 130px;
 }
 
 .s-chat__input {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
-  height: 130px;
   width: 100%;
   padding: 10px;
 }
