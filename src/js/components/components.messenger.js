@@ -44,19 +44,11 @@ class Messenger extends React.Component {
           <i className="icon-add-circle-outline"></i>
         </label>
 
-        <div ref={ input => this.messageInput = input }
-             className="c-messenger__input"
-             contentEditable="true"
-             placeholder="Blah blah blah"
-             onKeyDown={ this.onKeyDown.bind(this) }
-             onFocus={() => {
-                  const output = document.querySelector('.s-chat__output')
-                  setTimeout(() => {
-                  output.scrollTop = output.scrollHeight
-
-                  }, 1000);
-                  }}
-        ></div>
+        <textarea ref={ input => this.messageInput = input }
+          style={ inputHeight }
+          placeholder="Blah blah blah"
+          onKeyDown={ this.onKeyDown.bind(this) }
+        ></textarea>
 
         <button className="c-messenger__submit" onClick={ () => this.sendMessage() }>
           <i className="icon-send"></i>

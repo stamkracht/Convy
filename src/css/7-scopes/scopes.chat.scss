@@ -4,8 +4,9 @@
 
 
 .s-chat {
+  overflow: auto;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -17,9 +18,14 @@
   display: flex;
   flex-direction: column;
   padding-top: 75px;
+  margin-bottom: 130px;
 }
 
 .s-chat__input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 130px;
   width: 100%;
   padding: 10px;
 }

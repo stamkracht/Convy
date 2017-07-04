@@ -11,10 +11,7 @@ class Main extends React.Component {
   render() {
     return (
       <main className="s-main">
-        <SwipeableViews
-          style={{height:'100%'}}
-          slideStyle={{height:'100%'}}
-          resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
+        <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
           <ChatList
             chats={ this.getChatList() }
             searchPlaceholder={ 'Search conversations' }

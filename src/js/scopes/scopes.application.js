@@ -30,12 +30,11 @@ class Application extends React.Component {
         <AppBackground backgroundImage="dest/bg-app.jpg"/>
         { header }
         <div style={{
-          position: 'fixed',
-          top: 0,
-          height: '100%',
-          width: '100vw',
-          display: 'flex',
-          justifyContent: 'center'
+  position: 'fixed',
+  top: 0,
+  height: '100vh',
+  width: '100vw',
+  display: 'flex',
         }}>
           { content }
         </div>
