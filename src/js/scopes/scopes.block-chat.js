@@ -41,7 +41,7 @@ class BlockChat extends React.Component {
          </ul>
        </div>) :
       (<div className="s-block-chat__header">
-         <p>No messages, yet</p>
+         <p>No messages yet</p>
        </div>);
 
     const messages = this.props.messages.length > 0 ?

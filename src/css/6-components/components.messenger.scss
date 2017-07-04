@@ -16,15 +16,6 @@
   background: $white;
 }
 
-.c-messenger > input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
 .c-messenger__attachment {
   //position: absolute;
   bottom: 5px;
@@ -37,8 +28,6 @@
   line-height: 1;
   font-size: em(20px);
   transition: transform 0.2s;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-tap-highlight-color: transparent;
 
   &.state-active { transform: rotate(45deg); }
 }
