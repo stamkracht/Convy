@@ -29,13 +29,6 @@ class Main extends React.Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.meState.me != this.props.meState.me) {
-      this.props.fetchContacts();
-      this.props.fetchChats();
-    }
-  }
-
   componentWillMount() {
     this.props.setMainHeader();
     if (!this.props.contactsState.receivedAt) {

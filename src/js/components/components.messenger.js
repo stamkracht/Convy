@@ -8,9 +8,10 @@ import { classNames } from '../utillities';
 class Messenger extends React.Component {
 
   sendMessage(attachment) {
-    const message = this.messageInput.innerText;
+    const message = this.messageInput.value;
     this.props.sendMessage(this.props.chatId, message, attachment);
-    this.messageInput.innerText = '';
+    this.messageInput.value = '';
+    this.props.onSizeChanged(50);
   }
 
   onKeyDown(event) {
@@ -21,9 +22,11 @@ class Messenger extends React.Component {
       event.preventDefault();
       this.sendMessage();
     } else {
-      //this.props.onSizeChanged(50);
-      //let height = event.target.scrollHeight;
-      //this.props.onSizeChanged(height);
+      setTimeout(() => {
+        this.props.onSizeChanged(50);
+        let height = event.target.scrollHeight;
+        this.props.onSizeChanged(height);
+      }, 0);
     }
   }
 
@@ -36,7 +39,7 @@ class Messenger extends React.Component {
     let inputHeight = { height: `${ this.props.messengerHeight }px` };
 
     return (
-      <article className="c-messenger">
+      <article className="c-messenger" style={ inputHeight }>
 
         <input className="u-hidden"
                id="messageImage"
