@@ -102,10 +102,10 @@
   padding: 10px;
   background: transparent;
   text-align: center;
-  text-transform: uppercase;
 
   &::placeholder {
     color: $black;
+    text-transform: uppercase;
     transition: color 0.2s;
   }
 
