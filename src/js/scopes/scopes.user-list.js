@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import config from '../config';
 import actions from '../actions';
 import BlockUser from '../components/components.block-user';
-
+import SwipeView from '../scopes/scopes.swipe-view';
 import { classNames } from '../utillities';
 
 class UserList extends React.Component {
@@ -65,7 +65,7 @@ class UserList extends React.Component {
     }
 
     return (
-      <section className="s-user-list">
+      <SwipeView className="s-user-list">
         <div className={ classNames('s-user-list__inner', {'state-empty': !this.props.users.length}) }>
           { loading }
 
@@ -87,7 +87,7 @@ class UserList extends React.Component {
 
           { users }
         </div>
-      </section>
+      </SwipeView>
     );
   }
 
