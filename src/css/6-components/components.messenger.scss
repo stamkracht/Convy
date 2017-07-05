@@ -38,6 +38,12 @@
   outline: none;
   margin-left: 40px;
   padding: 12px 0;
+
+  &[contenteditable=true]:empty:before {
+    display: block;
+    content: attr(placeholder);
+    color: $gray-30;
+  }
 }
 
 .c-messenger__submit {
