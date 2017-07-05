@@ -1,5 +1,6 @@
 import React from 'react';
 
+import config from '../config';
 import Authentication from '../components/components.authentication';
 
 class Entry extends React.Component {
@@ -15,7 +16,7 @@ class Entry extends React.Component {
     return (
       <main className="s-entry">
         <div className="logo">
-          <img src="dest/text-logo.png" alt="Convy logo" width="284" height="73" />
+          <img src={ config.companyLogo } alt="Convy logo" width="284" height="73" />
         </div>
 
         <Authentication showRegister={this.state.showRegister} hideRegister={this.hideRegister.bind(this)}/>

@@ -5,6 +5,9 @@ class Config {
     this.urlPrefix = '/';
     this.adapter = new Adapter();
     this.stateName = 'convy';
+
+    this.companyLogo = '/dest/text-logo.png';
+    this.companyIcon = '/dest/text-icon.png';
   }
 }
 
