@@ -29,8 +29,6 @@ class Messenger extends React.Component {
   }
 
   render() {
-    let inputHeight = { height: `${ this.props.messengerHeight }px` };
-
     return (
       <article className="c-messenger">
 
@@ -49,13 +47,6 @@ class Messenger extends React.Component {
              contentEditable="true"
              placeholder="Blah blah blah"
              onKeyDown={ this.onKeyDown.bind(this) }
-             onFocus={() => {
-                const output = document.querySelector('.s-chat__output')
-                setTimeout(() => {
-                output.scrollTop = output.scrollHeight
-
-                }, 1000);
-                }}
         ></div>
 
         <button className="c-messenger__submit" onClick={ () => this.sendMessage() }>
