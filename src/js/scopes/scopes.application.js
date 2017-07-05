@@ -26,7 +26,7 @@ class Application extends React.Component {
     }
     return (
       <div>
-        <AppBackground backgroundImage="dest/bg-app.jpg"/>
+        <AppBackground backgroundImage={ config.backgroundImage }/>
         { header }
         { content }
       </div>

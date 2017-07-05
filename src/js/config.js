@@ -8,6 +8,7 @@ class Config {
 
     this.companyLogo = '/dest/text-logo.png';
     this.companyIcon = '/dest/text-icon.png';
+    this.backgroundImage = '/dest/bg-app.jpg';
   }
 }
 
