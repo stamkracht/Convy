@@ -53,7 +53,7 @@ class Conversation extends React.Component {
 
     return (
       <main className="s-conversation">
-        <SwipeableViews resistance>
+        <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
           <Chat chat={ chat }/>
           { view }
         </SwipeableViews>
@@ -61,12 +61,14 @@ class Conversation extends React.Component {
     );
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.setChatHeader();
 
     if (this.props.params.chatId) {
       this.loadInitialData();
     }
+
+    this.props.setSwipeViewIndex(0);
   }
 
   getParticipantIds(chat) {
