@@ -53,7 +53,7 @@ class Conversation extends React.Component {
 
     return (
       <main className="s-conversation">
-        <SwipeableViews resistance index={this.props.swipeViewState[swipeViewId]} onChangeIndex={this.props.setSwipeViewIndex}>
+        <SwipeableViews resistance>
           <Chat chat={ chat }/>
           { view }
         </SwipeableViews>
