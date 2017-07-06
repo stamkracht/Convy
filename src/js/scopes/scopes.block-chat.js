@@ -31,10 +31,12 @@ class BlockChat extends React.Component {
   render() {
     const header = this.props.messages.length > 0 ?
       (<div className="s-block-chat__header">
+         {/*
          <p>Unread messages</p>
          <ul className="s-block-chat__data">
            <li>31 augustus</li>
          </ul>
+         */}
        </div>) :
       (<div className="s-block-chat__header">
          <p>No messages yet</p>
