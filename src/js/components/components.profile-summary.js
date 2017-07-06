@@ -45,6 +45,7 @@ class ProfileSummary extends React.Component {
           </ul>)}
         </article>
 
+        {/*
         <article className="c-profile-summary__stats">
           <ul>
             <li>
@@ -65,6 +66,7 @@ class ProfileSummary extends React.Component {
             </li>
           </ul>
         </article>
+        */}
       </section>
     );
   }
