@@ -7,7 +7,8 @@ class ProfileSummary extends React.Component {
   render() {
     const user = this.props.user;
 
-    let userImage;
+    let userImage,
+        userData;
 
     if (user && user.image) {
       userImage = (<img src={ user && user.image }/>);
@@ -19,11 +20,17 @@ class ProfileSummary extends React.Component {
       );
     }
 
+    if (user && user.lastSeenAt) {
+      userData = (<p className="c-profile-summary__data">last seen: { humanReadableTimeStamp(user.lastSeenAt) }</p>);
+    } else {
+      userData = (<p className="c-profile-summary__data">last seen: unknown</p>);
+    }
+
     return (
       <section className="c-profile-summary">
         <article className="c-profile-summary__head">
           { userImage }
-          <p className="c-profile-summary__data">last seen: { user && humanReadableTimeStamp(user.lastSeenAt) }</p>
+          { userData }
         </article>
 
         <article className="c-profile-summary__info">
