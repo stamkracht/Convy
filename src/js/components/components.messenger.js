@@ -45,7 +45,7 @@ class Messenger extends React.Component {
         <div ref={ input => this.messageInput = input }
              className="c-messenger__input"
              contentEditable="true"
-             placeholder="Share knowledge"
+             placeholder="Say something.."
              onKeyDown={ this.onKeyDown.bind(this) }
         ></div>
 
