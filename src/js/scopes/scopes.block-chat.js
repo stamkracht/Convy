@@ -3,15 +3,11 @@ import ReactDOM from 'react-dom';
 
 import { classNames, humanReadableTimeStamp } from '../utillities';
 
+
 class BlockChat extends React.Component {
 
-  componentDidUpdate(prevProps, prevState) {
-    if ( !!this.props.messages.length ) {
-      const node = ReactDOM.findDOMNode(this.lastMessage);
-      if ( node ) {
-        node.scrollIntoView({behavior: "smooth"});
-      }
-    }
+  handleImageLoad(evt) {
+    evt.target.classList.remove('c-message__image--loading')
   }
 
   renderMessage(message) {
@@ -22,7 +18,7 @@ class BlockChat extends React.Component {
           key={message.created_at}
           ref={(el) => { this.lastMessage = el; }}>
           <h1 className="c-message__contact-name">{ message.user.firstName }</h1>
-          <img src={message.attachment} />
+          {message.attachment && <img onLoad={this.handleImageLoad.bind(this)} className="c-message__image c-message__image--loading" src={message.attachment} />}
           <p>{ message.content }</p>
           <ul className="c-message__data">
             <li>{ humanReadableTimeStamp(message.created_at) }</li>

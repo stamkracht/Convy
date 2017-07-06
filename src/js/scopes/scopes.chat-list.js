@@ -15,8 +15,18 @@ class ChatList extends React.Component {
 
     this.state = {
       search: false,
+      limit: 20,
     };
   }
+
+  onBottom(bottomOffset) {
+    if(bottomOffset > -90) {
+      this.setState({
+        limit: this.state.limit + 20
+      })
+    }
+  }
+
 
   render() {
     let groupAction,
@@ -40,7 +50,7 @@ class ChatList extends React.Component {
       </li>
     );
 
-    chats = this.props.chats.map((chat, index) => {
+    chats = this.props.chats.slice(0, this.state.limit).map((chat, index) => {
       let name;
       let participants = chat.participants
         .filter(p => p.id !== this.props.meState.me.id)
@@ -87,7 +97,7 @@ class ChatList extends React.Component {
     }
 
     return (
-        <SwipeView className="s-chat-list">
+        <SwipeView className="s-chat-list" onBottom={this.onBottom.bind(this)}>
           <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
             { loading }
 

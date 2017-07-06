@@ -14,17 +14,38 @@ class Chat extends React.Component {
     this.state = {
       showAttachment: false,
       messengerHeight: 50,
+      limit: 20,
     };
   }
 
+  componentWillUpdate() {
+    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) === this.chatOutput.scrollHeight;
+  }
+
+  componentDidUpdate() {
+    if(this.shouldScrollBottom) {
+      console.log(this.chatOutput.scrollTop,this.chatOutput.scrollHeight)
+      this.chatOutput.scrollTop = this.chatOutput.scrollHeight
+    }
+  }
+
+  handleScroll(evt) {
+    const elm = evt.target;
+    if(elm.scrollTop < 90) {
+      this.setState({
+        limit: this.state.limit + 20
+      })
+    }
+  }
+
   render() {
-    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.map(
+    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.slice(Math.max(this.props.chat.messages.length - this.state.limit, 1)).map(
       message => Object.assign({}, message, {user: this.props.contactsState.contacts[message.user]})
     ) : [];
 
     return (
       <section className="s-chat">
-        <div className="s-chat__output">
+        <div ref={(elm) => this.chatOutput = elm} className="s-chat__output" onScroll={this.handleScroll.bind(this)}>
           {messages && this.props.meState.me && <BlockChat myId={this.props.meState.me.id} messages={ messages } />}
         </div>
         <div className="s-chat__input">

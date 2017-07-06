@@ -15,6 +15,12 @@ class SwipeView extends React.Component {
     }
   }
 
+  handleScroll(evt) {
+    const elm = evt.target;
+    const atBottom = elm.scrollTop + elm.offsetHeight - elm.scrollHeight;
+    this.props.onBottom(atBottom);
+  }
+
   render() {
     let styles = { transform: `translate(0, ${ -this.state.offset }px)`, overflowY: (this.state.overflow ? 'auto' :'hidden') };
     if (this.state.animEnabled) {
@@ -28,6 +34,7 @@ class SwipeView extends React.Component {
         onTouchStart={ this.startSwipe.bind(this) }
         onTouchMove={ this.moveSwipe.bind(this) }
         onTouchEnd={ this.endSwipe.bind(this) }
+        onScroll={this.handleScroll.bind(this)}
       >
         { this.props.children }
       </section>

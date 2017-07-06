@@ -15,8 +15,18 @@ class UserList extends React.Component {
 
     this.state = {
       search: false,
+      limit: 20,
     };
   }
+
+  onBottom(bottomOffset) {
+    if(bottomOffset > -90) {
+      this.setState({
+        limit: this.state.limit + 20
+      })
+    }
+  }
+
 
   render() {
     let users,
@@ -31,7 +41,7 @@ class UserList extends React.Component {
       );
     }
 
-    users = this.props.users.map((user, index) => (
+    users = this.props.users.slice(0,this.state.limit).map((user, index) => (
       <BlockUser
         key={ index }
         id={ user.id}
@@ -65,7 +75,7 @@ class UserList extends React.Component {
     }
 
     return (
-      <SwipeView className="s-user-list">
+      <SwipeView className="s-user-list" onBottom={this.onBottom.bind(this)}>
         <div className={ classNames('s-user-list__inner', {'state-empty': !this.props.users.length}) }>
           { loading }
 
