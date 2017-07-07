@@ -21,7 +21,7 @@ class Conversation extends React.Component {
 
     // Existing conversation
     if (chat) {
-      if (chat.isPrivate) {
+      if (chat.isPrivate && this.props.meState.me) {
         view = (
           <Profile
             isRoot={ selfTalk = chat.participants.length < 2 ? true : false }

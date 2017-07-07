@@ -19,17 +19,17 @@ class Chat extends React.Component {
   }
 
   componentWillUpdate() {
-    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) === this.chatOutput.scrollHeight;
+    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) <= this.chatOutput.scrollHeight;
   }
 
   componentDidUpdate() {
-    if(this.shouldScrollBottom) {
-      console.log(this.chatOutput.scrollTop,this.chatOutput.scrollHeight)
+    if(this.shouldScrollBottom && !this.manualScroll) {
       this.chatOutput.scrollTop = this.chatOutput.scrollHeight
     }
   }
 
   handleScroll(evt) {
+    this.manualScroll = true;
     const elm = evt.target;
     if(elm.scrollTop < 90) {
       this.setState({
@@ -50,6 +50,7 @@ class Chat extends React.Component {
         </div>
         <div className="s-chat__input">
           <Messenger
+            scrollDown={() => this.chatOutput.scrollTop = this.chatOutput.scrollHeight}
             chatId={this.props.chat && this.props.chat.id}
             showAttachment={ this.state.showAttachment }
             messengerHeight= { this.state.messengerHeight }

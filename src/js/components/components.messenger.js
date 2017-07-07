@@ -7,10 +7,11 @@ import { classNames } from '../utillities';
 
 class Messenger extends React.Component {
 
-  sendMessage(attachment) {
+  async sendMessage(attachment) {
     const message = this.messageInput.innerText;
-    this.props.sendMessage(this.props.chatId, message, attachment);
+    await this.props.sendMessage(this.props.chatId, message, attachment);
     this.messageInput.innerText = '';
+    this.props.scrollDown();
   }
 
   onKeyDown(event) {
