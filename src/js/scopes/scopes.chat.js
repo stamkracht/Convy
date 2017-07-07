@@ -19,11 +19,12 @@ class Chat extends React.Component {
   }
 
   componentWillUpdate() {
-    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) <= this.chatOutput.scrollHeight;
+    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) < this.chatOutput.scrollHeight;
+    this.mustScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) == this.chatOutput.scrollHeight;
   }
 
   componentDidUpdate() {
-    if(this.shouldScrollBottom && !this.manualScroll) {
+    if(this.mustScrollBottom || (this.shouldScrollBottom && !this.manualScroll)) {
       this.chatOutput.scrollTop = this.chatOutput.scrollHeight
     }
   }
@@ -39,7 +40,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.slice(Math.max(this.props.chat.messages.length - this.state.limit, 1)).map(
+    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.slice(Math.max(this.props.chat.messages.length - this.state.limit, 0)).map(
       message => Object.assign({}, message, {user: this.props.contactsState.contacts[message.user]})
     ) : [];
 

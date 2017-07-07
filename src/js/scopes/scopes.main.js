@@ -31,12 +31,12 @@ class Main extends React.Component {
 
   componentWillMount() {
     this.props.setMainHeader();
-    if (!this.props.contactsState.receivedAt) {
+    //if (!this.props.contactsState.receivedAt) {
       this.props.fetchContacts();
-    }
-    if (!this.props.chatsState.receivedAt) {
+    //}
+    //if (!this.props.chatsState.receivedAt) {
       this.props.fetchChats();
-    }
+    //}
   }
 
   getChatList() {
