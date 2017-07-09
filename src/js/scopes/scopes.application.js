@@ -33,8 +33,9 @@ class Application extends React.Component {
     );
   }
 
-  componentWillMount() {
-    if(config.adapter.isAuthenticated()) {
+  async componentWillMount() {
+    const authenticated = await config.adapter.isAuthenticated()
+    if (authenticated) {
       this.props.setAuthenticated();
     }
   }
