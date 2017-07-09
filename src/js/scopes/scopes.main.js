@@ -31,14 +31,21 @@ class Main extends React.Component {
 
   componentWillMount() {
     this.props.setMainHeader();
+    if (this.props.meState.me) {
+      this.loadInitialData();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     const me = nextProps.meState.me;
     if (this.props.meState.me != me) {
-      this.props.fetchContacts();
-      this.props.fetchChats();
+      this.loadInitialData();
     }
+  }
+
+  loadInitialData() {
+    this.props.fetchContacts();
+    this.props.fetchChats();
   }
 
   getChatList() {

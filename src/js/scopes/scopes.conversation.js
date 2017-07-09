@@ -64,14 +64,15 @@ class Conversation extends React.Component {
   componentWillMount() {
     this.props.setChatHeader();
     this.props.setSwipeViewIndex(0);
+    if (this.props.meState.me && this.props.params.chatId) {
+      this.loadInitialData();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     const me = nextProps.meState.me;
-    if (this.props.meState.me != me) {
-      if (this.props.params.chatId) {
-        this.loadInitialData();
-      }
+    if ((this.props.meState.me != me) && this.props.params.chatId) {
+      this.loadInitialData();
     }
   }
 
