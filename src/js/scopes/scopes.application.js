@@ -33,11 +33,8 @@ class Application extends React.Component {
     );
   }
 
-  async componentWillMount() {
-    const authenticated = await config.adapter.isAuthenticated()
-    if (authenticated) {
-      this.props.setAuthenticated();
-    }
+  componentWillMount() {
+    this.props.authenticate();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,7 +59,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),
-    setAuthenticated: () => dispatch(actions.auth.receiveLogin()),
+    authenticate: () => dispatch(actions.auth.authenticate()),
     handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),
     handleContactEvent: (event, payload) => dispatch(actions.contacts.handleContactEvent(event, payload))
   };

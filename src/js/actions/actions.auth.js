@@ -53,3 +53,12 @@ export function logout() {
   }
 }
 
+export function authenticate() {
+  return async function(dispatch, getState) {
+    const authenticated = await config.adapter.isAuthenticated();
+    if(authenticated) {
+      dispatch(receiveLogin())
+    }
+  }
+}
+
