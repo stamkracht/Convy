@@ -73,6 +73,11 @@ class Chat extends React.Component {
       this.props.updateLastSeen(this.props.chat.id);
     }
   }
+  componentWillUnmount() {
+    if ( !!this.props.chat ) {
+      this.props.updateLastSeen(this.props.chat.id);
+    }
+  }
 }
 
 const mapStateToProps = (state, ownProps) => state[config.stateName];
