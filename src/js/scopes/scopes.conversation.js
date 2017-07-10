@@ -21,7 +21,7 @@ class Conversation extends React.Component {
 
     // Existing conversation
     if (chat) {
-      if (chat.isPrivate) {
+      if (chat.isPrivate && this.props.meState.me) {
         view = (
           <Profile
             isRoot={ selfTalk = chat.participants.length < 2 ? true : false }
@@ -63,12 +63,17 @@ class Conversation extends React.Component {
 
   componentWillMount() {
     this.props.setChatHeader();
-
-    if (this.props.params.chatId) {
+    this.props.setSwipeViewIndex(0);
+    if (this.props.meState.me && this.props.params.chatId) {
       this.loadInitialData();
     }
+  }
 
-    this.props.setSwipeViewIndex(0);
+  componentWillReceiveProps(nextProps) {
+    const me = nextProps.meState.me;
+    if ((this.props.meState.me != me) && this.props.params.chatId) {
+      this.loadInitialData();
+    }
   }
 
   getParticipantIds(chat) {

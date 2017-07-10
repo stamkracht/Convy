@@ -19,17 +19,18 @@ class Chat extends React.Component {
   }
 
   componentWillUpdate() {
-    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) === this.chatOutput.scrollHeight;
+    this.shouldScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) < this.chatOutput.scrollHeight;
+    this.mustScrollBottom = (this.chatOutput.scrollTop + this.chatOutput.offsetHeight) == this.chatOutput.scrollHeight;
   }
 
   componentDidUpdate() {
-    if(this.shouldScrollBottom) {
-      console.log(this.chatOutput.scrollTop,this.chatOutput.scrollHeight)
+    if(this.mustScrollBottom || (this.shouldScrollBottom && !this.manualScroll)) {
       this.chatOutput.scrollTop = this.chatOutput.scrollHeight
     }
   }
 
   handleScroll(evt) {
+    this.manualScroll = true;
     const elm = evt.target;
     if(elm.scrollTop < 90) {
       this.setState({
@@ -39,7 +40,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.slice(Math.max(this.props.chat.messages.length - this.state.limit, 1)).map(
+    const messages = this.props.chat && this.props.chat.messages ? this.props.chat.messages.slice(Math.max(this.props.chat.messages.length - this.state.limit, 0)).map(
       message => Object.assign({}, message, {user: this.props.contactsState.contacts[message.user]})
     ) : [];
 
@@ -50,6 +51,7 @@ class Chat extends React.Component {
         </div>
         <div className="s-chat__input">
           <Messenger
+            scrollDown={() => this.chatOutput.scrollTop = this.chatOutput.scrollHeight}
             chatId={this.props.chat && this.props.chat.id}
             showAttachment={ this.state.showAttachment }
             messengerHeight= { this.state.messengerHeight }
@@ -67,6 +69,11 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
+    if ( !!this.props.chat ) {
+      this.props.updateLastSeen(this.props.chat.id);
+    }
+  }
+  componentWillUnmount() {
     if ( !!this.props.chat ) {
       this.props.updateLastSeen(this.props.chat.id);
     }

@@ -34,9 +34,7 @@ class Application extends React.Component {
   }
 
   componentWillMount() {
-    if(config.adapter.isAuthenticated()) {
-      this.props.setAuthenticated();
-    }
+    this.props.authenticate();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,7 +59,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchMe: () => dispatch(actions.me.fetchMe()),
-    setAuthenticated: () => dispatch(actions.auth.receiveLogin()),
+    authenticate: () => dispatch(actions.auth.authenticate()),
     handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),
     handleContactEvent: (event, payload) => dispatch(actions.contacts.handleContactEvent(event, payload))
   };

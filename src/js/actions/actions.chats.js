@@ -231,6 +231,5 @@ export function sendMessage(chatId, message, attachment) {
     dispatch(startSendMessage());
     const out = await config.adapter.sendMessage(chatId, message, attachment);
     dispatch(finishSendMessage());
-    dispatch(handleChatEvent('NEW_MESSAGE', out));
   }
 }
