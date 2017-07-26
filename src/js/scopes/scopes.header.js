@@ -77,6 +77,7 @@ class NavChat extends React.Component {
   render() {
     let statsIcon,
         chatIcon,
+        messageIcon,
         statsActive = false;
 
     const chat = this.props.chatsState.chats[this.props.options.chatId];
@@ -92,25 +93,28 @@ class NavChat extends React.Component {
         </li>
       );
     }
-
     if (chat) {
-      if (chat.isPrivate) {
-        chatIcon = <i className="icon-person"></i>;
-      } else {
-        chatIcon = <i className="icon-group"></i>;
-      }
+      messageIcon = (
+        <li>
+          <Link
+            className={ classNames('c-nav-main__button c-nav-main__button--chat', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 0}) }
+            onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
+            <i className="icon-message"></i>
+          </Link>
+        </li>
+      );
+    }
+
+    if (chat && chat.isPrivate) {
+      chatIcon = <i className="icon-person"></i>;
+    } else {
+      chatIcon = <i className="icon-group"></i>;
     }
 
     return (
       <nav className="c-nav-main c-nav-main--chat">
         <ul>
-          <li>
-            <Link
-              className={ classNames('c-nav-main__button c-nav-main__button--chat', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 0}) }
-              onClick={ () => this.props.setConversationSwipeViewIndex(0) }>
-              <i className="icon-message"></i>
-            </Link>
-          </li>
+          { messageIcon }
           <li>
             <Link
               className={ classNames('c-nav-main__button c-nav-main__button--profile', {'state-active': this.props.swipeViewState['conversationSwipeView'] == 1}) }
