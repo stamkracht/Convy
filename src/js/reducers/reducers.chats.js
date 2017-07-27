@@ -82,16 +82,14 @@ function chatsReducer(state, action) {
   if (action.type == 'NEW_MESSAGE') {
     const message = action.message;
     const chatId = message.conversation;
+    const messages = (!!state.chats[chatId].messages ?
+      state.chats[chatId].messages.concat([message]) :
+    [message]);
     let chat = Object.assign({}, state.chats[chatId], {
       lastMessage: message.content,
       lastMessageDate: message.created_at,
-    })
-    if ( !!state.chats[chatId].messages ) {
-      const messages = state.chats[chatId].messages.concat([message])
-      chat = Object.assign({}, state.chats[chatId], {
-        messages: messages,
-      })
-    }
+      messages: messages,
+    });
     const chats = Object.assign({}, state.chats , { [chatId]: chat });
     return Object.assign({}, state, {
       receivedAt: action.receivedAt,

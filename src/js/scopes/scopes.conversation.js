@@ -63,16 +63,20 @@ class Conversation extends React.Component {
 
   componentWillMount() {
     this.props.setChatHeader();
-    this.props.setSwipeViewIndex(0);
     if (this.props.meState.me && this.props.params.chatId) {
       this.loadInitialData();
+      this.props.setSwipeViewIndex(0);
+    } else {
+      this.props.setSwipeViewIndex(1);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const me = nextProps.meState.me;
-    if ((this.props.meState.me != me) && this.props.params.chatId) {
-      this.loadInitialData();
+    if (this.props.meState.me != me) {
+      if(this.props.params.chatId) {
+        this.loadInitialData();
+      }
     }
   }
 
@@ -100,17 +104,14 @@ class Conversation extends React.Component {
   }
 
   createChat(chat) {
-    console.log('create chat', chat);
     this.props.createChat(chat);
   }
 
   updateChat(chat) {
-    console.log('update chat', chat);
     this.props.updateChat(chat);
   }
 
   leaveChat(chat) {
-    console.log('leave chat', chat);
     this.props.leaveChat(chat);
   }
 }
