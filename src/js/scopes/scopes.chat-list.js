@@ -30,6 +30,7 @@ class ChatList extends React.Component {
 
   render() {
     let groupAction,
+      searchChats,
       chats,
       input,
       loading;
@@ -46,6 +47,14 @@ class ChatList extends React.Component {
       <li>
         <button onClick={ this.newGroupConversation.bind(this) }>
           <i className="icon-group-add"></i>
+        </button>
+      </li>
+    );
+
+    searchChats = (
+      <li>
+        <button onClick={ this.showSearch.bind(this) }>
+          <i className="icon-search"></i>
         </button>
       </li>
     );
@@ -105,11 +114,7 @@ class ChatList extends React.Component {
               <nav className="s-block-actions__nav">
                 <ul>
                   { groupAction }
-                  <li>
-                    <button onClick={ this.showSearch.bind(this) }>
-                      <i className="icon-search"></i>
-                    </button>
-                  </li>
+                  {this.props.chats.length > 0 && searchChats}
                 </ul>
 
                 { input }
