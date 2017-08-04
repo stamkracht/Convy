@@ -13,7 +13,7 @@ class Profile extends React.Component {
 
     return (
       <section className="s-profile">
-        { this.props.meState.isFetching ? <div>Loader thingy</div> : <ProfileSummary user={ user }/> }
+        { this.props.meState.isFetching ? <ProfileSummary loading={ true }/> : <ProfileSummary user={ user }/> }
       </section>
     );
   }
