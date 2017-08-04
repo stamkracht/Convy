@@ -75,7 +75,11 @@ class UserList extends React.Component {
     }
 
     return (
-      <SwipeView className="s-user-list" onBottom={this.onBottom.bind(this)}>
+      <SwipeView
+        className="s-user-list"
+        swipeEnabled={ this.props.users.length > 0 ? true : false }
+        onBottom={this.onBottom.bind(this)}
+      >
         <div className={ classNames('s-user-list__inner', {'state-empty': !this.props.users.length}) }>
           { loading }
 

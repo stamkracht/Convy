@@ -106,7 +106,11 @@ class ChatList extends React.Component {
     }
 
     return (
-        <SwipeView className="s-chat-list" onBottom={this.onBottom.bind(this)}>
+        <SwipeView
+          className="s-chat-list"
+          swipeEnabled={ this.props.chats.length > 0 ? true : false }
+          onBottom={this.onBottom.bind(this)}
+        >
           <div className={ classNames('s-chat-list__inner', {'state-empty': !this.props.chats.length}) }>
             { loading }
 

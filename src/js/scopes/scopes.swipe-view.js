@@ -31,10 +31,10 @@ class SwipeView extends React.Component {
       <section ref={(elm) => this.elm = elm}
         className={this.props.className}
         style={ styles }
-        onTouchStart={ this.startSwipe.bind(this) }
-        onTouchMove={ this.moveSwipe.bind(this) }
-        onTouchEnd={ this.endSwipe.bind(this) }
-        onScroll={this.handleScroll.bind(this)}
+        onTouchStart={ this.props.swipeEnabled && this.startSwipe.bind(this) }
+        onTouchMove={ this.props.swipeEnabled && this.moveSwipe.bind(this) }
+        onTouchEnd={ this.props.swipeEnabled && this.endSwipe.bind(this) }
+        onScroll={ this.props.swipeEnabled && this.handleScroll.bind(this)}
       >
         { this.props.children }
       </section>
