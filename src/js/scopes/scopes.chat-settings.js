@@ -38,7 +38,7 @@ class ChatSettings extends React.Component {
     participants = renderParticipants(this.props);
 
     if (this.props.participants.length === 0) {
-      heading = 'Tap on the right icon above to start adding participants.';
+      heading = 'Tap on the icons right above to start adding participants and edit the group info.';
     } else {
       heading = 'Participants';
     }
