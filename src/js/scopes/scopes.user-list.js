@@ -30,6 +30,7 @@ class UserList extends React.Component {
 
   render() {
     let users,
+      searchUsers,
       input,
       loading;
 
@@ -40,6 +41,14 @@ class UserList extends React.Component {
         </span>
       );
     }
+
+    searchUsers = (
+      <li>
+        <button onClick={ this.showSearch.bind(this) }>
+          <i className="icon-search"></i>
+        </button>
+      </li>
+    );
 
     users = this.props.users.slice(0,this.state.limit).map((user, index) => (
       <BlockUser
@@ -86,11 +95,7 @@ class UserList extends React.Component {
           <section className="s-block-actions">
             <nav className="s-block-actions__nav">
               <ul>
-                <li>
-                  <button onClick={ this.showSearch.bind(this) }>
-                    <i className="icon-search"></i>
-                  </button>
-                </li>
+                { this.props.users.length > 0 && searchUsers }
               </ul>
 
               { input }
