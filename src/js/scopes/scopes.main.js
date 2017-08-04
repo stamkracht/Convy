@@ -15,7 +15,7 @@ class Main extends React.Component {
           <ChatList
             chats={ this.getChatList() }
             searchPlaceholder={ 'Search conversations' }
-            emptyMessage={ 'Tap on one of the icons above to start a conversation.' }
+            emptyMessage={ 'Create a group conversation or browse your contacts to start a private chat.' }
             searchResults={ () => { console.info('Show search results of the chats.'); } }
           />
           <UserList
