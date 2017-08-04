@@ -28,8 +28,13 @@
 .s-chat-list__inner .empty-message {
   width: 100%;
   padding: 40px 20px;
+  font-size: em(18px);
+  font-weight: 300;
 
-  @include mq(min-w, 400px) { padding: 60px 20px; }
+  @include mq(min-w, 400px) {
+    padding: 60px 20px;
+    font-size: em(20px);
+  }
 }
 
 .s-chat-list .s-block-actions__nav > ul {
