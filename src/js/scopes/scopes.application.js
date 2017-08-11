@@ -35,6 +35,9 @@ class Application extends React.Component {
 
   componentWillMount() {
     this.props.authenticate();
+    document.openChatWithUser = (id) => {
+      this.props.fetchPrivateChat({id})
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,6 +61,7 @@ const mapStateToProps = (state, ownProps) => state[config.stateName];
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    fetchPrivateChat: (user) => dispatch(actions.chats.fetchPrivateChat(user)),
     fetchMe: () => dispatch(actions.me.fetchMe()),
     authenticate: () => dispatch(actions.auth.authenticate()),
     handleChatEvent: (event, payload) => dispatch(actions.chats.handleChatEvent(event, payload)),

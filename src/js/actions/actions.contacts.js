@@ -43,8 +43,6 @@ export function handleContactEvent(event, payload) {
   // Ouput action based on event and payload
   return {
     type: 'UPDATE_CONTACT',
-    id,
-    update,
   }
 }
 
